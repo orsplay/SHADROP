@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Moon Case</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <main class="screen" id="screen" aria-label="Игры">
+    <header class="topbar">
+      <div class="topbar-actions">
+        <button class="balance-chip" type="button" aria-label="Баланс 0 рублей">
+          <span class="balance-chip__amount">0</span>
+          
+          <img
+                  class="balance-chip__coin"
+                  src="assets/icons/telegram-star.png"
+                  alt="Telegram Stars"
+          >
+
+        </button>
+
+        
+<button class="deposit-button" type="button" aria-label="Пополнить">
+  <span class="plus-icon"></span>
+</button>
+
+
+        <button class="profile-button" type="button" aria-label="Профиль">
+          <img class="profile-button__icon" src="assets/icons/profile.png" alt="" aria-hidden="true">
+        </button>
+
+      </div>
+    </header>
+
+    <!-- LIVE: последние выигрыши -->
+    <section class="live-row" aria-label="Последние выигрыши">
+
+      <div class="live-label">
+        <div class="live-label__inner">
+          <span class="live-label__text">LIVE</span>
+          <span class="live-label__dot"></span>
+        </div>
+      </div>
+
+      <div class="live-list">
+
+        <article class="live-card">
+          <img class="live-card__item" src="assets/images/live-1.png" alt="Выигрыш">
+          <div class="live-card__win">
+            <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+            <span>1250</span>
+          </div>
+        </article>
+
+        <article class="live-card">
+          <img class="live-card__item" src="assets/images/live-2.png" alt="Выигрыш">
+          <div class="live-card__win">
+            <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+            <span>3480</span>
+          </div>
+        </article>
+
+        <article class="live-card">
+          <img class="live-card__item" src="assets/images/live-3.png" alt="Выигрыш">
+          <div class="live-card__win">
+            <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+            <span>1100</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="page-placeholder" aria-hidden="true"></section>
+
+  </main>
+
+  <nav class="bottom-nav" id="bottomNav" aria-label="Основное меню">
+    <div class="nav-indicator" id="navIndicator" aria-hidden="true"></div>
+
+    <button class="nav-item is-active" type="button" data-page="games" aria-current="page">
+      <img class="nav-icon" src="assets/icons/games.png" alt="" aria-hidden="true">
+      <span>Игры</span>
+    </button>
+
+    <button class="nav-item" type="button" data-page="cases">
+      <img class="nav-icon" src="assets/icons/cases.png" alt="" aria-hidden="true">
+      <span>Кейсы</span>
+    </button>
+
+    <button class="nav-item" type="button" data-page="bonuses">
+      <img class="nav-icon" src="assets/icons/bonuses.png" alt="" aria-hidden="true">
+      <span>Бонусы</span>
+    </button>
+
+    <button class="nav-item" type="button" data-page="profile">
+      <img class="nav-icon" src="assets/icons/profile.png" alt="" aria-hidden="true">
+      <span>Профиль</span>
+    </button>
+  </nav>
+</body>
+</html>

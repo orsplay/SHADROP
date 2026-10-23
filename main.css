@@ -1,0 +1,40 @@
+:root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; background: #09090b; }
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; min-height: 100%; background: #09090b; }
+body { min-height: 100vh; min-height: 100dvh; color: #fff; }
+.screen { min-height: 100vh; min-height: 100dvh; padding-bottom: 112px; }
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  width: min(calc(100% - 24px), 470px);
+  height: 74px;
+  padding: 6px;
+  gap: 3px;
+  background: #1b1b20;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  z-index: 10;
+}
+.nav-item {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  border-radius: 19px;
+  background: transparent;
+  color: #777780;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font: 600 11px Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color .2s, color .2s;
+}
+.nav-item svg { width: 27px; height: 27px; flex-shrink: 0; }
+.nav-item.is-active { background: #323239; color: #ffd42a; }
+.nav-item:focus-visible { outline: 2px solid #ffd42a; outline-offset: -3px; }

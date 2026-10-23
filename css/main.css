@@ -1,0 +1,409 @@
+:root {
+  color-scheme: dark;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #000000;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: #fff;
+}
+
+.screen {
+  width: 100%;
+  max-width: 400px;
+  margin-inline: auto;
+  background: #000000;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px 12px 126px;
+}
+
+/* Компактная шапка: место слева зарезервировано для логотипа. */
+.topbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 36px;
+}
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+.balance-chip,
+.deposit-button,
+.profile-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  border: 0;
+  color: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: filter .18s ease, transform .18s ease;
+}
+.balance-chip:active,
+.deposit-button:active,
+.profile-button:active { transform: scale(.96); }
+.balance-chip {
+  width: 96px;
+  min-width: 96px;
+  height: 44px;
+  padding: 0 8px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.balance-chip__amount {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+
+.balance-chip__coin {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Плюс размером с кнопку профиля */
+
+.deposit-button {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0;
+
+  display: grid;
+  place-items: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    145deg,
+    #63cfff 0%,
+    #359cff 55%,
+    #226dea 100%
+  );
+
+  box-shadow: 0 3px 12px rgba(45, 137, 255, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.plus-icon {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.plus-icon::before,
+.plus-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #ffffff;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.plus-icon::before {
+  width: 18px;
+  height: 3px;
+}
+
+.plus-icon::after {
+  width: 3px;
+  height: 18px;
+}
+
+.deposit-button:active {
+  transform: scale(0.96);
+}
+
+
+
+
+.deposit-button:active {
+  transform: scale(0.96);
+}
+
+
+.deposit-button:active {
+  transform: scale(0.94);
+}
+
+.deposit-button span {
+  display: block;
+  transform: translateY(-1px);
+  text-shadow: 0 0 5px rgba(34,198,255,.25);
+}
+
+.profile-button {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.profile-button__icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  pointer-events: none;
+}
+.page-placeholder {
+  min-height: 220px;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  width: calc(100% - 24px);
+  max-width: 376px;
+  height: 84px;
+  padding: 7px;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.045);
+  border: none;
+  border-radius: 999px;
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.42);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.nav-indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 75px;
+  height: calc(100% - 12px);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.075);
+  border: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transform: translate(0, -50%);
+  transition: left .34s cubic-bezier(.22, 1, .36, 1), width .22s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nav-item {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.66);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  font: 400 13px/1 Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .22s ease, opacity .22s ease;
+}
+
+.nav-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.62;
+  transition: opacity .22s ease, transform .22s ease, filter .22s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.nav-item span {
+  pointer-events: none;
+  user-select: none;
+}
+
+.nav-item.is-active {
+  background: transparent;
+  color: #ffffff;
+}
+
+.nav-item.is-active .nav-icon {
+  opacity: 1;
+  transform: translateY(-1px) scale(1.02);
+  filter: drop-shadow(0 1px 6px rgba(255, 255, 255, 0.10));
+}
+
+.nav-item:focus-visible,
+.balance-chip:focus-visible,
+.deposit-button:focus-visible,
+.profile-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.32);
+  outline-offset: -3px;
+}
+
+/* На iPhone панель Telegram располагается поверх Web App в полноэкранном режиме. */
+@media (max-width: 600px) {
+  .screen {
+    padding-top: max(108px, calc(env(safe-area-inset-top, 0px) + 54px));
+  }
+}
+
+/* Узкие телефоны: не сжимаем форму капсул. */
+@media (max-width: 340px) {
+  .topbar-actions { gap: 5px; }
+  .balance-chip { width: 86px; min-width: 86px; }
+  .deposit-button { width: 38px; min-width: 38px; height: 38px; font-size: 27px; }
+  .profile-button { width: 38px; height: 38px; }
+}
+
+
+/* LIVE блок */
+.live-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 14px;
+  margin-bottom: 16px;
+}
+
+.live-label {
+  width: 56px;
+  min-width: 56px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #121217 0%, #0d0d11 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.live-label__inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: rotate(-90deg);
+}
+
+.live-label__text {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+}
+
+.live-label__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22ff88;
+  box-shadow: 0 0 10px rgba(34, 255, 136, 0.65);
+}
+
+.live-list {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.live-list::-webkit-scrollbar {
+  display: none;
+}
+
+.live-card {
+  min-width: 96px;
+  padding: 8px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #17171d 0%, #101014 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.live-card__item {
+  width: 100%;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.live-card__win {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 22px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.live-card__star {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
