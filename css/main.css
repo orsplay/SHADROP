@@ -323,12 +323,12 @@ body {
   align-items: stretch;
   gap: 5px;
   width: 100%;
-  height: 86px;
+  height: 78px;
   margin-top: 14px;
   margin-bottom: 16px;
   padding: 5px;
   border-radius: 16px;
-  background: #151519;
+  background: #1b1b20;
   overflow: hidden;
 }
 
@@ -338,7 +338,7 @@ body {
   width: 46px;
   min-width: 46px;
   border-radius: 12px;
-  background: #1b1b20;
+  background: rgba(255, 255, 255, 0.07);
   display: flex;
   align-items: center;
   justify-content: center;
