@@ -315,83 +315,139 @@ body {
 
 
 
-/* Новая компактная LIVE-лента */
-.live-strip {
-  height: 76px;
+
+/* LIVE — компактная лента */
+
+.live-row {
+  display: flex;
+  align-items: stretch;
   gap: 5px;
+  width: 100%;
+  height: 78px;
+  margin-top: 14px;
+  margin-bottom: 16px;
   padding: 5px;
   border-radius: 16px;
+  background: #151519;
+  overflow: hidden;
 }
 
-.live-badge {
+/* Левая часть LIVE */
+.live-label {
   position: relative;
   width: 40px;
   min-width: 40px;
-  padding: 0;
+  border-radius: 12px;
+  background: #1b1b20;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.live-badge__title {
+.live-label__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.live-label__text {
+  display: block;
   font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #fff;
   transform: rotate(-90deg);
   white-space: nowrap;
 }
 
-.live-badge__dot {
+.live-label__dot {
   position: absolute;
-  bottom: 9px;
-  width: 9px;
-  height: 9px;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22ff88;
+  box-shadow: 0 0 9px #22ff88;
 }
 
-.live-track {
+/* Список выигрышей */
+.live-list {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
   gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-.live-item {
+.live-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Квадратные карточки — 5 в ряд */
+.live-card {
   position: relative;
   flex: 0 0 calc((100% - 16px) / 5);
-  width: auto;
   min-width: 0;
   aspect-ratio: 1 / 1;
-  height: auto;
-  align-self: center;
-  padding: 0;
-  border-radius: 10px;
+  border-radius: 9px;
+  background: #24242b;
   overflow: hidden;
 }
 
-.live-item__image {
-  position: absolute;
-  inset: 0;
+/* Картинка занимает всю карточку */
+.live-card__item {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.live-item__price {
+/* Цена поверх картинки */
+.live-card__info {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 2px;
-  padding: 3px 1px;
-  font-size: 9px;
-  background: rgba(0, 0, 0, 0.65);
+  padding: 4px 1px;
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.85)
+  );
   z-index: 1;
 }
 
-.live-item__dot {
+.live-card__green-dot {
   width: 5px;
   height: 5px;
+  min-width: 5px;
+  border-radius: 50%;
+  background: #22ff88;
+  box-shadow: 0 0 5px #22ff88;
 }
 
-.live-item__price img {
+.live-card__amount {
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Ограничиваем размер звезды */
+.live-card__star {
+  display: block;
   width: 9px;
   height: 9px;
+  min-width: 9px;
   max-width: 9px;
   max-height: 9px;
-  flex-shrink: 0;
+  object-fit: contain;
 }
