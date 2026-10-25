@@ -335,7 +335,7 @@ body {
 /* Левая часть LIVE */
 .live-label {
   position: relative;
-  width: 46px;
+  width: 68px;
   min-width: 46px;
   border-radius: 12px;
   background: #1b1b20;
