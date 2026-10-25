@@ -379,8 +379,21 @@ body {
   min-width: 0;
   align-items: center;
   gap: 7px;
+
   overflow-x: auto;
+  overflow-y: hidden;
+
   scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+
+  overscroll-behavior-x: contain;
+}
+
+.live-list::-webkit-scrollbar {
+  display: none;
 }
 
 .live-list::-webkit-scrollbar {
@@ -450,4 +463,57 @@ body {
   max-width: 9px;
   max-height: 9px;
   object-fit: contain;
+}
+
+
+/* Баннер пополнения */
+
+.promo-banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2.35 / 1;
+  margin-top: 18px;
+  margin-bottom: 12px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #210b57, #5215b9);
+}
+
+.promo-banner__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.promo-banner__content {
+  position: absolute;
+  top: 12%;
+  left: 5%;
+  z-index: 1;
+}
+
+.promo-banner__content h2 {
+  margin: 0;
+  font-size: clamp(24px, 7vw, 36px);
+  font-weight: 800;
+  color: white;
+}
+
+.promo-banner__content p {
+  margin: 4px 0 20px;
+  font-size: 15px;
+  color: #ddd0ff;
+}
+
+.promo-banner__button {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffe75a, #ffc928);
+  color: #17120a;
+  padding: 11px 20px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
 }
