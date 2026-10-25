@@ -335,10 +335,10 @@ body {
 /* Левая часть LIVE */
 .live-label {
   position: relative;
-  width: 68px;
+  width: 46px;
   min-width: 46px;
-  border-radius: 12px;
-  background: #1b1b20;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #1b1b20 0%, #141418 100%);
   display: flex;
   align-items: center;
   justify-content: center;
