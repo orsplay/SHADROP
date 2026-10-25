@@ -314,117 +314,84 @@ body {
 }
 
 
-/* LIVE блок */
-.live-row {
-  display: flex;
-  align-items: stretch;
-  gap: 8px;
-  margin-top: 14px;
-  margin-bottom: 16px;
+
+/* Новая компактная LIVE-лента */
+.live-strip {
+  height: 76px;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 16px;
 }
 
-.live-label {
-  width: 56px;
-  min-width: 56px;
-  border-radius: 18px;
-  background: linear-gradient(180deg, #13131a 0%, #0d0d12 100%);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.live-label__inner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transform: rotate(-90deg);
-}
-
-.live-label__text {
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: #ffffff;
-}
-
-.live-label__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #22ff88;
-  box-shadow: 0 0 10px rgba(34, 255, 136, 0.65);
-}
-
-.live-list {
-  flex: 1;
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.live-list::-webkit-scrollbar {
-  display: none;
-}
-
-.live-card {
+.live-badge {
   position: relative;
-  flex: 0 0 calc((100% - 24px) / 5);
-  aspect-ratio: 1 / 1;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #14141a;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
-}
-
-.live-card__item {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Текст прямо на картинке */
-.live-card__info {
-  position: absolute;
-  left: 6px;
-  right: 6px;
-  bottom: 6px;
-  min-height: 18px;
-  padding: 3px 6px;
-  border-radius: 999px;
-  background: rgba(10, 10, 14, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  display: flex;
+  width: 40px;
+  min-width: 40px;
+  padding: 0;
   align-items: center;
   justify-content: center;
-  gap: 4px;
 }
 
-.live-card__green-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #22ff88;
-  box-shadow: 0 0 8px rgba(34, 255, 136, 0.65);
-  flex-shrink: 0;
-}
-
-.live-card__amount {
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-  color: #ffffff;
+.live-badge__title {
+  font-size: 15px;
+  transform: rotate(-90deg);
   white-space: nowrap;
 }
 
-.live-card__star {
-  width: 12px;
-  height: 12px;
-  object-fit: contain;
+.live-badge__dot {
+  position: absolute;
+  bottom: 9px;
+  width: 9px;
+  height: 9px;
+}
+
+.live-track {
+  gap: 4px;
+}
+
+.live-item {
+  position: relative;
+  flex: 0 0 calc((100% - 16px) / 5);
+  width: auto;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  align-self: center;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.live-item__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.live-item__price {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  gap: 2px;
+  padding: 3px 1px;
+  font-size: 9px;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+.live-item__dot {
+  width: 5px;
+  height: 5px;
+}
+
+.live-item__price img {
+  width: 9px;
+  height: 9px;
+  max-width: 9px;
+  max-height: 9px;
   flex-shrink: 0;
 }
