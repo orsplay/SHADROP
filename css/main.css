@@ -521,3 +521,26 @@ body {
 .screen > [hidden] {
   display: none !important;
 }
+
+/* Аватар Telegram в шапке и нижнем меню */
+
+.profile-button__icon.telegram-user-photo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-icon.telegram-user-photo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-icon.telegram-user-photo.is-user-avatar,
+.nav-item.is-active .nav-icon.telegram-user-photo.is-user-avatar {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}

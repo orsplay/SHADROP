@@ -1,19 +1,21 @@
-
-/* Страница профиля SHADROP */
+/* Страница профиля */
 
 .player-profile {
   width: 100%;
   margin-top: 20px;
 }
 
+
 .player-card {
   width: 100%;
-  padding: 20px;
-  border-radius: 24px;
-  background: #141418;
-  border: 1px solid rgba(255,255,255,0.055);
+  padding: 4px 0 12px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
+/* Аватар слева, имя и ID справа */
 .player-card__top {
   display: flex;
   align-items: center;
@@ -21,10 +23,10 @@
 }
 
 .player-avatar {
-  width: 68px;
-  height: 68px;
-  min-width: 68px;
-  border-radius: 20px;
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  border-radius: 50%;
   background: #292930;
   overflow: hidden;
   display: grid;
@@ -35,6 +37,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .player-avatar img[hidden] {
@@ -42,7 +45,7 @@
 }
 
 .player-avatar span {
-  font-size: 28px;
+  font-size: 23px;
   font-weight: 700;
   color: #fff;
 }
