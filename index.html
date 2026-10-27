@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#000000">
   <title>Moon Case</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/main.css?v=5">
-  <link rel="stylesheet" href="css/profile.css?v=4"> 
+  <link rel="stylesheet" href="css/main.css?v=6">
+  <link rel="stylesheet" href="css/profile.css?v=4">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="js/app.js" defer></script>
   <script src="js/profile.js?v=2" defer></script>
@@ -16,119 +16,94 @@
   <main class="screen" id="screen" aria-label="Игры">
     <header class="topbar">
       <div class="topbar-actions">
-        <button class="balance-chip" type="button" aria-label="Баланс 0 рублей">
-          <span class="balance-chip__amount">0</span>
-          
-          <img
-                  class="balance-chip__coin"
-                  src="assets/icons/telegram-star.png"
-                  alt="Telegram Stars"
-          >
 
+        <!-- Баланс -->
+        <button class="balance-chip" type="button" aria-label="Баланс">
+          <span class="balance-chip__amount">0</span>
+          <img class="balance-chip__coin" src="assets/icons/telegram-star.png" alt="">
         </button>
 
-        
-<button class="deposit-button" type="button" aria-label="Пополнить">
-  <span class="plus-icon"></span>
-</button>
+        <!-- Пополнение -->
+        <button class="deposit-button" type="button" aria-label="Пополнить">
+          <span class="plus-icon"></span>
+        </button>
 
-
+        <!-- Аватар пользователя -->
         <button class="profile-button" type="button" aria-label="Профиль">
-          <img
-  class="profile-button__icon telegram-user-photo"
-  src="assets/icons/profile.png"
-  alt=""
-  aria-hidden="true"
->
+          <img class="profile-button__icon telegram-user-photo" src="assets/icons/profile.png" alt="">
         </button>
 
       </div>
     </header>
 
-
-<!-- LIVE: последние выигрыши -->
-<section class="live-row" aria-label="Последние выигрыши">
-
-  <div class="live-label">
-    <div class="live-label__inner">
-      <span class="live-label__text">LIVE</span>
-      <span class="live-label__dot"></span>
-    </div>
-  </div>
-
-  <div class="live-list">
-
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-1.png" alt="Выигрыш 1250">
-      <div class="live-card__info">
-        <span class="live-card__green-dot"></span>
-        <span class="live-card__amount">1250</span>
-        <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+    <!-- LIVE: последние выигрыши -->
+    <section class="live-row" aria-label="Последние выигрыши">
+      <div class="live-label">
+        <div class="live-label__inner">
+          <span class="live-label__text">LIVE</span>
+          <span class="live-label__dot"></span>
+        </div>
       </div>
-    </article>
 
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-2.png" alt="Выигрыш 3480">
-      <div class="live-card__info">
-        <span class="live-card__green-dot"></span>
-        <span class="live-card__amount">3480</span>
-        <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+      <div class="live-list">
+        <article class="live-card">
+          <img class="live-card__item" src="assets/images/live-1.png" alt="Выигрыш 1250">
+          <div class="live-card__info">
+            <span class="live-card__green-dot"></span>
+            <span class="live-card__amount">1250</span>
+            <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+          </div>
+        </article>
+
+        <article class="live-card">
+          <img class="live-card__item" src="assets/images/live-2.png" alt="Выигрыш 3480">
+          <div class="live-card__info">
+            <span class="live-card__green-dot"></span>
+            <span class="live-card__amount">3480</span>
+            <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+          </div>
+        </article>
+
+        <article class="live-card">
+          <img class="live-card__item" src="assets/images/live-3.png" alt="Выигрыш 1100">
+          <div class="live-card__info">
+            <span class="live-card__green-dot"></span>
+            <span class="live-card__amount">1100</span>
+            <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+          </div>
+        </article>
+
+        <article class="live-card">
+          <img class="live-card__item" src="assets/images/live-4.png" alt="Выигрыш 2055">
+          <div class="live-card__info">
+            <span class="live-card__green-dot"></span>
+            <span class="live-card__amount">2055</span>
+            <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+          </div>
+        </article>
+
+        <article class="live-card">
+          <img class="live-card__item" src="assets/images/live-5.png" alt="Выигрыш 950">
+          <div class="live-card__info">
+            <span class="live-card__green-dot"></span>
+            <span class="live-card__amount">950</span>
+            <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+          </div>
+        </article>
       </div>
-    </article>
+    </section>
 
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-3.png" alt="Выигрыш 1100">
-      <div class="live-card__info">
-        <span class="live-card__green-dot"></span>
-        <span class="live-card__amount">1100</span>
-        <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
+    <!-- Баннер -->
+    <section class="promo-banner" aria-label="Подарок за пополнение">
+      <img class="promo-banner__image" src="assets/images/deposit-banner.png" alt="">
+      <div class="promo-banner__content">
+        <h2>Подарок</h2>
+        <p>за пополнение</p>
+        <button class="promo-banner__button" type="button">Пополнить</button>
       </div>
-    </article>
-
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-4.png" alt="Выигрыш 2055">
-      <div class="live-card__info">
-        <span class="live-card__green-dot"></span>
-        <span class="live-card__amount">2055</span>
-        <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
-      </div>
-    </article>
-
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-5.png" alt="Выигрыш 950">
-      <div class="live-card__info">
-        <span class="live-card__green-dot"></span>
-        <span class="live-card__amount">950</span>
-        <img class="live-card__star" src="assets/icons/telegram-star.png" alt="">
-      </div>
-    </article>
-
-  </div>
-</section>
-
-
-<!-- Баннер -->
-<section class="promo-banner" aria-label="Подарок за пополнение">
-  <img
-    class="promo-banner__image"
-    src="assets/images/deposit-banner.png"
-    alt=""
-  >
-
-  <div class="promo-banner__content">
-    <h2>Подарок</h2>
-    <p>за пополнение</p>
-
-    <button class="promo-banner__button" type="button">
-      Пополнить
-    </button>
-  </div>
-</section>
-
-
+    </section>
 
     <section class="page-placeholder" aria-hidden="true"></section>
-
   </main>
 
   <nav class="bottom-nav" id="bottomNav" aria-label="Основное меню">
@@ -150,12 +125,7 @@
     </button>
 
     <button class="nav-item" type="button" data-page="profile">
-      <img
-  class="nav-icon telegram-user-photo"
-  src="assets/icons/profile.png"
-  alt=""
-  aria-hidden="true"
->
+      <img class="nav-icon telegram-user-photo" src="assets/icons/profile.png" alt="" aria-hidden="true">
       <span>Профиль</span>
     </button>
   </nav>
