@@ -1,57 +1,32 @@
-<div class="player-card">
 
-  <div class="player-card__top-panel">
+<section class="player-profile" aria-label="Профиль игрока">
+  <div class="player-card">
+
     <div class="player-card__top">
-
       <div class="player-avatar">
         <img id="playerAvatar" alt="Аватар игрока" hidden>
         <span id="playerInitial">?</span>
       </div>
 
-      <div class="player-card__right">
-
-        <div class="player-identity">
+      <div class="player-identity">
+        <div class="player-identity__row">
           <span class="player-name" id="playerName">Игрок</span>
-          <span class="player-id" id="playerId">ID: —</span>
+          <span class="player-level__badge">1 LVL</span>
         </div>
-
-        <div class="player-actions">
-
-          <div class="player-action player-action--balance">
-            <span class="player-action__label">Баланс</span>
-            <span class="player-action__value">0 ⭐</span>
-          </div>
-
-          <button class="player-action" type="button">
-            <span class="player-action__label">Пополнить</span>
-            <span class="player-action__value">＋</span>
-          </button>
-
-          <button class="player-action" type="button">
-            <span class="player-action__label">Вывести</span>
-            <span class="player-action__value">↗</span>
-          </button>
-
-        </div>
-
+        <span class="player-id" id="playerId">ID: —</span>
       </div>
     </div>
+
+    <div class="player-level">
+      <div class="player-level__track">
+        <div class="player-level__progress"></div>
+      </div>
+
+      <div class="player-level__meta">
+        <span class="player-level__current">1 LVL</span>
+        <span class="player-level__xp-total">0 / 100 XP</span>
+      </div>
+    </div>
+
   </div>
-
-  <div class="player-level">
-    <div class="player-level__heading">
-      <span class="player-level__title">Уровень</span>
-      <span class="player-level__percent">0%</span>
-    </div>
-
-    <div class="player-level__track">
-      <div class="player-level__progress"></div>
-    </div>
-
-    <div class="player-level__meta">
-      <span class="player-level__badge">1 LVL</span>
-      <span class="player-level__xp-total">0 / 100 XP</span>
-    </div>
-  </div>
-
-</div>
+</section>
