@@ -173,10 +173,8 @@ body {
 .profile-button__icon.telegram-user-photo {
   width: 100%;
   height: 100%;
-  display: block;
   border-radius: 50%;
   object-fit: cover;
-  pointer-events: none;
 }
 
 /* Остальные элементы */
@@ -431,69 +429,4 @@ body {
   opacity: 1;
   transform: none;
   filter: none;
-}
-
-
-/* Новая верхняя панель SHADROP */
-
-.topbar-actions {
-  gap: 8px;
-}
-
-.balance-chip {
-  width: 104px;
-  min-width: 104px;
-  height: 52px;
-  padding: 0 10px 0 17px;
-  background: #0c0c0c;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-.balance-chip__amount {
-  font-size: 21px;
-  font-weight: 700;
-  transform: none;
-}
-
-.balance-chip__coin {
-  width: 35px;
-  height: 35px;
-  flex: 0 0 35px;
-}
-
-.deposit-button {
-  width: 52px;
-  min-width: 52px;
-  height: 52px;
-  background: #e99a00;
-  box-shadow: none;
-}
-
-.plus-icon,
-.plus-icon::before {
-  width: 20px;
-}
-
-.plus-icon,
-.plus-icon::after {
-  height: 20px;
-}
-
-.profile-button {
-  width: 52px;
-  min-width: 52px;
-  height: 52px;
-  padding: 0;
-  background: #404040;
-  overflow: hidden;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-.profile-button__icon.telegram-user-photo {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
 }
