@@ -282,9 +282,6 @@ body {
   display: none;
 }
 
-.live-list::-webkit-scrollbar {
-  display: none;
-}
 
 /* Квадратные карточки — 5 в ряд */
 .live-card {
@@ -410,12 +407,6 @@ body {
 
 /* Аватар Telegram в шапке и нижнем меню */
 
-.profile-button__icon.telegram-user-photo {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  object-fit: cover;
-}
 
 .nav-icon.telegram-user-photo {
   width: 34px;
