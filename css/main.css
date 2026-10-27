@@ -33,14 +33,16 @@ body {
   padding: 24px 12px 126px;
 }
 
-/* Компактная шапка: место слева зарезервировано для логотипа. */
+/* ===== КОМПАКТНАЯ ВЕРХНЯЯ ПАНЕЛЬ ===== */
+
 .topbar {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  min-height: 36px;
+  min-height: 42px;
 }
+
 .topbar-actions {
   display: flex;
   align-items: center;
@@ -50,6 +52,7 @@ body {
   width: auto;
   max-width: 100%;
 }
+
 .balance-chip,
 .deposit-button,
 .profile-button {
@@ -63,42 +66,45 @@ body {
   flex-grow: 0;
   flex-shrink: 0;
   -webkit-tap-highlight-color: transparent;
-  transition: filter .18s ease, transform .18s ease;
+  transition: transform 0.18s ease;
 }
+
 .balance-chip:active,
 .deposit-button:active,
-.profile-button:active { transform: scale(.96); }
+.profile-button:active {
+  transform: scale(0.96);
+}
+
+/* Баланс */
+
 .balance-chip {
-  width: 96px;
-  min-width: 96px;
-  height: 44px;
+  width: 88px;
+  min-width: 88px;
+  height: 42px;
   padding: 0 8px 0 12px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   border-radius: 999px;
   white-space: nowrap;
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: #0c0c0c;
 }
 
 .balance-chip__amount {
   flex: 1;
   text-align: center;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: 1;
   color: #ffffff;
-  transform: translateX(4px);
+  transform: none;
 }
 
-
 .balance-chip__coin {
-  flex: 0 0 28px;
-  width: 28px;
-  height: 28px;
+  flex: 0 0 27px;
+  width: 27px;
+  height: 27px;
   display: block;
   object-fit: contain;
   background: transparent;
@@ -106,37 +112,26 @@ body {
   box-shadow: none;
 }
 
-/* Плюс размером с кнопку профиля */
+/* Оранжевая кнопка пополнения */
 
 .deposit-button {
-  width: 44px;
-  min-width: 44px;
-  height: 44px;
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
   padding: 0;
-
   display: grid;
   place-items: center;
-
   border: none;
   border-radius: 50%;
-
-  background: linear-gradient(
-    145deg,
-    #63cfff 0%,
-    #359cff 55%,
-    #226dea 100%
-  );
-
-  box-shadow: 0 3px 12px rgba(45, 137, 255, 0.25);
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  background: #e99a00;
+  box-shadow: none;
 }
 
 .plus-icon {
   position: relative;
   display: block;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .plus-icon::before,
@@ -151,152 +146,45 @@ body {
 }
 
 .plus-icon::before {
-  width: 18px;
+  width: 16px;
   height: 3px;
 }
 
 .plus-icon::after {
   width: 3px;
-  height: 18px;
+  height: 16px;
 }
 
-.deposit-button:active {
-  transform: scale(0.96);
-}
-
-
-
-
-.deposit-button:active {
-  transform: scale(0.96);
-}
-
-
-.deposit-button:active {
-  transform: scale(0.94);
-}
-
-.deposit-button span {
-  display: block;
-  transform: translateY(-1px);
-  text-shadow: 0 0 5px rgba(34,198,255,.25);
-}
+/* Круглый аватар Telegram */
 
 .profile-button {
-  width: 44px;
-  min-width: 44px;
-  height: 44px;
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  padding: 0;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: rgba(255,255,255,.07);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: #404040;
+  overflow: hidden;
 }
-.profile-button__icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
+
+.profile-button__icon,
+.profile-button__icon.telegram-user-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
   pointer-events: none;
 }
+
+/* Остальные элементы */
+
 .page-placeholder {
   min-height: 220px;
 }
 
-.bottom-nav {
-  position: fixed;
-  left: 50%;
-  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
-  display: flex;
-  width: calc(100% - 24px);
-  max-width: 376px;
-  height: 84px;
-  padding: 7px;
-  gap: 4px;
-  background: rgba(255, 255, 255, 0.045);
-  border: none;
-  border-radius: 999px;
-  backdrop-filter: blur(26px);
-  -webkit-backdrop-filter: blur(26px);
-  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.42);
-  z-index: 10;
-  overflow: hidden;
-}
-
-.nav-indicator {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 75px;
-  height: calc(100% - 12px);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.075);
-  border: none;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  transform: translate(0, -50%);
-  transition: left .34s cubic-bezier(.22, 1, .36, 1), width .22s ease;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.nav-item {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  min-width: 0;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.66);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 0;
-  font: 400 13px/1 Arial, Helvetica, sans-serif;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: color .22s ease, opacity .22s ease;
-}
-
-.nav-icon {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  flex-shrink: 0;
-  opacity: 0.62;
-  transition: opacity .22s ease, transform .22s ease, filter .22s ease;
-  pointer-events: none;
-  user-select: none;
-}
-
-.nav-item span {
-  pointer-events: none;
-  user-select: none;
-}
-
-.nav-item.is-active {
-  background: transparent;
-  color: #ffffff;
-}
-
-.nav-item.is-active .nav-icon {
-  opacity: 1;
-  transform: translateY(-1px) scale(1.02);
-  filter: drop-shadow(0 1px 6px rgba(255, 255, 255, 0.10));
-}
-
-.nav-item:focus-visible,
-.balance-chip:focus-visible,
-.deposit-button:focus-visible,
-.profile-button:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.32);
-  outline-offset: -3px;
-}
 
 /* На iPhone панель Telegram располагается поверх Web App в полноэкранном режиме. */
 @media (max-width: 600px) {
