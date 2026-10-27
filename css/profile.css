@@ -1,0 +1,122 @@
+
+/* Страница профиля SHADROP */
+
+.player-profile {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.player-card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 24px;
+  background: #141418;
+  border: 1px solid rgba(255,255,255,0.055);
+}
+
+.player-card__top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.player-avatar {
+  width: 68px;
+  height: 68px;
+  min-width: 68px;
+  border-radius: 20px;
+  background: #292930;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.player-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.player-avatar img[hidden] {
+  display: none;
+}
+
+.player-avatar span {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.player-identity {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.player-name {
+  font-size: 21px;
+  font-weight: 700;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.player-username {
+  font-size: 13px;
+  color: #a5a5ae;
+  overflow-wrap: anywhere;
+}
+
+.player-id {
+  font-size: 12px;
+  color: #72727c;
+  font-variant-numeric: tabular-nums;
+}
+
+.player-card__divider {
+  height: 1px;
+  background: #29292f;
+  margin: 19px 0;
+}
+
+.player-level__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.player-level__badge {
+  border-radius: 9px;
+  background: #333039;
+  color: #ffd42a;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 7px 10px;
+}
+
+.player-level__xp {
+  font-size: 12px;
+  color: #a5a5ae;
+}
+
+.player-level__track {
+  height: 7px;
+  background: #303037;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.player-level__progress {
+  height: 100%;
+  width: 0%;
+  background: #ffd42a;
+  border-radius: inherit;
+}
+
+.player-level__caption {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #85858e;
+}
