@@ -6,31 +6,43 @@
   margin-top: 20px;
 }
 
-/* Общая карточка */
+/* Основная карточка */
+
 .player-card {
   width: 100%;
+  background: #111111;
+  border: 1px solid #242424;
   border-radius: 22px;
-  background: #151515;
   overflow: hidden;
-  border: none;
 }
 
-/* Верхняя часть с аватаром */
+/* Верхняя часть */
+
 .player-card__top {
+  padding: 24px 18px 18px;
+  background: #171717;
+  border-bottom: 1px solid #242424;
+  border-radius: 21px;
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.35),
+    inset 0 -2px 5px rgba(255, 255, 255, 0.015);
+}
+
+/* Пользователь */
+
+.player-card__user {
   display: flex;
   align-items: center;
   gap: 14px;
-  min-height: 106px;
-  padding: 20px 18px;
-  background: #0c0c0c;
-  border-radius: 22px;
+  min-width: 0;
 }
 
-/* Аватар Telegram */
+/* Аватар */
+
 .player-avatar {
-  width: 58px;
-  height: 58px;
-  min-width: 58px;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
   border-radius: 50%;
   background: #262626;
   overflow: hidden;
@@ -41,31 +53,29 @@
 .player-avatar img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
-.player-avatar img[hidden] {
-  display: none;
-}
-
-.player-avatar span {
-  font-size: 23px;
-  font-weight: 700;
-  color: white;
-}
-
+.player-avatar img[hidden],
 .player-avatar span[hidden] {
   display: none;
 }
 
+.player-avatar span {
+  font-size: 25px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
 /* Имя и ID */
+
 .player-identity {
-  flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  flex: 1;
+  min-width: 0;
 }
 
 .player-identity__row {
@@ -76,7 +86,7 @@
 }
 
 .player-name {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 700;
   color: #ffffff;
   white-space: nowrap;
@@ -85,63 +95,117 @@
 }
 
 .player-id {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  color: #696969;
+  color: #565656;
 }
 
-/* Оранжевый значок уровня */
+/* Бейдж уровня */
+
 .player-level__badge {
   flex-shrink: 0;
-  padding: 4px 8px;
-  border-radius: 6px;
   background: #e99a00;
   color: #ffffff;
-  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 7px;
+  font-size: 11px;
   font-weight: 800;
-  white-space: nowrap;
 }
 
-/* Нижняя часть с прогрессом */
+/* Кнопки */
+
+.player-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.player-actions button {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  border-radius: 11px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease;
+}
+
+.player-actions button:active {
+  transform: scale(0.97);
+}
+
+/* Пополнить */
+
+.player-actions__deposit {
+  border: 1px solid #d68b00;
+  background: #e99a00;
+  color: #ffffff;
+  box-shadow:
+    inset 0 3px 5px rgba(110, 57, 0, 0.25),
+    inset 0 -2px 3px rgba(255, 206, 75, 0.12);
+}
+
+/* Вывод */
+
+.player-actions__withdraw {
+  border: 1px solid #292929;
+  background: #171717;
+  color: #ffffff;
+  box-shadow:
+    inset 0 3px 7px rgba(0, 0, 0, 0.30),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.02);
+}
+
+/* Нижняя секция XP */
+
 .player-level {
-  padding: 14px 18px 20px;
-  background: #151515;
+  padding: 18px 18px 20px;
+  background: #101010;
 }
 
-/* Полоска XP */
+/* Полоса опыта */
+
 .player-level__track {
   width: 100%;
-  height: 14px;
-  border-radius: 5px;
-  background: #2a2a2a;
+  height: 16px;
+  border-radius: 7px;
+  background: #292929;
   overflow: hidden;
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.35);
 }
 
 .player-level__progress {
-  height: 100%;
   width: 0%;
-  background: #e99a00;
+  height: 100%;
   border-radius: inherit;
+  background: #e99a00;
+  box-shadow:
+    inset 0 3px 5px rgba(110, 57, 0, 0.25);
   transition: width 0.3s ease;
 }
 
-/* Подписи под полоской */
+/* Подписи уровня */
+
 .player-level__meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-top: 7px;
+  margin-top: 8px;
 }
 
 .player-level__current {
-  font-size: 12px;
-  font-weight: 600;
   color: #e99a00;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .player-level__xp-total {
+  color: #5c5c5c;
   font-size: 12px;
   font-weight: 600;
-  color: #656565;
 }

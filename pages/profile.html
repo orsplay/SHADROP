@@ -2,21 +2,39 @@
 <section class="player-profile" aria-label="Профиль игрока">
   <div class="player-card">
 
+    <!-- Верхняя часть профиля -->
     <div class="player-card__top">
-      <div class="player-avatar">
-        <img id="playerAvatar" alt="Аватар игрока" hidden>
-        <span id="playerInitial">?</span>
+
+      <div class="player-card__user">
+        <div class="player-avatar">
+          <img id="playerAvatar" alt="Аватар игрока" hidden>
+          <span id="playerInitial">?</span>
+        </div>
+
+        <div class="player-identity">
+          <div class="player-identity__row">
+            <span class="player-name" id="playerName">Игрок</span>
+            <span class="player-level__badge">1 LVL</span>
+          </div>
+
+          <span class="player-id" id="playerId">ID: —</span>
+        </div>
       </div>
 
-      <div class="player-identity">
-        <div class="player-identity__row">
-          <span class="player-name" id="playerName">Игрок</span>
-          <span class="player-level__badge">1 LVL</span>
-        </div>
-        <span class="player-id" id="playerId">ID: —</span>
+      <!-- Кнопки пополнения и вывода -->
+      <div class="player-actions">
+        <button class="player-actions__deposit" type="button">
+          Пополнить
+        </button>
+
+        <button class="player-actions__withdraw" type="button">
+          Вывод
+        </button>
       </div>
+
     </div>
 
+    <!-- Нижняя часть с уровнем -->
     <div class="player-level">
       <div class="player-level__track">
         <div class="player-level__progress"></div>
