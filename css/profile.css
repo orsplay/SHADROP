@@ -209,3 +209,74 @@
   font-size: 12px;
   font-weight: 600;
 }
+
+
+/* ===== ИНВЕНТАРЬ SHADROP ===== */
+
+.inventory-card {
+  width: 100%;
+  min-height: 160px;
+  margin-top: 16px;
+  padding: 26px 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #111111;
+  border: 1px solid #292929;
+  border-radius: 22px;
+
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 3px rgba(255, 255, 255, 0.015);
+}
+
+.inventory-empty {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.inventory-empty__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.inventory-empty__description {
+  margin: 4px 0 14px;
+  color: #525252;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.inventory-empty__button {
+  width: 140px;
+  height: 38px;
+  padding: 0;
+
+  border: 1px solid #d68b00;
+  border-radius: 10px;
+
+  background: #e99a00;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  box-shadow:
+    inset 0 3px 5px rgba(110, 57, 0, 0.3),
+    inset 0 -2px 3px rgba(255, 206, 75, 0.1);
+
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.inventory-empty__button:active {
+  transform: scale(0.97);
+}
