@@ -11,7 +11,6 @@
 
     try {
       const parsed = new URL(url);
-
       if (parsed.protocol !== 'https:') return;
 
       const temp = new Image();
@@ -35,58 +34,67 @@
     }
   }
 
-  // Аватар в верхней панели и нижнем островке
+  // Аватары в верхней панели и нижнем островке
   function renderHeaderAvatars() {
     const user = getTelegramUser();
-
     if (!user?.photo_url) return;
 
     document.querySelectorAll('.telegram-user-photo')
       .forEach(img => loadAvatar(img, user.photo_url));
   }
 
-  // Запуск анимированного Telegram-стикера
+  // Анимированный Telegram-стикер
+  async function renderInventorySticker() {
+    const container = document.getElementById('inventorySticker');
 
-async function renderInventorySticker() {
-  const container = document.getElementById('inventorySticker');
+    if (!container || container.dataset.loaded === 'true') return;
 
-  if (!container || container.dataset.loaded === 'true') return;
-  if (!window.pako || !window.lottie) {
-    console.error('Pako или Lottie не загружены');
-    return;
-  }
-
-  container.dataset.loaded = 'true';
-
-  try {
-    const response = await fetch('assets/images/AnimatedSticker.tgs');
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+    if (!window.pako || !window.lottie) {
+      console.error('Pako или Lottie не загружены');
+      return;
     }
 
-    const compressed = new Uint8Array(await response.arrayBuffer());
-    const jsonText = window.pako.ungzip(compressed, { to: 'string' });
-    const animationData = JSON.parse(jsonText);
+    container.dataset.loaded = 'true';
 
-    if (!container.isConnected) return;
+    try {
+      const response = await fetch('assets/images/empty-inventory.tgs');
 
-    window.lottie.loadAnimation({
-      container,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      animationData
-    });
+      if (!response.ok) {
+        throw new Error('Стикер не найден: HTTP ' + response.status);
+      }
 
-  } catch (error) {
-    container.dataset.loaded = 'false';
-    console.error('Ошибка загрузки TGS:', error);
+      const compressed = new Uint8Array(
+        await response.arrayBuffer()
+      );
+
+      const jsonText = window.pako.ungzip(compressed, {
+        to: 'string'
+      });
+
+      const animationData = JSON.parse(jsonText);
+
+      if (!container.isConnected) return;
+
+      const animation = window.lottie.loadAnimation({
+        container: container,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        animationData: animationData
+      });
+
+      animation.addEventListener('data_failed', () => {
+        console.error('Не удалось воспроизвести стикер');
+        container.dataset.loaded = 'false';
+      });
+
+    } catch (error) {
+      container.dataset.loaded = 'false';
+      console.error('Ошибка загрузки TGS:', error);
+    }
   }
-}
 
-
-  // Отображение профиля
+  // Профиль игрока
   window.renderShadropProfile = function () {
     const user = getTelegramUser();
 
@@ -117,7 +125,6 @@ async function renderInventorySticker() {
 
     loadAvatar(avatarElement, user?.photo_url, initialElement);
 
-    // Запускаем стикер после загрузки страницы профиля
     renderInventorySticker();
   };
 
