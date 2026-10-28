@@ -213,6 +213,15 @@
 
 /* ===== ИНВЕНТАРЬ SHADROP ===== */
 
+
+.inventory-empty__animation {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
 .inventory-card {
   width: 100%;
   min-height: 160px;
