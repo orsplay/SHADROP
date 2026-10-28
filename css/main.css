@@ -449,8 +449,8 @@ body {
   bottom: calc(14px + env(safe-area-inset-bottom, 0px));
   transform: translateX(-50%);
   display: flex;
-  width: calc(100% - 24px);
-  max-width: 376px;
+  width: calc(100% - 48px);
+  max-width: 350px;
   height: 84px;
   padding: 7px;
   gap: 4px;
