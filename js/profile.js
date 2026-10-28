@@ -59,7 +59,7 @@ async function renderInventorySticker() {
   container.dataset.loaded = 'true';
 
   try {
-    const response = await fetch('assets/images/empty-inventory.tgs');
+    const response = await fetch('assets/images/AnimatedSticker.tgs');
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
