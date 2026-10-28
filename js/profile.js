@@ -44,6 +44,21 @@
   }
 
   window.renderShadropProfile = function () {
+    
+const stickerContainer = document.getElementById('inventorySticker');
+
+if (stickerContainer && !stickerContainer.dataset.loaded && window.lottie) {
+  stickerContainer.dataset.loaded = 'true';
+
+  lottie.loadAnimation({
+    container: stickerContainer,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'assets/images/empty-inventory.json'
+  });
+}
+
     const user = getTelegramUser();
 
     const nameElement = document.getElementById('playerName');
