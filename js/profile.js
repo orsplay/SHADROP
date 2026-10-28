@@ -35,30 +35,41 @@
     }
   }
 
+  // Аватар в верхней панели и нижнем островке
   function renderHeaderAvatars() {
     const user = getTelegramUser();
+
     if (!user?.photo_url) return;
 
     document.querySelectorAll('.telegram-user-photo')
       .forEach(img => loadAvatar(img, user.photo_url));
   }
 
+  // Запуск анимированного Telegram-стикера
+  function renderInventorySticker() {
+    const container = document.getElementById('inventorySticker');
+
+    if (!container || container.dataset.loaded === 'true') return;
+    if (!window.lottie) return;
+
+    const animation = window.lottie.loadAnimation({
+      container: container,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'assets/images/empty-inventory.json'
+    });
+
+    container.dataset.loaded = 'true';
+
+    animation.addEventListener('data_failed', () => {
+      console.error('Не удалось загрузить анимацию инвентаря');
+      container.dataset.loaded = 'false';
+    });
+  }
+
+  // Отображение профиля
   window.renderShadropProfile = function () {
-    
-const stickerContainer = document.getElementById('inventorySticker');
-
-if (stickerContainer && !stickerContainer.dataset.loaded && window.lottie) {
-  stickerContainer.dataset.loaded = 'true';
-
-  lottie.loadAnimation({
-    container: stickerContainer,
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'assets/images/empty-inventory.json'
-  });
-}
-
     const user = getTelegramUser();
 
     const nameElement = document.getElementById('playerName');
@@ -87,6 +98,9 @@ if (stickerContainer && !stickerContainer.dataset.loaded && window.lottie) {
     }
 
     loadAvatar(avatarElement, user?.photo_url, initialElement);
+
+    // Запускаем стикер после загрузки страницы профиля
+    renderInventorySticker();
   };
 
   if (document.readyState === 'loading') {
