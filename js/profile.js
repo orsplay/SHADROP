@@ -57,7 +57,7 @@
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: 'assets/images/empty-inventory.json'
+      path: 'assets/images/empty-inventory.tgs'
     });
 
     container.dataset.loaded = 'true';
