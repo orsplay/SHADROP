@@ -46,27 +46,45 @@
   }
 
   // Запуск анимированного Telegram-стикера
-  function renderInventorySticker() {
-    const container = document.getElementById('inventorySticker');
 
-    if (!container || container.dataset.loaded === 'true') return;
-    if (!window.lottie) return;
+async function renderInventorySticker() {
+  const container = document.getElementById('inventorySticker');
 
-    const animation = window.lottie.loadAnimation({
-      container: container,
+  if (!container || container.dataset.loaded === 'true') return;
+  if (!window.pako || !window.lottie) {
+    console.error('Pako или Lottie не загружены');
+    return;
+  }
+
+  container.dataset.loaded = 'true';
+
+  try {
+    const response = await fetch('assets/images/empty-inventory.tgs');
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const compressed = new Uint8Array(await response.arrayBuffer());
+    const jsonText = window.pako.ungzip(compressed, { to: 'string' });
+    const animationData = JSON.parse(jsonText);
+
+    if (!container.isConnected) return;
+
+    window.lottie.loadAnimation({
+      container,
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: 'assets/images/empty-inventory.tgs'
+      animationData
     });
 
-    container.dataset.loaded = 'true';
-
-    animation.addEventListener('data_failed', () => {
-      console.error('Не удалось загрузить анимацию инвентаря');
-      container.dataset.loaded = 'false';
-    });
+  } catch (error) {
+    container.dataset.loaded = 'false';
+    console.error('Ошибка загрузки TGS:', error);
   }
+}
+
 
   // Отображение профиля
   window.renderShadropProfile = function () {
