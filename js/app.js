@@ -119,7 +119,7 @@ async function showSelectedPage(page) {
 
   if (!profileLoaded) {
     try {
-      const response = await fetch('pages/profile.html?v=5');
+      const response = await fetch('pages/profile.html?v=6');
 
       if (!response.ok) {
         throw new Error('HTTP ' + response.status);
