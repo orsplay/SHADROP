@@ -215,18 +215,18 @@
 
 
 .inventory-empty__animation {
-  width: 90px;
-  height: 90px;
+  width: 65px;
+  height: 65px;
   object-fit: contain;
   display: block;
-  margin: 0 auto 12px;
+  margin: 0 auto 6px;
 }
 
 .inventory-card {
   width: 100%;
-  min-height: 160px;
-  margin-top: 16px;
-  padding: 26px 16px;
+  min-height: 0;
+  margin-top: 12px;
+  padding: 14px 16px;
 
   display: flex;
   align-items: center;
@@ -257,7 +257,7 @@
 }
 
 .inventory-empty__description {
-  margin: 4px 0 14px;
+  margin: 3px 0 10px;
   color: #525252;
   font-size: 12px;
   font-weight: 600;
