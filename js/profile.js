@@ -57,7 +57,7 @@
     container.dataset.loaded = 'true';
 
     try {
-      const response = await fetch('assets/images/empty-inventory.tgs');
+      const response = await fetch('assets/icons/Gifts/empty-inventory.tgs');
 
       if (!response.ok) {
         throw new Error('Стикер не найден: HTTP ' + response.status);
