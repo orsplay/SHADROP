@@ -44,55 +44,69 @@
   }
 
   // Анимированный Telegram-стикер
-  async function renderInventorySticker() {
-    const container = document.getElementById('inventorySticker');
 
-    if (!container || container.dataset.loaded === 'true') return;
+let inventoryAnimation = null;
+let inventoryAnimationContainer = null;
+let tlottiePromise = null;
 
-    if (!window.pako || !window.lottie) {
-      console.error('Pako или Lottie не загружены');
-      return;
-    }
+async function renderInventorySticker() {
+  const container = document.getElementById('inventorySticker');
 
-    container.dataset.loaded = 'true';
+  if (!container) return;
 
-    try {
-      const response = await fetch('assets/icons/Gifts/AnimatedSticker1.tgs');
-
-      if (!response.ok) {
-        throw new Error('Стикер не найден: HTTP ' + response.status);
-      }
-
-      const compressed = new Uint8Array(
-        await response.arrayBuffer()
-      );
-
-      const jsonText = window.pako.ungzip(compressed, {
-        to: 'string'
-      });
-
-      const animationData = JSON.parse(jsonText);
-
-      if (!container.isConnected) return;
-
-      const animation = window.lottie.loadAnimation({
-        container: container,
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        animationData: animationData
-      });
-
-      animation.addEventListener('data_failed', () => {
-        console.error('Не удалось воспроизвести стикер');
-        container.dataset.loaded = 'false';
-      });
-
-    } catch (error) {
-      container.dataset.loaded = 'false';
-      console.error('Ошибка загрузки TGS:', error);
-    }
+  // Если анимация уже загружена — запускаем заново
+  if (inventoryAnimation && inventoryAnimationContainer === container) {
+    inventoryAnimation.stop();
+    inventoryAnimation.seek(0);
+    inventoryAnimation.play();
+    return;
   }
+
+  // Защита от повторной загрузки
+  if (container.dataset.loading === 'true') return;
+
+  container.dataset.loading = 'true';
+
+  try {
+    // Загружаем новый проигрыватель
+    if (!tlottiePromise) {
+      tlottiePromise = import(
+        'https://esm.sh/tlottie/vanilla'
+      );
+    }
+
+    const { createTLottiePlayer } = await tlottiePromise;
+
+    if (!container.isConnected) return;
+
+    // Создаём проигрыватель
+    const { tlottie } = createTLottiePlayer(container, {
+      src: 'assets/icons/Gifts/AnimatedSticker.tgs',
+      loop: false,
+      autoplay: true
+    });
+
+    inventoryAnimation = tlottie;
+    inventoryAnimationContainer = container;
+
+    tlottie.on('load', () => {
+      console.log('SHADROP: стикер загружен');
+    });
+
+    tlottie.on('complete', () => {
+      console.log('SHADROP: анимация завершена');
+    });
+
+    tlottie.on('error', (error) => {
+      console.error('Ошибка tlottie:', error);
+    });
+
+  } catch (error) {
+    console.error('Не удалось запустить стикер:', error);
+    container.dataset.loading = 'false';
+    tlottiePromise = null;
+  }
+}
 
   // Профиль игрока
   window.renderShadropProfile = function () {
