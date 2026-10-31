@@ -214,8 +214,8 @@
 /* ===== ИНВЕНТАРЬ SHADROP ===== */
 
 .inventory-empty__animation {
-  width: 65px;
-  height: 65px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   display: block;
   margin: 0 auto 6px;
