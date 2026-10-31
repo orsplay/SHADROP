@@ -10,23 +10,28 @@
 
 .player-card {
   width: 100%;
-  background: #111111;
-  border: 1px solid #242424;
+  background: transparent;
+  border: none;
   border-radius: 22px;
-  overflow: hidden;
+  overflow: visible;
 }
 
+
 /* Верхняя часть */
+
 
 .player-card__top {
   padding: 24px 18px 18px;
   background: #171717;
-  border-bottom: 1px solid #242424;
-  border-radius: 21px;
+
+  border: 1px solid #242424;
+  border-radius: 22px;
+
   box-shadow:
     inset 0 3px 8px rgba(0, 0, 0, 0.35),
     inset 0 -2px 5px rgba(255, 255, 255, 0.015);
 }
+
 
 /* Пользователь */
 
@@ -139,14 +144,23 @@
 
 /* Пополнить */
 
+
 .player-actions__deposit {
   border: 1px solid #d68b00;
+  border-radius: 10px;
+
   background: #e99a00;
   color: #ffffff;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
   box-shadow:
-    inset 0 3px 5px rgba(110, 57, 0, 0.25),
-    inset 0 -2px 3px rgba(255, 206, 75, 0.12);
+    inset 0 2px 3px rgba(255, 255, 255, 0.25),
+    inset 0 -4px 7px rgba(120, 65, 0, 0.35);
 }
+
 
 /* Вывод */
 
@@ -163,7 +177,7 @@
 
 .player-level {
   padding: 18px 18px 20px;
-  background: #101010;
+  background: transparent;
 }
 
 /* Полоса опыта */
