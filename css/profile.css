@@ -284,9 +284,8 @@
   transform: scale(0.97);
 }
 
-/* ===== РЕФЕРАЛЬНАЯ ПРОГРАММА ===== */
 
-/* Основная карточка без обводки */
+/* ===== РЕФЕРАЛЬНАЯ ПРОГРАММА ===== */
 
 .referral-card {
   width: 100%;
@@ -312,8 +311,6 @@
   margin-bottom: 16px;
 }
 
-/* Иконка двух пользователей */
-
 .referral-card__icon {
   width: 44px;
   height: 44px;
@@ -326,6 +323,7 @@
   background: #171717;
   border: none;
   border-radius: 14px;
+  box-shadow: none;
 }
 
 .referral-card__icon img {
@@ -363,8 +361,6 @@
   margin-bottom: 12px;
 }
 
-/* Карточки рефералов и заработка */
-
 .referral-stat {
   position: relative;
   min-width: 0;
@@ -375,6 +371,7 @@
   background: #171717;
   border: none;
   border-radius: 18px;
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -422,7 +419,7 @@
     inset 0 -4px 7px rgba(120, 65, 0, 0.35);
 }
 
-/* Тёмная круглая кнопка со стрелкой */
+/* Круглая кнопка со стрелкой */
 
 .referral-stat__symbol--dark {
   background: #242424;
@@ -438,7 +435,7 @@
   display: block;
 }
 
-/* Заработанные Telegram Stars */
+/* Заработанные Stars */
 
 .referral-stat__amount {
   display: flex !important;
@@ -455,8 +452,6 @@
 
 /* ===== РЕФЕРАЛЬНАЯ ССЫЛКА ===== */
 
-/* Полностью закруглённый блок */
-
 .referral-card__link {
   display: flex;
   align-items: center;
@@ -467,6 +462,7 @@
   background: #171717;
   border: none;
   border-radius: 999px;
+  box-shadow: none;
 }
 
 .referral-card__url {
@@ -482,7 +478,7 @@
   font-size: 12px;
 }
 
-/* Круглые кнопки ссылки */
+/* Кнопки открытия и копирования */
 
 .referral-card__link-button {
   width: 39px;
@@ -497,6 +493,7 @@
   background: #242424;
   border: none;
   border-radius: 50%;
+  box-shadow: none;
 
   color: #ffffff;
   font-family: inherit;
