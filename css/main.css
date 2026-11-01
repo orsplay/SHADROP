@@ -217,7 +217,7 @@ body {
 @media (max-width: 600px) {
   .screen {
     padding-top: calc(
-      65px +
+      55px +
       var(--tg-content-safe-area-inset-top, 0px) +
       var(--tg-safe-area-inset-top, env(safe-area-inset-top, 0px))
     );
