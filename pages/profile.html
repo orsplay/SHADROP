@@ -48,56 +48,125 @@
 
   </div>
 
-  
-<!-- Инвентарь -->
-<section class="inventory-card" aria-label="Инвентарь">
-  <div class="inventory-empty">
+  <!-- Инвентарь -->
+  <section class="inventory-card" aria-label="Инвентарь">
+    <div class="inventory-empty">
 
-<img
-  class="inventory-empty__animation"
-  src="assets/icons/Redo.png"
-  alt="Инвентарь пуст"
->
+      <img
+        class="inventory-empty__animation"
+        src="assets/icons/Redo.png"
+        alt="Инвентарь пуст"
+      >
 
-  <h2 class="inventory-empty__title">
-    Инвентарь пуст
-  </h2>
+      <h2 class="inventory-empty__title">
+        Инвентарь пуст
+      </h2>
 
-  <p class="inventory-empty__description">
-    Добавь NFT через бота и получи Stars!
-  </p>
+      <p class="inventory-empty__description">
+        Добавь NFT через бота и получи Stars!
+      </p>
 
-  <button class="inventory-empty__button" type="button">
-    Добавить
-  </button>
+      <button class="inventory-empty__button" type="button">
+        Добавить
+      </button>
 
-</div>
+    </div>
+  </section>
 
-</section>
+  <!-- Реферальная программа -->
+  <section class="referral-card" aria-label="Реферальная программа">
 
-<!-- Реферальная система -->
-<section class="referral-card">
+    <!-- Заголовок -->
+    <div class="referral-card__header">
 
-  <div class="referral-card__icon">
-    <svg viewBox="0 0 24 24" fill="none"
-         stroke="currentColor" stroke-width="1.8"
-         stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="9" cy="7" r="4"/>
-      <path d="M2 21v-2a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v2"/>
-      <path d="M19 8v6M16 11h6"/>
-    </svg>
-  </div>
+      <div class="referral-card__icon">
+        <img
+          src="assets/icons/referral-users.png"
+          alt=""
+        >
+      </div>
 
-  <div class="referral-card__text">
-    <h3>Приглашайте друзей</h3>
-    <p>Получайте 10% с игры каждого, кто пришёл по вашей ссылке</p>
-  </div>
+      <div class="referral-card__heading">
+        <h3>Приглашай друзей</h3>
+        <p>Получай 10% с игры приглашённых друзей</p>
+      </div>
 
-  <button class="referral-card__button" type="button">
-    Перейти
-  </button>
+    </div>
 
-</section>
+    <!-- Статистика рефералов -->
+    <div class="referral-card__stats">
+
+      <div class="referral-stat">
+        <strong>0</strong>
+        <span>Рефералов</span>
+
+        <div class="referral-stat__symbol">
+          +
+        </div>
+      </div>
+
+      <div class="referral-stat">
+        <strong>0.00 ✦</strong>
+        <span>Заработано</span>
+
+        <div class="referral-stat__symbol referral-stat__symbol--dark">
+          ↗
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Реферальная ссылка -->
+    <div class="referral-card__link">
+
+      <span class="referral-card__url">
+        Реферальная ссылка
+      </span>
+
+      <!-- Открыть ссылку -->
+      <button
+        class="referral-card__link-button"
+        type="button"
+        aria-label="Открыть ссылку"
+        disabled
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M13 5h6v6"/>
+          <path d="M19 5l-9 9"/>
+          <path d="M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/>
+        </svg>
+      </button>
+
+      <!-- Копировать ссылку -->
+      <button
+        class="referral-card__link-button"
+        type="button"
+        aria-label="Копировать ссылку"
+        disabled
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="8" y="8" width="12" height="12" rx="2"/>
+          <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>
+        </svg>
+      </button>
+
+    </div>
+
+  </section>
 
 </section>
 
