@@ -39,24 +39,3 @@ body { min-height: 100vh; min-height: 100dvh; color: #fff; }
 .nav-item.is-active { background: #323239; color: #ffd42a; }
 .nav-item:focus-visible { outline: 2px solid #ffd42a; outline-offset: -3px; }
 
-.topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-
-  z-index: 100;
-
-  padding-top: env(safe-area-inset-top, 0px);
-
-  background: rgba(9, 9, 11, 0.65);
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-/* Место под закреплённую панель */
-
-.screen {
-  padding-top: calc(70px + env(safe-area-inset-top, 0px));
-}

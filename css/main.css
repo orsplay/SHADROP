@@ -566,3 +566,25 @@ body {
   transform: none;
   filter: none;
 }
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  z-index: 100;
+
+  padding-top: env(safe-area-inset-top, 0px);
+
+  background: rgba(9, 9, 11, 0.65);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Место под закреплённую панель */
+
+.screen {
+  padding-top: calc(70px + env(safe-area-inset-top, 0px));
+}
