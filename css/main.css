@@ -567,24 +567,29 @@ body {
   filter: none;
 }
 
+/* ===== ЗАКРЕПЛЁННАЯ ВЕРХНЯЯ ПАНЕЛЬ ===== */
+
 .topbar {
   position: fixed;
-  top: 0;
+  top: calc(
+    var(--tg-content-safe-area-inset-top, 0px) +
+    var(--tg-safe-area-inset-top, env(safe-area-inset-top, 0px))
+  );
   left: 0;
   width: 100%;
-
   z-index: 100;
 
-  padding-top: env(safe-area-inset-top, 0px);
-
-  background: rgba(9, 9, 11, 0.65);
-
+  background: rgba(9, 9, 11, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* Место под закреплённую панель */
+/* Пространство под закреплённой панелью */
 
 .screen {
-  padding-top: calc(70px + env(safe-area-inset-top, 0px));
+  padding-top: calc(
+    70px +
+    var(--tg-content-safe-area-inset-top, 0px) +
+    var(--tg-safe-area-inset-top, env(safe-area-inset-top, 0px))
+  );
 }
