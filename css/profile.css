@@ -537,7 +537,7 @@
 }
 
 .referral-card__link-button:disabled {
-  opacity: 0.85;
+  opacity: 1;
   cursor: default;
 }
 
@@ -580,10 +580,13 @@
   }
 }
 
+
 .referral-card__share-icon {
-  width: 19px;
-  height: 19px;
+  width: 25px;
+  height: 25px;
   display: block;
   object-fit: contain;
+  opacity: 1;
   filter: brightness(0) invert(1);
 }
+
