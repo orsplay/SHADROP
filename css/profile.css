@@ -444,6 +444,7 @@
   width: 19px;
   height: 19px;
   display: block;
+  opacity: 0.5;
 }
 
 /* Заработанные Stars */
@@ -577,4 +578,12 @@
     width: 29px;
     height: 29px;
   }
+}
+
+.referral-card__share-icon {
+  width: 19px;
+  height: 19px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
