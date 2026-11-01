@@ -285,12 +285,13 @@
 }
 
 
+
 /* ===== РЕФЕРАЛЬНАЯ ПРОГРАММА ===== */
 
 .referral-card {
   width: 100%;
   margin-top: 12px;
-  padding: 18px 14px 14px;
+  padding: 14px 12px 12px;
   box-sizing: border-box;
 
   background: #111111;
@@ -298,8 +299,8 @@
   border-radius: 22px;
 
   box-shadow:
-    inset 0 3px 8px rgba(0, 0, 0, 0.3),
-    inset 0 -1px 3px rgba(255, 255, 255, 0.015);
+    inset 0 3px 9px rgba(0, 0, 0, 0.38),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.22);
 }
 
 /* Заголовок */
@@ -307,13 +308,13 @@
 .referral-card__header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .referral-card__icon {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   flex-shrink: 0;
 
   display: flex;
@@ -322,75 +323,85 @@
 
   background: #171717;
   border: none;
-  border-radius: 14px;
-  box-shadow: none;
+  border-radius: 17px;
+
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.025),
+    inset 0 -3px 7px rgba(0, 0, 0, 0.3);
 }
 
 .referral-card__icon img {
-  width: 27px;
-  height: 27px;
-  object-fit: contain;
+  width: 29px;
+  height: 29px;
   display: block;
+  object-fit: contain;
 }
 
 .referral-card__heading {
+  flex: 1;
   min-width: 0;
 }
 
 .referral-card__heading h3 {
-  margin: 0 0 4px;
+  margin: 0 0 5px;
   color: #ffffff;
   font-size: 17px;
-  line-height: 1.2;
+  line-height: 1.15;
   font-weight: 700;
 }
 
 .referral-card__heading p {
   margin: 0;
-  color: #77777f;
+  color: #777777;
   font-size: 11px;
-  line-height: 1.4;
+  line-height: 1.3;
+  font-weight: 500;
 }
 
-/* ===== СТАТИСТИКА ===== */
+/* ===== ДВЕ КАРТОЧКИ ===== */
 
 .referral-card__stats {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 7px;
+  margin-bottom: 8px;
 }
 
 .referral-stat {
   position: relative;
+  height: 65px;
   min-width: 0;
-  height: 85px;
-  padding: 12px;
+  padding: 10px 12px;
   box-sizing: border-box;
 
   background: #171717;
   border: none;
-  border-radius: 18px;
-  box-shadow: none;
+  border-radius: 15px;
   overflow: hidden;
+
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.025),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.28);
 }
 
 .referral-stat strong {
   display: block;
   color: #ffffff;
-  font-size: 27px;
+  font-size: 22px;
   font-weight: 750;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .referral-stat span {
   display: block;
-  margin-top: 5px;
-  color: #77777f;
-  font-size: 13px;
+  margin-top: 4px;
+  color: #858585;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-/* Круглая оранжевая кнопка + */
+/* Круглая кнопка с плюсом */
 
 .referral-stat__symbol {
   position: absolute;
@@ -401,8 +412,8 @@
   align-items: center;
   justify-content: center;
 
-  width: 39px;
-  height: 39px;
+  width: 32px;
+  height: 32px;
   box-sizing: border-box;
 
   background: #e99a00;
@@ -410,28 +421,28 @@
   border-radius: 50%;
 
   color: #ffffff;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 400;
   line-height: 1;
 
   box-shadow:
-    inset 0 2px 3px rgba(255, 255, 255, 0.25),
+    inset 0 2px 3px rgba(255, 255, 255, 0.3),
     inset 0 -4px 7px rgba(120, 65, 0, 0.35);
 }
 
-/* Круглая кнопка со стрелкой */
+/* Тёмная круглая кнопка */
 
 .referral-stat__symbol--dark {
   background: #242424;
-  border: none;
-  border-radius: 50%;
   color: #ffffff;
-  box-shadow: none;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.035),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.25);
 }
 
 .referral-stat__symbol--dark svg {
-  width: 21px;
-  height: 21px;
+  width: 19px;
+  height: 19px;
   display: block;
 }
 
@@ -444,10 +455,10 @@
 }
 
 .referral-stat__star {
-  width: 23px;
-  height: 23px;
-  object-fit: contain;
+  width: 21px;
+  height: 21px;
   flex-shrink: 0;
+  object-fit: contain;
 }
 
 /* ===== РЕФЕРАЛЬНАЯ ССЫЛКА ===== */
@@ -456,47 +467,58 @@
   display: flex;
   align-items: center;
   gap: 7px;
+  width: 100%;
   min-width: 0;
-  padding: 7px;
+  box-sizing: border-box;
+
+  padding: 7px 8px 7px 12px;
 
   background: #171717;
   border: none;
   border-radius: 999px;
-  box-shadow: none;
+
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.025),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.28);
 }
 
 .referral-card__url {
   flex: 1;
   min-width: 0;
-  padding-left: 12px;
+  padding-left: 4px;
+
+  color: #858585;
+  font-size: 12px;
+  font-weight: 500;
 
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
-  color: #77777f;
-  font-size: 12px;
 }
 
-/* Кнопки открытия и копирования */
+/* Круглые кнопки */
 
 .referral-card__link-button {
-  width: 39px;
-  height: 39px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+
+  padding: 7px;
+  box-sizing: border-box;
 
   background: #242424;
   border: none;
   border-radius: 50%;
-  box-shadow: none;
 
   color: #ffffff;
-  font-family: inherit;
+
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.035),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.25);
 
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -504,8 +526,9 @@
 }
 
 .referral-card__link-button svg {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
+  display: block;
 }
 
 .referral-card__link-button:active:not(:disabled) {
@@ -513,7 +536,7 @@
 }
 
 .referral-card__link-button:disabled {
-  opacity: 0.65;
+  opacity: 0.85;
   cursor: default;
 }
 
@@ -521,46 +544,37 @@
 
 @media (max-width: 360px) {
   .referral-card {
-    padding: 16px 12px 12px;
+    padding: 12px 10px 10px;
   }
 
   .referral-card__header {
     gap: 9px;
   }
 
-  .referral-card__icon {
-    width: 40px;
-    height: 40px;
-  }
-
   .referral-card__heading h3 {
     font-size: 15px;
   }
 
-  .referral-card__stats {
-    gap: 8px;
+  .referral-card__heading p {
+    font-size: 10px;
   }
 
   .referral-stat {
-    padding: 12px 10px;
+    padding: 9px 10px;
   }
 
   .referral-stat strong {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .referral-stat span {
-    font-size: 12px;
-  }
-
-  .referral-card__link-button {
-    width: 35px;
-    height: 35px;
-    padding: 8px;
+    font-size: 10px;
   }
 
   .referral-stat__symbol {
-    width: 35px;
-    height: 35px;
+    right: 7px;
+    bottom: 8px;
+    width: 29px;
+    height: 29px;
   }
 }
