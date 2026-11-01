@@ -213,15 +213,17 @@ body {
 
 
 /* На iPhone панель Telegram располагается поверх Web App в полноэкранном режиме. */
+
 @media (max-width: 600px) {
   .screen {
     padding-top: calc(
-      80px +
+      100px +
       var(--tg-content-safe-area-inset-top, 0px) +
       var(--tg-safe-area-inset-top, env(safe-area-inset-top, 0px))
     );
   }
 }
+
 
 /* Узкие телефоны: не сжимаем форму капсул. */
 @media (max-width: 340px) {
@@ -572,8 +574,8 @@ body {
 }
 
 
-/* ===== ЗАКРЕПЛЁННАЯ ВЕРХНЯЯ ПАНЕЛЬ ===== */
 
+/* ===== СТЕКЛЯННАЯ ВЕРХНЯЯ ПАНЕЛЬ ===== */
 
 .topbar {
   position: fixed;
@@ -584,14 +586,24 @@ body {
   padding-top: calc(
     var(--tg-content-safe-area-inset-top, 0px) +
     var(--tg-safe-area-inset-top, env(safe-area-inset-top, 0px)) +
-    10px
+    4px
   );
+
+  padding-bottom: 16px;
+  padding-left: 12px;
+  padding-right: 12px;
 
   z-index: 100;
 
-  background: rgba(9, 9, 11, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(9, 9, 11, 0.38);
+
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+
+  border-radius: 0 0 26px 26px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
+
 
 
