@@ -252,7 +252,7 @@
 
 .inventory-empty__description {
   margin: 3px 0 10px;
-  color: #525252;
+  color: #88888e;
   font-size: 12px;
   font-weight: 600;
 }
@@ -636,13 +636,12 @@
    ЛУЧШИЙ ВЫИГРЫШ
 ======================================== */
 
+
 .best-win-card {
   position: relative;
-
   width: 100%;
-  min-height: 240px;
-
-  padding: 16px;
+  min-height: 205px;
+  padding: 14px 16px;
   overflow: hidden;
 
   background: #111111;
@@ -653,6 +652,7 @@
     inset 0 3px 8px rgba(0, 0, 0, 0.3),
     inset 0 -1px 3px rgba(255, 255, 255, 0.015);
 }
+
 
 
 /* Заголовок */
@@ -702,13 +702,11 @@
 
 .best-win-card__content {
   position: relative;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  min-height: 170px;
+  min-height: 135px;
 }
 
 
@@ -747,14 +745,12 @@
   align-items: center;
   justify-content: center;
 
-  width: 110px;
-  height: 110px;
-
-  margin-top: 5px;
+  width: 90px;
+  height: 90px;
+  margin-top: 0;
 
   background: #191919;
-  border-radius: 25px;
-
+  border-radius: 22px;
   transform: rotate(-8deg);
 
   box-shadow:
@@ -764,10 +760,8 @@
 
 .best-win-card__placeholder span {
   color: #e99a00;
-
-  font-size: 65px;
+  font-size: 52px;
   font-weight: 800;
-
   transform: rotate(8deg);
 }
 
@@ -777,10 +771,9 @@
 .best-win-card__content p {
   position: relative;
   z-index: 2;
+  margin: 10px 0 0;
 
-  margin: 15px 0 0;
-
-  color: #77777f;
+  color: #88888e;
   font-size: 12px;
   font-weight: 500;
   text-align: center;
@@ -857,11 +850,10 @@
   gap: 5px;
 
   min-width: 0;
-
-  margin-top: 12px;
+  margin-top: 7px;
 
   color: #ffffff;
-  font-size: 27px;
+  font-size: 24px;
   font-weight: 750;
   line-height: 1.1;
 }
@@ -888,8 +880,7 @@
 
 .statistics-card__label {
   margin-top: 5px;
-
-  color: #77777f;
+  color: #88888e;
   font-size: 12px;
   font-weight: 500;
 }
@@ -911,7 +902,7 @@
   }
 
   .statistics-card__value {
-    font-size: 24px;
+  font-size: 22px;
   }
 
   .statistics-card__label {
