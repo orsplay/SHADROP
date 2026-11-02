@@ -599,3 +599,331 @@
   opacity: 1;
   filter: brightness(0) invert(1);
 }
+
+/* ========================================
+   СТАТИСТИКА SHADROP
+======================================== */
+
+
+/* Заголовок статистики */
+
+.statistics-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 24px;
+  margin-bottom: 14px;
+  padding: 0 4px;
+}
+
+.statistics-title svg {
+  width: 25px;
+  height: 25px;
+  color: #e99a00;
+}
+
+.statistics-title h2 {
+  margin: 0;
+
+  font-size: 21px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+
+/* ========================================
+   ЛУЧШИЙ ВЫИГРЫШ
+======================================== */
+
+.best-win-card {
+  position: relative;
+
+  width: 100%;
+  min-height: 240px;
+
+  padding: 16px;
+  overflow: hidden;
+
+  background: #111111;
+  border: none;
+  border-radius: 22px;
+
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 3px rgba(255, 255, 255, 0.015);
+}
+
+
+/* Заголовок */
+
+.best-win-card__header {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.best-win-card__header h3 {
+  margin: 0;
+
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+/* Иконка короны */
+
+.best-win-card__icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #171717;
+  border-radius: 14px;
+
+  color: #e99a00;
+}
+
+.best-win-card__icon svg {
+  width: 25px;
+  height: 25px;
+}
+
+
+/* Содержимое */
+
+.best-win-card__content {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 170px;
+}
+
+
+/* Оранжевое свечение */
+
+.best-win-card__glow {
+  position: absolute;
+
+  width: 190px;
+  height: 190px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(233, 154, 0, 0.20) 0%,
+    rgba(233, 154, 0, 0.08) 40%,
+    transparent 75%
+  );
+
+  filter: blur(22px);
+  pointer-events: none;
+}
+
+
+/* Заглушка выигрыша */
+
+.best-win-card__placeholder {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 110px;
+  height: 110px;
+
+  margin-top: 5px;
+
+  background: #191919;
+  border-radius: 25px;
+
+  transform: rotate(-8deg);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(233, 154, 0, 0.08);
+}
+
+.best-win-card__placeholder span {
+  color: #e99a00;
+
+  font-size: 65px;
+  font-weight: 800;
+
+  transform: rotate(8deg);
+}
+
+
+/* Подпись */
+
+.best-win-card__content p {
+  position: relative;
+  z-index: 2;
+
+  margin: 15px 0 0;
+
+  color: #77777f;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+}
+
+
+/* ========================================
+   ЧЕТЫРЕ ОТДЕЛЬНЫЕ КАРТОЧКИ
+======================================== */
+
+.statistics-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  gap: 12px;
+
+  margin-top: 12px;
+}
+
+
+/* Карточка */
+
+.statistics-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+  min-height: 135px;
+
+  padding: 14px;
+
+  background: #111111;
+
+  border: none;
+  border-radius: 22px;
+
+  box-shadow:
+    inset 0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 3px rgba(255, 255, 255, 0.015);
+}
+
+
+/* Иконка */
+
+.statistics-card__icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #171717;
+  border-radius: 13px;
+
+  color: #e99a00;
+}
+
+.statistics-card__icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+
+/* Значение */
+
+.statistics-card__value {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  min-width: 0;
+
+  margin-top: 12px;
+
+  color: #ffffff;
+  font-size: 27px;
+  font-weight: 750;
+  line-height: 1.1;
+}
+
+.statistics-card__value span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* Telegram Stars */
+
+.statistics-card__star {
+  width: 23px;
+  height: 23px;
+
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+
+/* Подпись */
+
+.statistics-card__label {
+  margin-top: 5px;
+
+  color: #77777f;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+/* ========================================
+   АДАПТАЦИЯ ПОД МАЛЕНЬКИЕ ЭКРАНЫ
+======================================== */
+
+@media (max-width: 360px) {
+
+  .statistics-grid {
+    gap: 9px;
+  }
+
+  .statistics-card {
+    padding: 12px;
+    min-height: 125px;
+  }
+
+  .statistics-card__value {
+    font-size: 24px;
+  }
+
+  .statistics-card__label {
+    font-size: 11px;
+  }
+
+  .best-win-card {
+    min-height: 225px;
+  }
+
+  .best-win-card__header h3 {
+    font-size: 15px;
+  }
+
+}
