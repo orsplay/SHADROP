@@ -138,3 +138,26 @@ async function showSelectedPage(page) {
 
   window.renderShadropProfile?.();
 }
+
+function updateHeaderSpacing() {
+  const header = document.querySelector(".topbar");
+  if (!header) return;
+
+  const height = header.getBoundingClientRect().bottom;
+
+  document.documentElement.style.setProperty(
+    "--header-height",
+    `${height}px`
+  );
+}
+
+window.addEventListener("DOMContentLoaded", updateHeaderSpacing);
+window.addEventListener("resize", updateHeaderSpacing);
+
+if (window.ResizeObserver) {
+  const header = document.querySelector(".topbar");
+
+  if (header) {
+    new ResizeObserver(updateHeaderSpacing).observe(header);
+  }
+}

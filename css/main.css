@@ -41,7 +41,9 @@ body {
   background: #000000;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 24px 12px 126px;
+
+  padding: 0 12px 126px;
+  padding-top: calc(var(--header-height, 150px) + 16px);
 }
 
 /* Место под закреплённую шапку на планшетах */
