@@ -692,9 +692,11 @@
   color: #e99a00;
 }
 
-.best-win-card__icon svg {
+.best-win-card__icon img {
   width: 25px;
   height: 25px;
+  display: block;
+  object-fit: contain;
 }
 
 
@@ -840,9 +842,11 @@
   color: #e99a00;
 }
 
-.statistics-card__icon svg {
+.statistics-card__icon img {
   width: 23px;
   height: 23px;
+  display: block;
+  object-fit: contain;
 }
 
 
