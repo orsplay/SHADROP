@@ -693,8 +693,8 @@
 }
 
 .best-win-card__icon img {
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
   display: block;
   object-fit: contain;
 }
@@ -843,8 +843,8 @@
 }
 
 .statistics-card__icon img {
-  width: 23px;
-  height: 23px;
+  width: 36px;
+  height: 36px;
   display: block;
   object-fit: contain;
 }
