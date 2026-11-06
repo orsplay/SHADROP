@@ -49,7 +49,7 @@ body {
 @media (min-width: 601px) {
   #screen {
     padding-top: calc(
-      140px +
+      90px +
       var(--tg-content-safe-area-inset-top, 0px) +
       var(--tg-safe-area-inset-top, env(safe-area-inset-top, 0px))
     );
