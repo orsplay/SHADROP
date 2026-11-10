@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="ru">
 
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
@@ -12,39 +13,20 @@
   <!-- Telegram WebApp -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <!-- Автоматическое обновление CSS и JS -->
+  <!-- Автоматическая версия файлов -->
   <script>
     const version = Date.now();
 
-    // CSS
-    const styles = [
-      "css/main.css",
-      "css/profile.css"
-    ];
+    document.write(`
+      <link rel="stylesheet" href="css/main.css?v=${version}">
+      <link rel="stylesheet" href="css/profile.css?v=${version}">
 
-    styles.forEach(file => {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = `${file}?v=${version}`;
-      document.head.appendChild(link);
-    });
-
-// JavaScript — загрузка после создания HTML
-const scripts = [
-  "js/app.js",
-  "js/profile.js"
-];
-
-window.addEventListener("DOMContentLoaded", () => {
-  scripts.forEach(file => {
-    const script = document.createElement("script");
-    script.src = `${file}?v=${version}`;
-    script.async = false;
-    document.body.appendChild(script);
-  });
-});
+      <script defer src="js/app.js?v=${version}"><\/script>
+      <script defer src="js/profile.js?v=${version}"><\/script>
+    `);
   </script>
 </head>
+
 
 
 <body>
