@@ -250,11 +250,13 @@ body {
 }
 
 
-/* ===== LIVE SHADROP ===== */
+
+
+/* ===== LIVE — ЛЕНТА И КАРТОЧКИ ===== */
 
 .live-row {
   --live-gap: 4px;
-  --live-label-width: 24px;
+  --live-label-width: 35px;
   --live-card-size: calc(
     (100% - var(--live-label-width) - 5 * var(--live-gap)) / 5 * 1.4
   );
@@ -269,41 +271,6 @@ body {
   padding: 0;
   background: transparent;
 }
-
-/* LIVE слева */
-
-.live-label {
-  position: relative;
-  flex: 0 0 var(--live-label-width);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #355135;
-  border-radius: 999px;
-  background: #0c0f0c;
-  box-shadow: 0 0 8px rgba(81, 255, 18, 0.12);
-}
-
-.live-label__text {
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-}
-
-.live-label__dot {
-  position: absolute;
-  top: 7px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #51ff12;
-  box-shadow: 0 0 8px #51ff12;
-}
-
-/* Горизонтальная прокрутка */
 
 .live-list {
   display: flex;
@@ -322,8 +289,6 @@ body {
   display: none;
 }
 
-/* Неоновые карточки */
-
 .live-card {
   --live-color: #d600f5;
   position: relative;
@@ -340,8 +305,7 @@ body {
       transparent 80%
     ),
     #100e12;
-  box-shadow:
-    inset 0 -7px 12px -9px var(--live-color);
+  box-shadow: inset 0 -7px 12px -9px var(--live-color);
   overflow: hidden;
 }
 
@@ -363,15 +327,13 @@ body {
 .live-card--blue { --live-color: #008fff; }
 .live-card--green { --live-color: #36e878; }
 
-/* Аватар, никнейм, время */
-
 .live-card__top {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 3px;
   min-width: 0;
-  position: relative;
-  z-index: 2;
 }
 
 .live-card__avatar {
@@ -399,8 +361,7 @@ body {
   font-size: 7px;
 }
 
-
-/* Изображение на весь квадрат */
+/* Фотография на весь квадрат */
 
 .live-card__item {
   position: absolute;
@@ -413,8 +374,7 @@ body {
   z-index: 0;
 }
 
-
-/* Цена поверх карточки */
+/* Цена поверх фотографии */
 
 .live-card__info {
   position: absolute;
@@ -446,6 +406,7 @@ body {
   font-weight: 800;
   white-space: nowrap;
 }
+
 
 
 
