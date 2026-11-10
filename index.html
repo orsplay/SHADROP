@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="ru">
 
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
@@ -27,10 +26,9 @@
   </script>
 </head>
 
-
-
 <body>
   <main class="screen" id="screen" aria-label="Игры">
+
     <header class="topbar">
       <div class="topbar-actions">
 
@@ -53,62 +51,85 @@
       </div>
     </header>
 
+    <!-- LIVE: последние выигрыши -->
+    <section class="live-row" aria-label="Последние выигрыши">
 
-
-<!-- LIVE: последние выигрыши -->
-<section class="live-row" aria-label="Последние выигрыши">
-
-  <div class="live-label">
-    <span class="live-label__dot"></span>
-    <span class="live-label__text">LIVE</span>
-  </div>
-
-  <div class="live-list">
-
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-1.png" alt="Выигрыш">
-      <div class="live-card__info">
-        <img src="assets/icons/telegram-star.png" alt="">
-        <span>1 500</span>
+      <!-- Вертикальная плашка LIVE -->
+      <div class="live-label">
+        <span class="live-label__dot"></span>
+        <span class="live-label__text">LIVE</span>
       </div>
-    </article>
 
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-2.png" alt="Выигрыш">
-      <div class="live-card__info">
-        <img src="assets/icons/telegram-star.png" alt="">
-        <span>3 000</span>
+      <!-- Горизонтальная лента -->
+      <div class="live-list">
+
+        <!-- Evil Eye: Event Horizon -->
+        <article class="live-card live-card--purple">
+          <img
+            class="live-card__item"
+            src="assets/icons/NFT/Evil_Eye/Event_Horizon.webp"
+            alt="Evil Eye — Event Horizon"
+          >
+          <div class="live-card__info">
+            <img src="assets/icons/telegram-star.png" alt="">
+            <span>1 500</span>
+          </div>
+        </article>
+
+        <!-- Liberty Figure: Deputy -->
+        <article class="live-card live-card--blue">
+          <img
+            class="live-card__item"
+            src="assets/icons/NFT/Liberty_Figure/Deputy.webp"
+            alt="Liberty Figure — Deputy"
+          >
+          <div class="live-card__info">
+            <img src="assets/icons/telegram-star.png" alt="">
+            <span>3 000</span>
+          </div>
+        </article>
+
+        <!-- Lollipop: Tamagotchi -->
+        <article class="live-card live-card--pink">
+          <img
+            class="live-card__item"
+            src="assets/icons/NFT/Lollipop/Tamagotchi.webp"
+            alt="Lollipop — Tamagotchi"
+          >
+          <div class="live-card__info">
+            <img src="assets/icons/telegram-star.png" alt="">
+            <span>2 500</span>
+          </div>
+        </article>
+
+        <!-- Resistance Dog: Raincoat -->
+        <article class="live-card live-card--green">
+          <img
+            class="live-card__item"
+            src="assets/icons/NFT/Resistance_Dog/Raincoat.webp"
+            alt="Resistance Dog — Raincoat"
+          >
+          <div class="live-card__info">
+            <img src="assets/icons/telegram-star.png" alt="">
+            <span>5 000</span>
+          </div>
+        </article>
+
+        <!-- Toy Bear: Deadpool -->
+        <article class="live-card live-card--red">
+          <img
+            class="live-card__item"
+            src="assets/icons/NFT/Toy Bear/Deadpool.webp"
+            alt="Toy Bear — Deadpool"
+          >
+          <div class="live-card__info">
+            <img src="assets/icons/telegram-star.png" alt="">
+            <span>1 000</span>
+          </div>
+        </article>
+
       </div>
-    </article>
-
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-3.png" alt="Выигрыш">
-      <div class="live-card__info">
-        <img src="assets/icons/telegram-star.png" alt="">
-        <span>2 500</span>
-      </div>
-    </article>
-
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-4.png" alt="Выигрыш">
-      <div class="live-card__info">
-        <img src="assets/icons/telegram-star.png" alt="">
-        <span>5 000</span>
-      </div>
-    </article>
-
-    <article class="live-card">
-      <img class="live-card__item" src="assets/images/live-5.png" alt="Выигрыш">
-      <div class="live-card__info">
-        <img src="assets/icons/telegram-star.png" alt="">
-        <span>1 000</span>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-
+    </section>
 
     <!-- Баннер -->
     <section class="promo-banner" aria-label="Подарок за пополнение">
@@ -121,9 +142,12 @@
     </section>
 
     <section class="page-placeholder" aria-hidden="true"></section>
+
   </main>
 
+  <!-- Нижнее меню -->
   <nav class="bottom-nav" id="bottomNav" aria-label="Основное меню">
+
     <div class="nav-indicator" id="navIndicator" aria-hidden="true"></div>
 
     <button class="nav-item is-active" type="button" data-page="games" aria-current="page">
@@ -145,6 +169,7 @@
       <img class="nav-icon telegram-user-photo" src="assets/icons/profile.png" alt="" aria-hidden="true">
       <span>Профиль</span>
     </button>
+
   </nav>
 </body>
 </html>
