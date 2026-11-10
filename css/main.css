@@ -250,52 +250,112 @@ body {
 }
 
 
-/* ===== LIVE — ЛЕНТА И КАРТОЧКИ ===== */
+
+/* ===== LIVE SHADROP — ПОЛНАЯ ВЕРСИЯ ===== */
 
 .live-row {
   --live-gap: 4px;
   --live-label-width: 35px;
-  --live-card-size: calc(
-    (100% - var(--live-label-width) - 5 * var(--live-gap)) / 5 * 1.4
-  );
+  --live-card-size: 90px;
 
   display: flex;
   align-items: stretch;
   gap: var(--live-gap);
   width: 100%;
-  height: var(--live-card-size);
+  height: 90px;
   margin-top: 14px;
   margin-bottom: 12px;
   padding: 0;
   background: transparent;
+  overflow: hidden;
 }
+
+/* ===== ВЕРТИКАЛЬНАЯ ПЛАШКА LIVE ===== */
+
+.live-label {
+  position: relative;
+  flex: 0 0 var(--live-label-width);
+  width: var(--live-label-width);
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #4cff00;
+  border-radius: 999px;
+  background: #050505;
+
+  box-shadow: 0 0 10px rgba(76, 255, 0, 0.12);
+  overflow: hidden;
+}
+
+.live-label__text {
+  display: block;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1;
+  white-space: nowrap;
+
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.live-label__dot {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4cff00;
+
+  box-shadow:
+    0 0 7px #4cff00,
+    0 0 15px rgba(76, 255, 0, 0.7);
+}
+
+/* ===== ГОРИЗОНТАЛЬНАЯ ПРОКРУТКА ===== */
 
 .live-list {
   display: flex;
   flex: 1;
   min-width: 0;
+  height: 90px;
   align-items: center;
   gap: var(--live-gap);
+
   overflow-x: auto;
   overflow-y: hidden;
+
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-x;
+  overscroll-behavior-x: contain;
 }
 
 .live-list::-webkit-scrollbar {
   display: none;
 }
 
+/* ===== КВАДРАТНЫЕ КАРТОЧКИ ===== */
+
 .live-card {
   --live-color: #d600f5;
+
   position: relative;
   flex: 0 0 var(--live-card-size);
   width: var(--live-card-size);
-  aspect-ratio: 1 / 1;
-  padding: 4px;
+  height: var(--live-card-size);
+
+  padding: 0;
   border: 1px solid var(--live-color);
   border-radius: 15px;
+
   background:
     radial-gradient(
       ellipse at 50% 100%,
@@ -303,9 +363,14 @@ body {
       transparent 80%
     ),
     #100e12;
-  box-shadow: inset 0 -7px 12px -9px var(--live-color);
+
+  box-shadow:
+    inset 0 -7px 12px -9px var(--live-color);
+
   overflow: hidden;
 }
+
+/* Светящаяся линия сверху */
 
 .live-card::before {
   content: "";
@@ -317,21 +382,42 @@ body {
   border-radius: 999px;
   background: var(--live-color);
   box-shadow: 0 0 7px var(--live-color);
+  z-index: 3;
 }
 
-.live-card--purple { --live-color: #d600f5; }
-.live-card--red { --live-color: #f00028; }
-.live-card--yellow { --live-color: #f6df00; }
-.live-card--blue { --live-color: #008fff; }
-.live-card--green { --live-color: #36e878; }
+/* Цвета карточек */
+
+.live-card--purple {
+  --live-color: #d600f5;
+}
+
+.live-card--red {
+  --live-color: #f00028;
+}
+
+.live-card--yellow {
+  --live-color: #f6df00;
+}
+
+.live-card--blue {
+  --live-color: #008fff;
+}
+
+.live-card--green {
+  --live-color: #36e878;
+}
+
+/* ===== АВАТАР И НИКНЕЙМ ===== */
 
 .live-card__top {
   position: relative;
   z-index: 2;
+
   display: flex;
   align-items: center;
   gap: 3px;
   min-width: 0;
+  padding: 5px 4px;
 }
 
 .live-card__avatar {
@@ -348,6 +434,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
   color: #ffffff;
   font-size: 8px;
   font-weight: 700;
@@ -359,35 +446,44 @@ body {
   font-size: 7px;
 }
 
-/* Фотография на весь квадрат */
+/* ===== ФОТОГРАФИЯ НА ВЕСЬ КВАДРАТ ===== */
 
 .live-card__item {
   position: absolute;
   inset: 0;
+
+  display: block;
   width: 100%;
   height: 100%;
   margin: 0;
+
   object-fit: cover;
   border-radius: inherit;
   z-index: 0;
 }
 
-/* Цена поверх фотографии */
+/* ===== ЦЕНА ПОВЕРХ ФОТОГРАФИИ ===== */
 
 .live-card__info {
   position: absolute;
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 3px;
+
   width: max-content;
   max-width: calc(100% - 8px);
   padding: 3px 6px;
+
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(20, 20, 24, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
   z-index: 2;
 }
 
@@ -404,6 +500,7 @@ body {
   font-weight: 800;
   white-space: nowrap;
 }
+
 
 
 
