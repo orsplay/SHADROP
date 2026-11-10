@@ -250,62 +250,64 @@ body {
 }
 
 
-/* ===== LIVE SHADROP ===== */
+
+/* ===== LIVE SHADROP — КОМПАКТНАЯ ЛЕНТА ===== */
 
 .live-row {
   display: flex;
   align-items: stretch;
-  gap: 10px;
+  gap: 5px;
   width: 100%;
-  height: 148px;
+  height: 68px;
   margin-top: 14px;
-  margin-bottom: 12px;
-  padding: 0;
-  background: transparent;
-  overflow: visible;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 16px;
+  background: #101014;
+  overflow: hidden;
 }
 
-/* Вертикальный LIVE */
+/* Вертикальная надпись LIVE */
 
 .live-label {
   position: relative;
-  flex: 0 0 35px;
+  flex: 0 0 38px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #354b35;
-  border-radius: 999px;
-  background: #0c0f0c;
-  box-shadow: 0 0 12px rgba(71, 255, 31, 0.12);
+  border-radius: 12px;
+  background: #101014;
 }
 
 .live-label__text {
   color: #ffffff;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
 
 .live-label__dot {
   position: absolute;
-  top: 12px;
-  width: 9px;
-  height: 9px;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #51ff12;
-  box-shadow: 0 0 12px #51ff12;
+  box-shadow: 0 0 8px #51ff12;
 }
 
-/* Горизонтальная лента */
+/* Горизонтальная прокрутка */
 
 .live-list {
   display: flex;
   flex: 1;
   min-width: 0;
-  align-items: stretch;
-  gap: 10px;
+  align-items: center;
+  gap: 5px;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
@@ -317,125 +319,64 @@ body {
   display: none;
 }
 
-/* Карточка */
+/* Квадратные карточки */
 
 .live-card {
-  --live-color: #d600f5;
   position: relative;
-  flex: 0 0 154px;
-  height: 144px;
-  padding: 9px;
-  border: 1.5px solid var(--live-color);
-  border-radius: 24px;
-  background:
-    radial-gradient(
-      ellipse at 50% 90%,
-      color-mix(in srgb, var(--live-color) 18%, transparent),
-      transparent 75%
-    ),
-    #100e12;
-  box-shadow:
-    inset 0 -8px 18px -14px var(--live-color);
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  border-radius: 9px;
+  background: #24242b;
   overflow: hidden;
 }
 
-.live-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 35%;
-  width: 30%;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--live-color);
-  box-shadow: 0 0 9px var(--live-color);
-}
-
-.live-card--purple { --live-color: #d600f5; }
-.live-card--red { --live-color: #f00028; }
-.live-card--yellow { --live-color: #f6df00; }
-.live-card--blue { --live-color: #008fff; }
-
-/* Пользователь */
-
-.live-card__top {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  min-width: 0;
-}
-
-.live-card__avatar {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.live-card__username {
-  min-width: 0;
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.live-card__time {
-  flex-shrink: 0;
-  color: #a5a5a9;
-  font-size: 9px;
-}
-
-/* Изображение выигрыша */
+/* Фотография на весь квадрат */
 
 .live-card__item {
   display: block;
   width: 100%;
-  height: 72px;
-  margin-top: 2px;
-  object-fit: contain;
-  background: transparent;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Цена */
+/* Цена поверх нижней части фотографии */
 
 .live-card__info {
   position: absolute;
-  bottom: 9px;
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  width: max-content;
-  max-width: calc(100% - 16px);
-  padding: 5px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.09);
+  gap: 2px;
+  padding: 5px 1px 3px;
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.9)
+  );
   z-index: 1;
 }
 
 .live-card__info img {
-  width: 18px;
-  height: 18px;
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
   object-fit: contain;
 }
 
 .live-card__info span {
   color: #ffffff;
-  font-size: 14px;
+  font-size: 9px;
   font-weight: 800;
+  line-height: 1;
   white-space: nowrap;
 }
 
 
-/* Баннер пополнения */
+
+/* Баннер пополнения ........... */
 
 .promo-banner {
   position: relative;
