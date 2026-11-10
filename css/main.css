@@ -274,8 +274,8 @@ body {
 
 .live-label {
   position: relative;
-  flex: 0 0 var(--live-label-width);
-  width: var(--live-label-width);
+  flex: 0 0 35px;
+  width: 35px;
   height: 90px;
 
   display: flex;
@@ -291,16 +291,19 @@ body {
 }
 
 .live-label__text {
-  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) rotate(180deg);
+  writing-mode: vertical-rl;
+
   color: #ffffff;
   font-size: 19px;
   font-weight: 800;
   letter-spacing: 1px;
   line-height: 1;
   white-space: nowrap;
-
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
 }
 
 .live-label__dot {
@@ -312,8 +315,8 @@ body {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #4cff00;
 
+  background: #4cff00;
   box-shadow:
     0 0 7px #4cff00,
     0 0 15px rgba(76, 255, 0, 0.7);
