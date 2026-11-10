@@ -370,6 +370,8 @@ body {
   align-items: center;
   gap: 3px;
   min-width: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .live-card__avatar {
@@ -397,15 +399,20 @@ body {
   font-size: 7px;
 }
 
-/* Изображение приза */
+
+/* Изображение на весь квадрат */
 
 .live-card__item {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 60%;
-  margin-top: 1px;
-  object-fit: contain;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+  border-radius: inherit;
+  z-index: 0;
 }
+
 
 /* Цена поверх карточки */
 
@@ -423,7 +430,7 @@ body {
   padding: 3px 6px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.10);
-  z-index: 1;
+  z-index: 2;
 }
 
 .live-card__info img {
