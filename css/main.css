@@ -305,6 +305,7 @@ body {
   letter-spacing: 1px;
   line-height: 1;
   white-space: nowrap;
+  font-family: "Russo One", sans-serif;
 }
 
 .live-label__dot {
@@ -809,8 +810,8 @@ body {
 
 .games-section__icon {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   object-fit: contain;
 }
 
@@ -946,7 +947,7 @@ body {
 
 /* Общая рамка */
 .game-tile {
-  border: 2px solid var(--game-color);
+  border: 1px solid var(--game-color);
   box-shadow:
     0 0 10px color-mix(in srgb, var(--game-color) 25%, transparent),
     inset 0 0 10px color-mix(in srgb, var(--game-color) 12%, transparent);
