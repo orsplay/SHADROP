@@ -1,47 +1,86 @@
 
-/* ===== SHADROP CASES ===== */
+/* ========================================
+   SHADROP — СТРАНИЦА КЕЙСОВ
+======================================== */
+
+/* Контейнер страницы */
+
+#casesPageContainer {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+#casesPageContainer[hidden] {
+  display: none !important;
+}
+
+#casesPageContainer *,
+#casesPageContainer *::before,
+#casesPageContainer *::after {
+  box-sizing: border-box;
+}
+
+/* Основная страница */
 
 .cases-page {
   width: 100%;
-  padding-top: 15px;
-  padding-bottom: 30px;
+  min-width: 0;
+  padding: 18px 14px 110px;
+  color: #ffffff;
 }
 
 .cases-page[hidden] {
   display: none !important;
 }
 
-/* Заголовок */
+/* ========================================
+   ЗАГОЛОВОК
+======================================== */
 
 .cases-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 22px;
 }
 
 .cases-heading h1 {
   margin: 0;
+  color: #ffffff;
   font-family: "Russo One", sans-serif;
   font-size: 27px;
   font-weight: 400;
+  line-height: 1.2;
 }
 
 .cases-heading__count {
-  color: #929099;
-  font-size: 11px;
+  padding: 7px 10px;
+  border: 1px solid #333036;
+  border-radius: 9px;
+  background: #19191e;
+  color: #ffab42;
+  font-family: "Russo One", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
 }
 
-/* Категории */
+/* ========================================
+   ФИЛЬТРЫ
+======================================== */
 
 .cases-filters {
   display: flex;
+  align-items: center;
   gap: 8px;
+  width: 100%;
+  margin-bottom: 25px;
+  padding-bottom: 5px;
   overflow-x: auto;
-  padding-bottom: 6px;
-  margin-bottom: 22px;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .cases-filters::-webkit-scrollbar {
@@ -50,57 +89,76 @@
 
 .cases-filter {
   flex: 0 0 auto;
-  padding: 11px 15px;
-
+  min-height: 39px;
+  padding: 0 14px;
   border: 1px solid #303036;
   border-radius: 12px;
-
-  background: #17171b;
+  background: #19191e;
   color: #a8a6af;
-
   font-family: "Russo One", sans-serif;
   font-size: 11px;
   font-weight: 400;
-
+  white-space: nowrap;
   cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .cases-filter.is-active {
-  border-color: #ff54b8;
-  background: #30202d;
-  color: #ffffff;
+  border-color: #ff9b35;
+  background: linear-gradient(
+    135deg,
+    #ffad43,
+    #f47718
+  );
+  color: #17100a;
 }
 
-/* Заголовок каталога */
+.cases-filter:active {
+  transform: scale(0.97);
+}
+
+/* ========================================
+   ЗАГОЛОВОК КАТАЛОГА
+======================================== */
 
 .cases-catalog-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 13px;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .cases-catalog-heading h2 {
   margin: 0;
+  color: #ffffff;
   font-family: "Russo One", sans-serif;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 400;
 }
 
 .cases-catalog-heading span {
-  color: #85818d;
+  color: #929099;
   font-size: 12px;
 }
 
-/* Сетка */
+/* ========================================
+   СЕТКА КЕЙСОВ
+======================================== */
 
 .cases-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+  width: 100%;
 }
 
-/* Карточка кейса */
+/* ========================================
+   КАРТОЧКА КЕЙСА
+======================================== */
 
 .case-card {
   --case-color: #ff9c39;
@@ -109,128 +167,226 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  isolation: isolate;
 
+  width: 100%;
   min-width: 0;
   aspect-ratio: 0.78;
-  padding: 13px 9px 10px;
+  padding: 14px 10px 10px;
 
-  border: 1px solid #303039;
-  border-radius: 22px;
+  border: 1px solid #34343b;
+  border-radius: 19px;
 
   background:
     radial-gradient(
-      ellipse at 50% 45%,
-      color-mix(in srgb, var(--case-color) 15%, transparent),
+      ellipse at 50% 52%,
+      color-mix(
+        in srgb,
+        var(--case-color) 22%,
+        transparent
+      ),
       transparent 70%
     ),
-    #121216;
+    #141419;
 
+  color: #ffffff;
+  text-align: center;
   overflow: hidden;
   cursor: pointer;
-  color: #ffffff;
-
   -webkit-tap-highlight-color: transparent;
-  transition: transform 0.2s ease;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .case-card:active {
   transform: scale(0.97);
+  border-color: var(--case-color);
 }
 
-/* Тонкая светящаяся линия */
+/* Светящаяся линия сверху */
 
 .case-card::before {
   content: "";
   position: absolute;
+  z-index: 1;
   top: 0;
-  left: 35%;
-  width: 30%;
+  left: 25%;
+  width: 50%;
   height: 2px;
-
   border-radius: 999px;
+
   background: var(--case-color);
-  box-shadow: 0 0 10px var(--case-color);
+  box-shadow:
+    0 0 10px var(--case-color),
+    0 0 20px var(--case-color);
+
+  pointer-events: none;
 }
 
-/* Сетка на фоне */
+/* Квадратная сетка */
 
 .case-card::after {
   content: "";
   position: absolute;
+  z-index: 0;
   inset: 0;
 
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    linear-gradient(
+      rgba(255,255,255,0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.045) 1px,
+      transparent 1px
+    );
 
   background-size: 22px 22px;
   pointer-events: none;
 }
 
-/* Название */
+/* ========================================
+   НАЗВАНИЕ КЕЙСА
+======================================== */
 
 .case-card__name {
   position: relative;
   z-index: 2;
+  display: block;
+  width: 100%;
 
+  color: #ffffff;
   font-family: "Russo One", sans-serif;
   font-size: 13px;
   font-weight: 400;
+  line-height: 1.3;
   text-align: center;
 }
 
-/* Изображение */
+/* ========================================
+   ИЗОБРАЖЕНИЕ КЕЙСА
+======================================== */
 
 .case-card__image {
   position: relative;
   z-index: 2;
-
   display: block;
-  width: 100%;
-  min-height: 0;
-  flex: 1;
+  flex: 1 1 0;
 
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-height: 165px;
+
+  margin: 8px auto;
   object-fit: contain;
-  margin: 7px 0;
-  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
+
+  filter:
+    drop-shadow(0 8px 14px rgba(0,0,0,0.45));
 }
 
-/* Цена */
+/* ========================================
+   ЦЕНА КЕЙСА
+======================================== */
 
 .case-card__price {
   position: relative;
   z-index: 2;
 
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
 
   width: 100%;
-  min-height: 37px;
+  min-height: 38px;
+  padding: 7px;
 
-  border: 1px solid #34343a;
+  border: 1px solid #3a3940;
   border-radius: 11px;
 
-  background: #202024;
+  background: #24242a;
+  color: #ffffff;
 
-  font-size: 16px;
-  font-weight: 800;
+  font-family: "Russo One", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .case-card__price img {
+  display: block;
+  flex: 0 0 auto;
   width: 19px;
   height: 19px;
   object-fit: contain;
 }
 
-/* Цветовые темы */
+/* ========================================
+   ЦВЕТА КЕЙСОВ
+======================================== */
 
-.case-card--orange { --case-color: #ff9c39; }
-.case-card--pink   { --case-color: #ff48b8; }
-.case-card--blue   { --case-color: #35c8ff; }
-.case-card--purple { --case-color: #a46aff; }
+/* Оранжевый */
+.case-card--orange {
+  --case-color: #ff9c39;
+}
+
+/* Розовый */
+.case-card--pink {
+  --case-color: #ff48b8;
+}
+
+/* Голубой */
+.case-card--blue {
+  --case-color: #35c8ff;
+}
+
+/* Фиолетовый */
+.case-card--purple {
+  --case-color: #a46aff;
+}
+
+/* ========================================
+   СКРЫТИЕ КАРТОЧЕК
+======================================== */
 
 .case-card[hidden] {
   display: none !important;
+}
+
+/* ========================================
+   АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ
+======================================== */
+
+@media (max-width: 360px) {
+  .cases-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .cases-grid {
+    gap: 9px;
+  }
+
+  .case-card {
+    padding: 12px 8px 9px;
+    border-radius: 16px;
+  }
+
+  .case-card__name {
+    font-size: 12px;
+  }
+
+  .case-card__price {
+    min-height: 35px;
+    font-size: 14px;
+  }
+
+  .cases-filter {
+    padding: 0 11px;
+    font-size: 10px;
+  }
 }

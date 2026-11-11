@@ -1,89 +1,145 @@
 
-<!-- ===== СТРАНИЦА КЕЙСОВ SHADROP ===== -->
+<!-- ===== КАТАЛОГ КЕЙСОВ SHADROP ===== -->
 
-<section class="cases-page">
+<section class="cases-page" aria-label="Каталог кейсов">
 
-  <!-- Заголовок -->
+  <!-- Заголовок страницы -->
   <div class="cases-heading">
     <h1>Кейсы</h1>
     <span class="cases-heading__count">SHADROP</span>
   </div>
 
-  <!-- Категории -->
-  <div class="cases-filters">
+  <!-- Фильтры -->
+  <div class="cases-filters" aria-label="Категории кейсов">
 
-    <button class="cases-filter is-active"
-            data-filter="all" type="button">
+    <button
+      class="cases-filter is-active"
+      type="button"
+      data-filter="all"
+    >
       Все кейсы
     </button>
 
-    <button class="cases-filter"
-            data-filter="free" type="button">
+    <button
+      class="cases-filter"
+      type="button"
+      data-filter="free"
+    >
       Бесплатные
     </button>
 
-    <button class="cases-filter"
-            data-filter="cheap" type="button">
+    <button
+      class="cases-filter"
+      type="button"
+      data-filter="cheap"
+    >
       Бюджетные
     </button>
 
-    <button class="cases-filter"
-            data-filter="premium" type="button">
+    <button
+      class="cases-filter"
+      type="button"
+      data-filter="premium"
+    >
       Премиум
     </button>
 
   </div>
 
-  <!-- Заголовок каталога -->
+  <!-- Название каталога -->
   <div class="cases-catalog-heading">
     <h2>Все кейсы</h2>
     <span class="cases-visible-count">4 кейса</span>
   </div>
 
-  <!-- Сетка кейсов -->
+  <!-- Карточки кейсов -->
   <div class="cases-grid">
 
-    <button class="case-card case-card--orange"
-            data-category="cheap" type="button">
+    <!-- Огненный -->
+    <button
+      class="case-card case-card--orange"
+      type="button"
+      data-category="cheap"
+      data-case="fire"
+    >
       <span class="case-card__name">Огненный</span>
-      <img class="case-card__image"
-           src="assets/icons/case.png" alt="">
+
+      <img
+        class="case-card__image"
+        src="assets/icons/case.png"
+        alt="Огненный кейс"
+        loading="lazy"
+      >
+
       <span class="case-card__price">
         <img src="assets/icons/telegram-star.png" alt="">
-        99
+        <span>99</span>
       </span>
     </button>
 
-    <button class="case-card case-card--pink"
-            data-category="cheap" type="button">
+    <!-- Магический -->
+    <button
+      class="case-card case-card--pink"
+      type="button"
+      data-category="cheap"
+      data-case="magic"
+    >
       <span class="case-card__name">Магический</span>
-      <img class="case-card__image"
-           src="assets/icons/case.png" alt="">
+
+      <img
+        class="case-card__image"
+        src="assets/icons/case.png"
+        alt="Магический кейс"
+        loading="lazy"
+      >
+
       <span class="case-card__price">
         <img src="assets/icons/telegram-star.png" alt="">
-        199
+        <span>199</span>
       </span>
     </button>
 
-    <button class="case-card case-card--blue"
-            data-category="premium" type="button">
+    <!-- Кристалл -->
+    <button
+      class="case-card case-card--blue"
+      type="button"
+      data-category="premium"
+      data-case="crystal"
+    >
       <span class="case-card__name">Кристалл</span>
-      <img class="case-card__image"
-           src="assets/icons/case.png" alt="">
+
+      <img
+        class="case-card__image"
+        src="assets/icons/case.png"
+        alt="Кристальный кейс"
+        loading="lazy"
+      >
+
       <span class="case-card__price">
         <img src="assets/icons/telegram-star.png" alt="">
-        499
+        <span>499</span>
       </span>
     </button>
 
-    <button class="case-card case-card--purple"
-            data-category="premium" type="button">
+    <!-- Легендарный -->
+    <button
+      class="case-card case-card--purple"
+      type="button"
+      data-category="premium"
+      data-case="legendary"
+    >
       <span class="case-card__name">Легендарный</span>
-      <img class="case-card__image"
-           src="assets/icons/case.png" alt="">
+
+      <img
+        class="case-card__image"
+        src="assets/icons/case.png"
+        alt="Легендарный кейс"
+        loading="lazy"
+      >
+
       <span class="case-card__price">
         <img src="assets/icons/telegram-star.png" alt="">
-        999
+        <span>999</span>
       </span>
     </button>
 
