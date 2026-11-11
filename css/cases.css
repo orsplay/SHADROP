@@ -1,0 +1,232 @@
+
+/* ===== SHADROP CASES ===== */
+
+.cases-page {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 30px;
+}
+
+.cases-page[hidden] {
+  display: none !important;
+}
+
+/* Заголовок */
+
+.cases-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cases-heading h1 {
+  margin: 0;
+  font-family: "Russo One", sans-serif;
+  font-size: 27px;
+  font-weight: 400;
+}
+
+.cases-heading__count {
+  color: #929099;
+  font-size: 11px;
+}
+
+/* Категории */
+
+.cases-filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-bottom: 22px;
+  scrollbar-width: none;
+}
+
+.cases-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.cases-filter {
+  flex: 0 0 auto;
+  padding: 11px 15px;
+
+  border: 1px solid #303036;
+  border-radius: 12px;
+
+  background: #17171b;
+  color: #a8a6af;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+
+  cursor: pointer;
+}
+
+.cases-filter.is-active {
+  border-color: #ff54b8;
+  background: #30202d;
+  color: #ffffff;
+}
+
+/* Заголовок каталога */
+
+.cases-catalog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+
+.cases-catalog-heading h2 {
+  margin: 0;
+  font-family: "Russo One", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.cases-catalog-heading span {
+  color: #85818d;
+  font-size: 12px;
+}
+
+/* Сетка */
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* Карточка кейса */
+
+.case-card {
+  --case-color: #ff9c39;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+  aspect-ratio: 0.78;
+  padding: 13px 9px 10px;
+
+  border: 1px solid #303039;
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      color-mix(in srgb, var(--case-color) 15%, transparent),
+      transparent 70%
+    ),
+    #121216;
+
+  overflow: hidden;
+  cursor: pointer;
+  color: #ffffff;
+
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease;
+}
+
+.case-card:active {
+  transform: scale(0.97);
+}
+
+/* Тонкая светящаяся линия */
+
+.case-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 35%;
+  width: 30%;
+  height: 2px;
+
+  border-radius: 999px;
+  background: var(--case-color);
+  box-shadow: 0 0 10px var(--case-color);
+}
+
+/* Сетка на фоне */
+
+.case-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+
+/* Название */
+
+.case-card__name {
+  position: relative;
+  z-index: 2;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* Изображение */
+
+.case-card__image {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+
+  object-fit: contain;
+  margin: 7px 0;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
+}
+
+/* Цена */
+
+.case-card__price {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  width: 100%;
+  min-height: 37px;
+
+  border: 1px solid #34343a;
+  border-radius: 11px;
+
+  background: #202024;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.case-card__price img {
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+}
+
+/* Цветовые темы */
+
+.case-card--orange { --case-color: #ff9c39; }
+.case-card--pink   { --case-color: #ff48b8; }
+.case-card--blue   { --case-color: #35c8ff; }
+.case-card--purple { --case-color: #a46aff; }
