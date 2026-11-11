@@ -961,3 +961,7 @@ body {
       inset 0 0 12px color-mix(in srgb, var(--game-color) 20%, transparent);
   }
 }
+
+[hidden] {
+  display: none !important;
+}

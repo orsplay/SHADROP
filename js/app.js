@@ -85,13 +85,19 @@ profileButton?.addEventListener('click', () => {
 });
 
 
-/* Отображение страницы профиля */
+
+/* ===== ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ SHADROP ===== */
 
 let profileLoaded = false;
+let casesLoaded = false;
+let currentPage = 'games';
 
 async function showSelectedPage(page) {
   if (!screen) return;
 
+  currentPage = page;
+
+  // Контейнер профиля
   let profileContainer =
     document.getElementById('profilePageContainer');
 
@@ -102,42 +108,101 @@ async function showSelectedPage(page) {
     screen.appendChild(profileContainer);
   }
 
-  // Прячем исходные секции только при открытии профиля.
-  // Шапку при этом не изменяем.
+  // Контейнер кейсов
+  let casesContainer =
+    document.getElementById('casesPageContainer');
+
+  if (!casesContainer) {
+    casesContainer = document.createElement('div');
+    casesContainer.id = 'casesPageContainer';
+    casesContainer.hidden = true;
+    screen.appendChild(casesContainer);
+  }
+
+  // Скрываем содержимое главной страницы
   Array.from(screen.children).forEach((element) => {
     if (
       element.classList.contains('topbar') ||
-      element.id === 'profilePageContainer'
+      element.id === 'profilePageContainer' ||
+      element.id === 'casesPageContainer'
     ) return;
 
-    element.hidden = page === 'profile';
+    element.hidden = page !== 'games';
   });
 
+  // Отображаем выбранную страницу
   profileContainer.hidden = page !== 'profile';
+  casesContainer.hidden = page !== 'cases';
 
-  if (page !== 'profile') return;
+  // ===== ПРОФИЛЬ =====
 
-  if (!profileLoaded) {
-    try {
-      const response = await fetch('pages/profile.html?v=6');
+  if (page === 'profile') {
+    if (!profileLoaded) {
+      try {
+        const response = await fetch('pages/profile.html?v=6');
 
-      if (!response.ok) {
-        throw new Error('HTTP ' + response.status);
+        if (!response.ok) {
+          throw new Error('HTTP ' + response.status);
+        }
+
+        const html = await response.text();
+
+        profileContainer.innerHTML = html;
+        profileLoaded = true;
+
+        if (currentPage !== 'profile') return;
+
+      } catch (error) {
+        console.error('Не удалось загрузить профиль:', error);
+
+        profileContainer.textContent =
+          'Не удалось загрузить профиль.';
+
+        return;
       }
-
-      const html = await response.text();
-      profileContainer.innerHTML = html;
-      profileLoaded = true;
-    } catch (error) {
-      console.error('Не удалось загрузить профиль:', error);
-      profileContainer.textContent =
-        'Не удалось загрузить профиль.';
-      return;
     }
+
+    if (currentPage === 'profile') {
+      window.renderShadropProfile?.();
+    }
+
+    return;
   }
 
-  window.renderShadropProfile?.();
+  // ===== КЕЙСЫ =====
+
+  if (page === 'cases') {
+    if (!casesLoaded) {
+      try {
+        const response = await fetch('pages/cases.html?v=1');
+
+        if (!response.ok) {
+          throw new Error('HTTP ' + response.status);
+        }
+
+        const html = await response.text();
+
+        casesContainer.innerHTML = html;
+        casesLoaded = true;
+
+        if (currentPage !== 'cases') return;
+
+      } catch (error) {
+        console.error('Не удалось загрузить кейсы:', error);
+
+        casesContainer.textContent =
+          'Не удалось загрузить кейсы.';
+
+        return;
+      }
+    }
+
+    if (currentPage === 'cases') {
+      window.initShadropCases?.();
+    }
+  }
 }
+
 
 function updateHeaderSpacing() {
   const header = document.querySelector(".topbar");

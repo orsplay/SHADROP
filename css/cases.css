@@ -230,3 +230,7 @@
 .case-card--pink   { --case-color: #ff48b8; }
 .case-card--blue   { --case-color: #35c8ff; }
 .case-card--purple { --case-color: #a46aff; }
+
+.case-card[hidden] {
+  display: none !important;
+}
