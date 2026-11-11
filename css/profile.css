@@ -942,18 +942,22 @@
 
 }
 
+
 /* ===== ИГРОВОЙ ШРИФТ В ПРОФИЛЕ ===== */
 
 /* Главные заголовки */
-.profile-page h1,
-.profile-page h2,
-.profile-page h3 {
+.player-name,
+.inventory-empty__title,
+.referral-card__heading h3,
+.statistics-title h2,
+.best-win-card__header h3 {
   font-family: "Russo One", sans-serif;
   font-weight: 400;
 }
 
-/* Кнопки профиля */
-.profile-page button {
+/* Основные кнопки */
+.player-actions button,
+.inventory-empty__button {
   font-family: "Russo One", sans-serif;
   font-weight: 400;
 }
