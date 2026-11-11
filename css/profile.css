@@ -941,3 +941,19 @@
   }
 
 }
+
+/* ===== ИГРОВОЙ ШРИФТ В ПРОФИЛЕ ===== */
+
+/* Главные заголовки */
+.profile-page h1,
+.profile-page h2,
+.profile-page h3 {
+  font-family: "Russo One", sans-serif;
+  font-weight: 400;
+}
+
+/* Кнопки профиля */
+.profile-page button {
+  font-family: "Russo One", sans-serif;
+  font-weight: 400;
+}
