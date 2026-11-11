@@ -785,11 +785,11 @@ body {
 }
 
 
-/* ===== ИГРОВАЯ ЗОНА SHADROP ===== */
+/* ===== ИГРЫ SHADROP ===== */
 
 .games-section {
   width: 100%;
-  margin-top: 28px;
+  margin-top: 26px;
   margin-bottom: 24px;
 }
 
@@ -798,38 +798,31 @@ body {
 .games-section__header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
 .games-section__heading {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
 }
 
 .games-section__icon {
-  color: #ff59bc;
-  font-size: 27px;
-  line-height: 1;
-  text-shadow: 0 0 14px rgba(255, 89, 188, 0.5);
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .games-section__heading h2 {
   margin: 0;
   color: #ffffff;
   font-family: "Russo One", sans-serif;
-  font-size: 23px;
+  font-size: 24px;
   font-weight: 400;
 }
 
-.games-section__count {
-  color: #a6a0ae;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* Сетка */
+/* Сетка карточек */
 
 .games-grid {
   display: grid;
@@ -837,194 +830,96 @@ body {
   gap: 12px;
 }
 
-/* Карточка игры */
+/* Карточки */
 
 .game-tile {
-  --game-accent: #ff9d37;
-  --game-glow: rgba(255, 157, 55, 0.25);
-
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  display: block;
 
   width: 100%;
   min-width: 0;
   aspect-ratio: 0.88;
 
-  padding: 12px;
+  padding: 0;
   overflow: hidden;
 
-  border: 1px solid
-    color-mix(in srgb, var(--game-accent) 45%, #26212e);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
 
-  border-radius: 23px;
+  background: #141019;
 
-  background:
-    radial-gradient(
-      ellipse at 50% 43%,
-      var(--game-glow),
-      transparent 72%
-    ),
-    linear-gradient(
-      145deg,
-      #211c29,
-      #0c0b11 85%
-    );
-
-  color: #ffffff;
-  text-align: left;
   cursor: pointer;
-
   -webkit-tap-highlight-color: transparent;
 
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .game-tile:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
-/* Декоративное свечение */
+/* Фото на всю карточку */
 
-.game-tile::before {
-  content: "";
+.game-tile__image {
   position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 22%;
-  left: 50%;
+  inset: 0;
 
-  transform: translateX(-50%);
-
-  border-radius: 50%;
-  background: var(--game-accent);
-  filter: blur(55px);
-  opacity: 0.17;
-
-  pointer-events: none;
-}
-
-/* Маленькая надпись сверху */
-
-.game-tile__tag {
-  position: relative;
-  z-index: 2;
-  align-self: flex-start;
-
-  padding: 5px 8px;
-
-  border: 1px solid
-    color-mix(in srgb, var(--game-accent) 35%, transparent);
-
-  border-radius: 8px;
-
-  background: rgba(255, 255, 255, 0.045);
-
-  color: var(--game-accent);
-
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.7px;
-}
-
-/* Изображение */
-
-.game-tile__art {
-  position: relative;
-  z-index: 1;
-
-  display: grid;
-  place-items: center;
-
-  flex: 1;
-  min-height: 0;
-  width: 100%;
-}
-
-.game-tile__art img {
   display: block;
   width: 100%;
   height: 100%;
-  max-height: 150px;
 
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
 
-  filter: drop-shadow(
-    0 10px 15px rgba(0, 0, 0, 0.35)
+  border-radius: inherit;
+}
+
+/* Затемнение снизу для читаемости текста */
+
+.game-tile::after {
+  content: "";
+  position: absolute;
+  inset: 45% 0 0;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.65)
   );
 
-  transition: transform 0.25s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
-@media (hover: hover) {
-  .game-tile:hover .game-tile__art img {
-    transform: scale(1.07) translateY(-3px);
-  }
-}
-
-/* Название и стрелка */
-
-.game-tile__footer {
-  position: relative;
-  z-index: 2;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-
-  padding-top: 9px;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
+/* Название игры */
 
 .game-tile__name {
+  position: absolute;
+  bottom: 13px;
+  left: 13px;
+  right: 8px;
+
+  z-index: 2;
+
+  color: #ffffff;
   font-family: "Russo One", sans-serif;
-  font-size: clamp(15px, 4.4vw, 19px);
+  font-size: clamp(16px, 4.5vw, 20px);
   font-weight: 400;
   line-height: 1.1;
+
+  text-align: left;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
-.game-tile__arrow {
-  display: grid;
-  place-items: center;
+/* Лёгкое увеличение при наведении */
 
-  width: 27px;
-  height: 27px;
-  flex-shrink: 0;
+@media (hover: hover) {
+  .game-tile:hover .game-tile__image {
+    transform: scale(1.05);
+  }
 
-  border-radius: 9px;
-  background: var(--game-accent);
-
-  color: #100e13;
-  font-size: 19px;
-  font-weight: 800;
+  .game-tile__image {
+    transition: transform 0.25s ease;
+  }
 }
-
-/* ===== ЦВЕТА ИГР ===== */
-
-.game-tile--upgrade {
-  --game-accent: #ffae42;
-  --game-glow: rgba(255, 117, 22, 0.3);
-}
-
-.game-tile--cases {
-  --game-accent: #ff55cb;
-  --game-glow: rgba(255, 48, 172, 0.3);
-}
-
-.game-tile--rocket {
-  --game-accent: #8b75ff;
-  --game-glow: rgba(116, 78, 255, 0.3);
-}
-
-.game-tile--mines {
-  --game-accent: #46d9ff;
-  --game-glow: rgba(40, 148, 255, 0.3);
-}
-
-
-
