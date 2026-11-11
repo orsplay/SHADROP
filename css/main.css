@@ -923,3 +923,40 @@ body {
     transition: transform 0.25s ease;
   }
 }
+
+/* Апгрейд — оранжевая */
+.game-tile--upgrade {
+  --game-color: #ff9500;
+}
+
+/* Кейсы — розовая */
+.game-tile--cases {
+  --game-color: #ff39bd;
+}
+
+/* Ракетка — фиолетовая */
+.game-tile--rocket {
+  --game-color: #9655ff;
+}
+
+/* Мины — голубая */
+.game-tile--mines {
+  --game-color: #00cfff;
+}
+
+/* Общая рамка */
+.game-tile {
+  border: 2px solid var(--game-color);
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--game-color) 25%, transparent),
+    inset 0 0 10px color-mix(in srgb, var(--game-color) 12%, transparent);
+}
+
+/* Свечение при наведении */
+@media (hover: hover) {
+  .game-tile:hover {
+    box-shadow:
+      0 0 18px color-mix(in srgb, var(--game-color) 45%, transparent),
+      inset 0 0 12px color-mix(in srgb, var(--game-color) 20%, transparent);
+  }
+}
