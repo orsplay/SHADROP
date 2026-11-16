@@ -1,4 +1,7 @@
-/* ===== SHADROP CASE PAGE ===== */
+
+/* ==========================================
+   SHADROP — CASE PAGE
+========================================== */
 
 #casePageContainer {
   display: block;
@@ -6,7 +9,8 @@
   min-width: 0;
 }
 
-#casePageContainer[hidden] {
+#casePageContainer[hidden],
+#casePageContainer [hidden] {
   display: none !important;
 }
 
@@ -23,146 +27,66 @@
   min-width: 0;
   padding: 8px 0 125px;
 
-  color: #fff;
+  color: #ffffff;
 }
 
-/* ===== HEADER ===== */
+/* ==========================================
+   HEADER / BACK BUTTON
+========================================== */
 
 .shadrop-case-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .shadrop-case-back {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  gap: 7px;
 
-  padding: 9px 13px;
+  padding: 11px 16px;
 
-  border: 1px solid #343440;
-  border-radius: 15px;
+  border: 1px solid #383844;
+  border-radius: 14px;
 
-  background: #1c1c26;
-  color: #fff;
+  background: #1d1d27;
+  color: #ffffff;
 
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 600;
+  font-family: "Russo One", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
 
   cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
 }
 
 .shadrop-case-back__arrow {
+  font-family: Arial, sans-serif;
   font-size: 24px;
-  line-height: 14px;
+  line-height: 12px;
 }
 
-.shadrop-case-header__title {
-  font-family: "Russo One", sans-serif;
-  font-size: 20px;
-
-  color: #fff;
-
-  text-shadow: 0 0 16px var(--case-accent);
+.shadrop-case-back:active {
+  transform: scale(0.96);
+  background: #292934;
 }
 
-.shadrop-case-header__spacer {
-  width: 75px;
-}
-
-/* ===== HERO ===== */
-
-.shadrop-case-hero {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 100%;
-
-  padding: 5px 0 20px;
-
-  overflow: hidden;
-}
-
-.shadrop-case-hero__glow {
-  position: absolute;
-
-  top: 30px;
-  left: 50%;
-
-  width: 240px;
-  height: 180px;
-
-  transform: translateX(-50%);
-
-  background: radial-gradient(
-    ellipse,
-    var(--case-accent),
-    transparent 70%
-  );
-
-  opacity: 0.25;
-  filter: blur(30px);
-
-  pointer-events: none;
-}
-
-.shadrop-case-hero__image {
-  position: relative;
-  z-index: 1;
-
-  display: block;
-
-  width: 190px;
-  height: 170px;
-
-  object-fit: contain;
-
-  filter: drop-shadow(
-    0 12px 25px rgba(0, 0, 0, 0.45)
-  );
-}
-
-.shadrop-case-hero h1 {
-  position: relative;
-  z-index: 1;
-
-  margin: 8px 0 5px;
-
-  font-family: "Russo One", sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-}
-
-.shadrop-case-hero p {
-  position: relative;
-  z-index: 1;
-
-  margin: 0;
-
-  color: #9696a5;
-  font-size: 12px;
-  text-align: center;
-}
-
-/* ===== ROULETTE ===== */
+/* ==========================================
+   ROULETTE
+========================================== */
 
 .shadrop-roulette {
   position: relative;
 
   width: 100%;
-  height: 170px;
+  height: 150px;
 
-  margin: 12px 0 20px;
+  margin: 0 0 20px;
 
-  border: 1px solid #30303d;
+  border: 1px solid #343442;
   border-radius: 22px;
 
   background:
@@ -173,7 +97,7 @@
         var(--case-accent) 14%,
         transparent
       ),
-      transparent 70%
+      transparent 75%
     ),
     #121219;
 
@@ -182,11 +106,8 @@
 
 .shadrop-roulette__viewport {
   position: absolute;
-
-  inset: 12px 0;
-
+  inset: 10px 0;
   width: 100%;
-
   overflow: hidden;
 }
 
@@ -195,10 +116,13 @@
   align-items: center;
   gap: 10px;
 
+  width: max-content;
   height: 100%;
 
   will-change: transform;
 }
+
+/* Квадратные карточки рулетки */
 
 .shadrop-roulette__item {
   --reward-color: #398cff;
@@ -207,12 +131,17 @@
 
   display: flex;
   flex: 0 0 112px;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   width: 112px;
-  height: 135px;
+  height: 112px;
+  min-width: 112px;
+  min-height: 112px;
+
+  aspect-ratio: 1 / 1;
+
+  padding: 8px;
 
   border: 1px solid
     color-mix(
@@ -221,7 +150,7 @@
       #292935
     );
 
-  border-radius: 18px;
+  border-radius: 17px;
 
   background:
     radial-gradient(
@@ -241,32 +170,35 @@
 .shadrop-roulette__item img {
   display: block;
 
-  width: 90px;
-  height: 90px;
+  width: 92px;
+  height: 92px;
 
   object-fit: contain;
+  user-select: none;
+  pointer-events: none;
 }
 
 .shadrop-roulette__item::after {
   content: "";
 
   position: absolute;
-
   bottom: 0;
+  left: 50%;
 
   width: 50px;
   height: 4px;
 
+  transform: translateX(-50%);
+
   border-radius: 10px 10px 0 0;
-
   background: var(--reward-color);
-
   box-shadow: 0 0 12px var(--reward-color);
 }
 
+/* Указатели выигрыша */
+
 .shadrop-roulette__pointer {
   position: absolute;
-
   left: 50%;
   z-index: 5;
 
@@ -278,6 +210,8 @@
   filter: drop-shadow(
     0 0 8px var(--case-accent)
   );
+
+  pointer-events: none;
 }
 
 .shadrop-roulette__pointer--top {
@@ -298,7 +232,6 @@
 
 .shadrop-roulette__center {
   position: absolute;
-
   z-index: 4;
 
   top: 0;
@@ -322,10 +255,13 @@
   pointer-events: none;
 }
 
-/* ===== CONTROLS ===== */
+/* ==========================================
+   CONTROLS
+========================================== */
 
 .shadrop-case-controls {
   display: flex;
+  align-items: stretch;
   gap: 10px;
 
   width: 100%;
@@ -335,6 +271,7 @@
 .shadrop-case-multipliers {
   display: flex;
   flex: 1;
+  min-width: 0;
 
   padding: 4px;
 
@@ -346,7 +283,6 @@
 
 .shadrop-multiplier {
   flex: 1;
-
   min-width: 0;
   height: 39px;
 
@@ -354,7 +290,7 @@
   border-radius: 12px;
 
   background: transparent;
-  color: #777784;
+  color: #888895;
 
   font-family: "Russo One", sans-serif;
   font-size: 13px;
@@ -364,10 +300,9 @@
 
 .shadrop-multiplier.is-active {
   background: var(--case-accent);
-  color: #fff;
+  color: #ffffff;
 
-  box-shadow:
-    0 0 15px
+  box-shadow: 0 0 15px
     color-mix(
       in srgb,
       var(--case-accent) 40%,
@@ -377,24 +312,35 @@
 
 .shadrop-demo-button {
   flex: 0 0 auto;
-
   min-width: 83px;
 
-  padding: 0 10px;
+  padding: 0 14px;
 
   border: 1px solid #393944;
   border-radius: 16px;
 
   background: #1c1c24;
-  color: #fff;
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
-  font-size: 12px;
+  font-size: 13px;
 
   cursor: pointer;
 }
 
-/* ===== OPEN BUTTON ===== */
+.shadrop-demo-button:active {
+  background: #292934;
+}
+
+.shadrop-multiplier:disabled,
+.shadrop-demo-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   OPEN BUTTON
+========================================== */
 
 .shadrop-open-button {
   display: flex;
@@ -409,7 +355,7 @@
     color-mix(
       in srgb,
       var(--case-accent) 80%,
-      #fff
+      #ffffff
     );
 
   border-radius: 19px;
@@ -419,18 +365,17 @@
     color-mix(
       in srgb,
       var(--case-accent) 75%,
-      #fff
+      #ffffff
     ),
     var(--case-accent)
   );
 
-  color: #fff;
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
   font-size: 16px;
 
-  box-shadow:
-    0 8px 25px
+  box-shadow: 0 8px 25px
     color-mix(
       in srgb,
       var(--case-accent) 25%,
@@ -443,7 +388,6 @@
 .shadrop-open-button img {
   width: 22px;
   height: 22px;
-
   object-fit: contain;
 }
 
@@ -456,52 +400,13 @@
   cursor: not-allowed;
 }
 
-/* ===== RESULT ===== */
-
-.shadrop-case-result {
-  margin-top: 16px;
-  padding: 18px;
-
-  border: 1px solid var(--case-accent);
-  border-radius: 18px;
-
-  background: #1b1b25;
-
-  text-align: center;
-}
-
-.shadrop-case-result[hidden] {
-  display: none !important;
-}
-
-.shadrop-case-result img {
-  display: block;
-
-  width: 110px;
-  height: 110px;
-
-  margin: 10px auto;
-
-  object-fit: contain;
-}
-
-.shadrop-case-result__title {
-  color: #a5a5b5;
-  font-size: 13px;
-}
-
-.shadrop-case-result__name {
-  margin-top: 5px;
-
-  font-family: "Russo One", sans-serif;
-  font-size: 18px;
-}
-
-/* ===== REWARDS ===== */
+/* ==========================================
+   POSSIBLE REWARDS
+========================================== */
 
 .shadrop-case-rewards {
   width: 100%;
-  margin-top: 36px;
+  margin-top: 34px;
 }
 
 .shadrop-case-rewards__heading {
@@ -526,11 +431,15 @@
   font-size: 25px;
 }
 
+/* Три награды в строке */
+
 .shadrop-case-rewards__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
 }
+
+/* Карточка награды */
 
 .shadrop-reward-card {
   --reward-color: #398cff;
@@ -540,9 +449,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 
+  width: 100%;
   min-width: 0;
-  padding: 13px 8px 12px;
+  min-height: 155px;
+
+  padding: 9px 6px 12px;
 
   border: 1px solid
     color-mix(
@@ -551,7 +464,7 @@
       #30303a
     );
 
-  border-radius: 18px;
+  border-radius: 16px;
 
   background:
     radial-gradient(
@@ -573,222 +486,165 @@
 
   position: absolute;
   bottom: 0;
+  left: 50%;
 
   width: 50%;
   height: 3px;
 
+  transform: translateX(-50%);
+
   border-radius: 8px 8px 0 0;
-
   background: var(--reward-color);
-
   box-shadow: 0 0 12px var(--reward-color);
 }
+
+/* Изображение подарка */
 
 .shadrop-reward-card__image {
   display: block;
 
   width: 100%;
-  height: 115px;
+  height: 90px;
+
+  margin: 0;
 
   object-fit: contain;
+  flex-shrink: 0;
 }
+
+/* Название подарка */
 
 .shadrop-reward-card__name {
+  display: block;
+
+  width: 100%;
   margin-top: 7px;
 
-  color: #fff;
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
-  font-size: 12px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.3;
 
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
-.shadrop-reward-card__rarity {
-  margin-top: 8px;
-  padding: 5px 10px;
-
-  border-radius: 10px;
-
-  background:
-    color-mix(
-      in srgb,
-      var(--reward-color) 25%,
-      transparent
-    );
-
-  color: var(--reward-color);
-
-  font-size: 11px;
-  font-weight: 600;
-}
+/* Стоимость в звёздах */
 
 .shadrop-reward-card__value {
-  margin-top: 7px;
-
-  color: #a7a7b4;
-  font-size: 12px;
-}
-
-/* ===== MOBILE ===== */
-
-@media (max-width: 360px) {
-  .shadrop-case-hero__image {
-    width: 165px;
-    height: 150px;
-  }
-
-  .shadrop-case-hero h1 {
-    font-size: 21px;
-  }
-
-  .shadrop-roulette {
-    height: 155px;
-  }
-
-  .shadrop-roulette__item {
-    flex-basis: 100px;
-    width: 100px;
-    height: 125px;
-  }
-
-  .shadrop-roulette__item img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .shadrop-open-button {
-    height: 56px;
-    font-size: 14px;
-  }
-
-  .shadrop-case-rewards__heading h2 {
-    font-size: 17px;
-  }
-}
-
-
-/* ===== SHADROP CASE REDESIGN ===== */
-
-/* Текстовая кнопка назад */
-.shadrop-case-header {
-  margin-bottom: 16px;
-}
-
-.shadrop-case-back {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 0;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  color: #c9c9d6;
-  font-family: "Russo One", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.shadrop-case-back:active {
-  opacity: 0.65;
-}
-
-/* Рулетка ближе к началу */
-.shadrop-roulette {
-  margin-top: 0;
-  margin-bottom: 18px;
-}
-
-/* Возможные награды: 3 в ряд */
-.shadrop-case-rewards {
-  margin-top: 32px;
-}
-
-.shadrop-case-rewards__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-/* Квадратные карточки */
-.shadrop-reward-card {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  min-width: 0;
-  min-height: 0;
-  padding: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
+  gap: 4px;
+
+  width: 100%;
+  margin-top: auto;
+  padding-top: 8px;
+
+  color: #ffffff;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
 }
 
-/* Изображение внутри квадрата */
-.shadrop-reward-card__image {
-  width: 88%;
-  height: 80%;
+.shadrop-reward-card__value img {
+  display: block;
+
+  width: 15px;
+  height: 15px;
+
   object-fit: contain;
-  margin: 0;
 }
 
-/* Убираем текст из квадратов */
-.shadrop-reward-card__name,
-.shadrop-reward-card__rarity,
-.shadrop-reward-card__value {
+/* Редкость не показываем */
+
+.shadrop-reward-card__rarity {
   display: none;
 }
 
-/* ===== МОДАЛЬНОЕ ОКНО ВЫИГРЫША ===== */
-
-.shadrop-win-overlay[hidden] {
-  display: none !important;
-}
+/* ==========================================
+   WIN MODAL
+========================================== */
 
 .shadrop-win-overlay {
   position: fixed;
   inset: 0;
   z-index: 1000;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 20px;
+
   background: rgba(0, 0, 0, 0.82);
+
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+
   animation: winFadeIn 0.25s ease both;
+}
+
+.shadrop-win-overlay[hidden] {
+  display: none !important;
 }
 
 .shadrop-win-modal {
   --win-color: #a46aff;
+
   position: relative;
+
   width: 100%;
   max-width: 350px;
+
   padding: 28px 20px 20px;
-  border: 1px solid color-mix(in srgb, var(--win-color) 55%, #30303a);
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--win-color) 55%,
+      #30303a
+    );
+
   border-radius: 26px;
+
   background:
     radial-gradient(
       ellipse at 50% 35%,
-      color-mix(in srgb, var(--win-color) 22%, transparent),
+      color-mix(
+        in srgb,
+        var(--win-color) 22%,
+        transparent
+      ),
       transparent 65%
     ),
     #17171f;
+
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.65);
+
   text-align: center;
-  animation: winPopIn 0.35s cubic-bezier(.2, 1.3, .4, 1) both;
+
+  animation: winPopIn 0.35s
+    cubic-bezier(0.2, 1.3, 0.4, 1) both;
 }
 
 .shadrop-win-close {
   position: absolute;
   right: 15px;
   top: 12px;
+
   width: 32px;
   height: 32px;
+
   border: none;
   background: transparent;
+
   color: #9b9ba8;
   font-size: 28px;
+
   cursor: pointer;
 }
 
@@ -800,7 +656,9 @@
 
 .shadrop-win-modal h2 {
   margin: 8px 0;
-  color: #fff;
+
+  color: #ffffff;
+
   font-family: "Russo One", sans-serif;
   font-size: 23px;
   font-weight: 400;
@@ -808,6 +666,7 @@
 
 .shadrop-win-modal p {
   margin: 0;
+
   color: #a1a1b0;
   font-size: 12px;
 }
@@ -816,14 +675,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 210px;
   height: 210px;
   max-width: 100%;
+
   margin: 14px auto;
+
   border-radius: 24px;
+
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--win-color) 24%, transparent),
+    color-mix(
+      in srgb,
+      var(--win-color) 24%,
+      transparent
+    ),
     transparent 70%
   );
 }
@@ -831,19 +698,31 @@
 .shadrop-win-image-wrap img {
   width: 88%;
   height: 88%;
+
   object-fit: contain;
-  filter: drop-shadow(0 0 20px color-mix(in srgb, var(--win-color) 35%, transparent));
+
+  filter: drop-shadow(
+    0 0 20px
+    color-mix(
+      in srgb,
+      var(--win-color) 35%,
+      transparent
+    )
+  );
 }
 
 .shadrop-win-name {
-  color: #fff;
+  color: #ffffff;
+
   font-family: "Russo One", sans-serif;
   font-size: 19px;
 }
 
 .shadrop-win-rarity {
   margin: 10px auto 20px;
+
   color: var(--win-color);
+
   font-size: 13px;
   font-weight: 700;
 }
@@ -851,22 +730,44 @@
 .shadrop-win-continue {
   width: 100%;
   height: 52px;
+
   border: none;
   border-radius: 16px;
+
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--win-color) 75%, #fff),
+    color-mix(
+      in srgb,
+      var(--win-color) 75%,
+      #ffffff
+    ),
     var(--win-color)
   );
-  color: #fff;
+
+  color: #ffffff;
+
   font-family: "Russo One", sans-serif;
   font-size: 15px;
+
   cursor: pointer;
 }
 
+.shadrop-win-continue:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
 @keyframes winFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes winPopIn {
@@ -874,20 +775,55 @@
     opacity: 0;
     transform: scale(0.8) translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
 }
 
+/* ==========================================
+   MOBILE
+========================================== */
+
 @media (max-width: 360px) {
+  .shadrop-roulette {
+    height: 140px;
+  }
+
+  .shadrop-roulette__item {
+    flex-basis: 112px;
+    width: 112px;
+    height: 112px;
+  }
+
   .shadrop-case-rewards__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6px;
   }
 
   .shadrop-reward-card {
-    padding: 5px;
-    border-radius: 12px;
+    padding: 7px 4px 10px;
+    border-radius: 13px;
+  }
+
+  .shadrop-reward-card__image {
+    height: 78px;
+  }
+
+  .shadrop-reward-card__name {
+    font-size: 9px;
+  }
+
+  .shadrop-reward-card__value {
+    font-size: 10px;
+  }
+
+  .shadrop-case-rewards__heading h2 {
+    font-size: 17px;
+  }
+
+  .shadrop-open-button {
+    height: 56px;
+    font-size: 14px;
   }
 }
