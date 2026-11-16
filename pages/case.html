@@ -1,138 +1,73 @@
-<!-- ===== УНИВЕРСАЛЬНАЯ СТРАНИЦА КЕЙСА ===== -->
 
 <section class="shadrop-case-page">
 
-  <!-- Заголовок -->
   <div class="shadrop-case-header">
-
-    <button
-      class="shadrop-case-back"
-      type="button"
-      id="caseBackButton"
-    >
-      <span class="shadrop-case-back__arrow">‹</span>
-      <span>Назад</span>
+    <button class="shadrop-case-back" type="button" id="caseBackButton">
+      Назад
     </button>
-
-    <div class="shadrop-case-header__title">
-      SHADROP
-    </div>
-
-    <div class="shadrop-case-header__spacer"></div>
-
-  </div>
-
-  <!-- Информация о кейсе -->
-  <div class="shadrop-case-hero">
-
-    <div class="shadrop-case-hero__glow"></div>
-
-    <img
-      id="caseHeroImage"
-      class="shadrop-case-hero__image"
-      src=""
-      alt=""
-    >
-
-    <h1 id="caseHeroTitle">
-      Кейс
-    </h1>
-
-    <p id="caseHeroDescription">
-      Открой коллекцию подарков
-    </p>
-
   </div>
 
   <!-- Рулетка -->
   <div class="shadrop-roulette">
-
     <div class="shadrop-roulette__pointer shadrop-roulette__pointer--top"></div>
 
     <div class="shadrop-roulette__viewport" id="rouletteViewport">
-
-      <div class="shadrop-roulette__track" id="rouletteTrack">
-      </div>
-
+      <div class="shadrop-roulette__track" id="rouletteTrack"></div>
     </div>
 
     <div class="shadrop-roulette__pointer shadrop-roulette__pointer--bottom"></div>
-
     <div class="shadrop-roulette__center"></div>
-
   </div>
 
   <!-- Управление -->
   <div class="shadrop-case-controls">
-
     <div class="shadrop-case-multipliers">
-
-      <button class="shadrop-multiplier is-active" data-multiplier="1" type="button">
-        x1
-      </button>
-
-      <button class="shadrop-multiplier" data-multiplier="2" type="button">
-        x2
-      </button>
-
-      <button class="shadrop-multiplier" data-multiplier="3" type="button">
-        x3
-      </button>
-
+      <button class="shadrop-multiplier is-active" data-multiplier="1" type="button">x1</button>
+      <button class="shadrop-multiplier" data-multiplier="2" type="button">x2</button>
+      <button class="shadrop-multiplier" data-multiplier="3" type="button">x3</button>
     </div>
 
-    <button
-      class="shadrop-demo-button"
-      id="caseDemoButton"
-      type="button"
-    >
+    <button class="shadrop-demo-button" id="caseDemoButton" type="button">
       ⚡ Демо
     </button>
-
   </div>
 
-  <!-- Кнопка открытия -->
-  <button
-    class="shadrop-open-button"
-    id="caseOpenButton"
-    type="button"
-  >
+  <button class="shadrop-open-button" id="caseOpenButton" type="button">
     <span>Открыть за</span>
-
     <span id="caseOpenPrice">99</span>
-
-    <img
-      src="assets/icons/telegram-star.png"
-      alt=""
-    >
+    <img src="assets/icons/telegram-star.png" alt="">
   </button>
 
-  <!-- Результат -->
-  <div
-    class="shadrop-case-result"
-    id="caseResult"
-    hidden
-    aria-live="polite"
-  >
+  <!-- Возможные награды -->
+  <div class="shadrop-case-rewards">
+    <div class="shadrop-case-rewards__heading">
+      <span class="shadrop-case-rewards__sparkle">✦</span>
+      <h2>Возможные награды</h2>
+    </div>
+
+    <div class="shadrop-case-rewards__grid" id="caseRewardsGrid"></div>
   </div>
 
-  <!-- Призы -->
-  <div class="shadrop-case-rewards">
+  <!-- Всплывающее окно выигрыша -->
+  <div class="shadrop-win-overlay" id="caseWinOverlay" hidden>
+    <div class="shadrop-win-modal" role="dialog" aria-modal="true" aria-labelledby="caseWinTitle">
+      <button class="shadrop-win-close" id="caseWinClose" type="button" aria-label="Закрыть">×</button>
 
-    <div class="shadrop-case-rewards__heading">
+      <div class="shadrop-win-sparkle">✦</div>
+      <h2 id="caseWinTitle">НОВЫЙ ВЫИГРЫШ!</h2>
+      <p>Поздравляем! Тебе выпал подарок</p>
 
-      <span class="shadrop-case-rewards__sparkle">✦</span>
+      <div class="shadrop-win-image-wrap">
+        <img id="caseWinImage" src="" alt="">
+      </div>
 
-      <h2>Возможные награды</h2>
+      <div class="shadrop-win-name" id="caseWinName"></div>
+      <div class="shadrop-win-rarity" id="caseWinRarity"></div>
 
+      <button class="shadrop-win-continue" id="caseWinContinue" type="button">
+        Продолжить
+      </button>
     </div>
-
-    <div
-      class="shadrop-case-rewards__grid"
-      id="caseRewardsGrid"
-    >
-    </div>
-
   </div>
 
 </section>
