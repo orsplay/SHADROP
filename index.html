@@ -17,20 +17,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 
   <!-- Автоматическая версия файлов -->
-  <script>
-    const version = Date.now();
 
-    document.write(`
-      <link rel="stylesheet" href="css/main.css?v=${version}">
-      <link rel="stylesheet" href="css/profile.css?v=${version}">
-      <link rel="stylesheet" href="css/cases.css?v=${version}">
+<script>
+  const version = Date.now();
 
-      <script defer src="js/app.js?v=${version}"><\/script>
-      <script defer src="js/profile.js?v=${version}"><\/script>
-      <script defer src="js/cases.js?v=${version}"><\/script>
-    `);
-  </script>
+  document.write(`
+    <link rel="stylesheet" href="css/main.css?v=${version}">
+    <link rel="stylesheet" href="css/profile.css?v=${version}">
+    <link rel="stylesheet" href="css/cases.css?v=${version}">
+    <link rel="stylesheet" href="css/case.css?v=${version}">
+
+    <script defer src="js/case-config.js?v=${version}"><\/script>
+    <script defer src="js/app.js?v=${version}"><\/script>
+    <script defer src="js/profile.js?v=${version}"><\/script>
+    <script defer src="js/cases.js?v=${version}"><\/script>
+    <script defer src="js/case.js?v=${version}"><\/script>
+  `);
+</script>
 </head>
+
 
 <body>
   <main class="screen" id="screen" aria-label="Игры">

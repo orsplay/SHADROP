@@ -47,3 +47,18 @@ if (counter) {
     });
   });
 };
+
+// Открытие кейса из каталога
+document.addEventListener('click', (event) => {
+  const card = event.target.closest(
+    '#casesPageContainer .case-card'
+  );
+
+  if (!card) return;
+
+  const caseId = card.dataset.case;
+
+  if (!caseId) return;
+
+  window.openShadropCase?.(caseId);
+});
