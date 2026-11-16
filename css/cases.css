@@ -374,3 +374,227 @@
     min-height: 35px;
   }
 }
+
+
+/* ======================================
+   SHADROP — CASE DESIGN UPDATE
+====================================== */
+
+/* ===== КНОПКА НАЗАД ===== */
+
+.shadrop-case-header {
+  margin-bottom: 18px;
+}
+
+.shadrop-case-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 10px 15px;
+
+  border: 1px solid #363640;
+  border-radius: 14px;
+
+  background: #1b1b24;
+  color: #ffffff;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+.shadrop-case-back__arrow {
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 12px;
+}
+
+.shadrop-case-back:active {
+  transform: scale(0.96);
+}
+
+/* ===== КВАДРАТНЫЕ ЭЛЕМЕНТЫ РУЛЕТКИ ===== */
+
+.shadrop-roulette {
+  height: 160px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.shadrop-roulette__viewport {
+  inset: 10px 0;
+}
+
+.shadrop-roulette__track {
+  gap: 10px;
+  align-items: center;
+}
+
+.shadrop-roulette__item {
+  flex: 0 0 112px;
+
+  width: 112px;
+  height: 112px;
+  aspect-ratio: 1 / 1;
+
+  padding: 8px;
+
+  border-radius: 18px;
+}
+
+.shadrop-roulette__item img {
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+}
+
+/* ===== КНОПКА ДЕМО ===== */
+
+.shadrop-demo-button {
+  min-width: 80px;
+  padding: 0 14px;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 13px;
+}
+
+/* ===== НАГРАДЫ: ТРИ В СТРОКЕ ===== */
+
+.shadrop-case-rewards {
+  margin-top: 34px;
+}
+
+.shadrop-case-rewards__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+/* ===== КАРТОЧКА ПОДАРКА ===== */
+
+.shadrop-reward-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  aspect-ratio: auto;
+
+  padding: 9px 6px 12px;
+
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Изображение подарка */
+
+.shadrop-reward-card__image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+
+  margin: 0;
+
+  object-fit: contain;
+}
+
+/* Название */
+
+.shadrop-reward-card__name {
+  display: block;
+
+  width: 100%;
+  margin-top: 7px;
+
+  color: #ffffff;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.3;
+
+  text-align: center;
+
+  overflow-wrap: anywhere;
+}
+
+/* Стоимость */
+
+.shadrop-reward-card__value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  margin-top: auto;
+  padding-top: 8px;
+
+  color: #ffffff;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 11px;
+}
+
+/* Иконка Telegram Stars */
+
+.shadrop-reward-card__value img {
+  display: block;
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
+/* Скрываем только редкость */
+
+.shadrop-reward-card__rarity {
+  display: none;
+}
+
+/* ===== УЗКИЕ ЭКРАНЫ ===== */
+
+@media (max-width: 360px) {
+  .shadrop-roulette {
+    height: 148px;
+  }
+
+  .shadrop-roulette__item {
+    flex-basis: 100px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .shadrop-roulette__item img {
+    width: 82px;
+    height: 82px;
+  }
+
+  .shadrop-case-rewards__grid {
+    gap: 6px;
+  }
+
+  .shadrop-reward-card {
+    padding: 7px 4px 10px;
+    border-radius: 13px;
+  }
+
+  .shadrop-reward-card__name {
+    font-size: 9px;
+  }
+
+  .shadrop-reward-card__value {
+    font-size: 10px;
+  }
+}

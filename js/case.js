@@ -61,30 +61,43 @@
 
   /* ===== КВАДРАТНАЯ КАРТОЧКА НАГРАДЫ ===== */
 
-  function createRewardCard(reward) {
-    const card = document.createElement("div");
 
-    card.className = "shadrop-reward-card";
+function createRewardCard(reward) {
+  const card = document.createElement("div");
 
-    card.style.setProperty(
-      "--reward-color",
-      getRewardColor(reward)
-    );
+  card.className = "shadrop-reward-card";
+  card.style.setProperty(
+    "--reward-color",
+    getRewardColor(reward)
+  );
 
-    const image = document.createElement("img");
+  const image = document.createElement("img");
+  image.className = "shadrop-reward-card__image";
+  image.src = reward.image;
+  image.alt = reward.name;
+  image.loading = "lazy";
+  image.draggable = false;
 
-    image.className = "shadrop-reward-card__image";
-    image.src = reward.image;
-    image.alt = reward.name;
-    image.loading = "lazy";
-    image.draggable = false;
+  const name = document.createElement("div");
+  name.className = "shadrop-reward-card__name";
+  name.textContent = reward.name;
 
-    card.appendChild(image);
+  const price = document.createElement("div");
+  price.className = "shadrop-reward-card__value";
 
-    card.title = `${reward.name} — ${getRewardRarity(reward)}`;
+  const priceNumber = document.createElement("span");
+  priceNumber.textContent = reward.value.toLocaleString("ru-RU");
 
-    return card;
-  }
+  const star = document.createElement("img");
+  star.src = "assets/icons/telegram-star.png";
+  star.alt = "Stars";
+
+  price.append(priceNumber, star);
+  card.append(image, name, price);
+
+  return card;
+}
+
 
   /* ===== ЦЕНА ===== */
 
