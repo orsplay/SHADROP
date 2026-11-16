@@ -1,0 +1,668 @@
+/* ===== SHADROP CASE PAGE ===== */
+
+#casePageContainer {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+#casePageContainer[hidden] {
+  display: none !important;
+}
+
+#casePageContainer *,
+#casePageContainer *::before,
+#casePageContainer *::after {
+  box-sizing: border-box;
+}
+
+.shadrop-case-page {
+  --case-accent: #a46aff;
+
+  width: 100%;
+  min-width: 0;
+  padding: 8px 0 125px;
+
+  color: #fff;
+}
+
+/* ===== HEADER ===== */
+
+.shadrop-case-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.shadrop-case-back {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 9px 13px;
+
+  border: 1px solid #343440;
+  border-radius: 15px;
+
+  background: #1c1c26;
+  color: #fff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.shadrop-case-back__arrow {
+  font-size: 24px;
+  line-height: 14px;
+}
+
+.shadrop-case-header__title {
+  font-family: "Russo One", sans-serif;
+  font-size: 20px;
+
+  color: #fff;
+
+  text-shadow: 0 0 16px var(--case-accent);
+}
+
+.shadrop-case-header__spacer {
+  width: 75px;
+}
+
+/* ===== HERO ===== */
+
+.shadrop-case-hero {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 5px 0 20px;
+
+  overflow: hidden;
+}
+
+.shadrop-case-hero__glow {
+  position: absolute;
+
+  top: 30px;
+  left: 50%;
+
+  width: 240px;
+  height: 180px;
+
+  transform: translateX(-50%);
+
+  background: radial-gradient(
+    ellipse,
+    var(--case-accent),
+    transparent 70%
+  );
+
+  opacity: 0.25;
+  filter: blur(30px);
+
+  pointer-events: none;
+}
+
+.shadrop-case-hero__image {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  width: 190px;
+  height: 170px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(
+    0 12px 25px rgba(0, 0, 0, 0.45)
+  );
+}
+
+.shadrop-case-hero h1 {
+  position: relative;
+  z-index: 1;
+
+  margin: 8px 0 5px;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.shadrop-case-hero p {
+  position: relative;
+  z-index: 1;
+
+  margin: 0;
+
+  color: #9696a5;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* ===== ROULETTE ===== */
+
+.shadrop-roulette {
+  position: relative;
+
+  width: 100%;
+  height: 170px;
+
+  margin: 12px 0 20px;
+
+  border: 1px solid #30303d;
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      color-mix(
+        in srgb,
+        var(--case-accent) 14%,
+        transparent
+      ),
+      transparent 70%
+    ),
+    #121219;
+
+  overflow: hidden;
+}
+
+.shadrop-roulette__viewport {
+  position: absolute;
+
+  inset: 12px 0;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.shadrop-roulette__track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  height: 100%;
+
+  will-change: transform;
+}
+
+.shadrop-roulette__item {
+  --reward-color: #398cff;
+
+  position: relative;
+
+  display: flex;
+  flex: 0 0 112px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 112px;
+  height: 135px;
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--reward-color) 45%,
+      #292935
+    );
+
+  border-radius: 18px;
+
+  background:
+    radial-gradient(
+      ellipse at bottom,
+      color-mix(
+        in srgb,
+        var(--reward-color) 25%,
+        transparent
+      ),
+      transparent 75%
+    ),
+    #1a1a26;
+
+  overflow: hidden;
+}
+
+.shadrop-roulette__item img {
+  display: block;
+
+  width: 90px;
+  height: 90px;
+
+  object-fit: contain;
+}
+
+.shadrop-roulette__item::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: 0;
+
+  width: 50px;
+  height: 4px;
+
+  border-radius: 10px 10px 0 0;
+
+  background: var(--reward-color);
+
+  box-shadow: 0 0 12px var(--reward-color);
+}
+
+.shadrop-roulette__pointer {
+  position: absolute;
+
+  left: 50%;
+  z-index: 5;
+
+  width: 0;
+  height: 0;
+
+  transform: translateX(-50%);
+
+  filter: drop-shadow(
+    0 0 8px var(--case-accent)
+  );
+}
+
+.shadrop-roulette__pointer--top {
+  top: 0;
+
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 14px solid var(--case-accent);
+}
+
+.shadrop-roulette__pointer--bottom {
+  bottom: 0;
+
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 14px solid var(--case-accent);
+}
+
+.shadrop-roulette__center {
+  position: absolute;
+
+  z-index: 4;
+
+  top: 0;
+  bottom: 0;
+  left: 50%;
+
+  width: 2px;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    transparent,
+    color-mix(
+      in srgb,
+      var(--case-accent) 50%,
+      transparent
+    ),
+    transparent
+  );
+
+  pointer-events: none;
+}
+
+/* ===== CONTROLS ===== */
+
+.shadrop-case-controls {
+  display: flex;
+  gap: 10px;
+
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.shadrop-case-multipliers {
+  display: flex;
+  flex: 1;
+
+  padding: 4px;
+
+  border: 1px solid #30303a;
+  border-radius: 16px;
+
+  background: #17171d;
+}
+
+.shadrop-multiplier {
+  flex: 1;
+
+  min-width: 0;
+  height: 39px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: transparent;
+  color: #777784;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.shadrop-multiplier.is-active {
+  background: var(--case-accent);
+  color: #fff;
+
+  box-shadow:
+    0 0 15px
+    color-mix(
+      in srgb,
+      var(--case-accent) 40%,
+      transparent
+    );
+}
+
+.shadrop-demo-button {
+  flex: 0 0 auto;
+
+  min-width: 83px;
+
+  padding: 0 10px;
+
+  border: 1px solid #393944;
+  border-radius: 16px;
+
+  background: #1c1c24;
+  color: #fff;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+/* ===== OPEN BUTTON ===== */
+
+.shadrop-open-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 100%;
+  height: 61px;
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--case-accent) 80%,
+      #fff
+    );
+
+  border-radius: 19px;
+
+  background: linear-gradient(
+    135deg,
+    color-mix(
+      in srgb,
+      var(--case-accent) 75%,
+      #fff
+    ),
+    var(--case-accent)
+  );
+
+  color: #fff;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 16px;
+
+  box-shadow:
+    0 8px 25px
+    color-mix(
+      in srgb,
+      var(--case-accent) 25%,
+      transparent
+    );
+
+  cursor: pointer;
+}
+
+.shadrop-open-button img {
+  width: 22px;
+  height: 22px;
+
+  object-fit: contain;
+}
+
+.shadrop-open-button:active {
+  transform: scale(0.98);
+}
+
+.shadrop-open-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ===== RESULT ===== */
+
+.shadrop-case-result {
+  margin-top: 16px;
+  padding: 18px;
+
+  border: 1px solid var(--case-accent);
+  border-radius: 18px;
+
+  background: #1b1b25;
+
+  text-align: center;
+}
+
+.shadrop-case-result[hidden] {
+  display: none !important;
+}
+
+.shadrop-case-result img {
+  display: block;
+
+  width: 110px;
+  height: 110px;
+
+  margin: 10px auto;
+
+  object-fit: contain;
+}
+
+.shadrop-case-result__title {
+  color: #a5a5b5;
+  font-size: 13px;
+}
+
+.shadrop-case-result__name {
+  margin-top: 5px;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 18px;
+}
+
+/* ===== REWARDS ===== */
+
+.shadrop-case-rewards {
+  width: 100%;
+  margin-top: 36px;
+}
+
+.shadrop-case-rewards__heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  margin-bottom: 20px;
+}
+
+.shadrop-case-rewards__heading h2 {
+  margin: 0;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.shadrop-case-rewards__sparkle {
+  color: var(--case-accent);
+  font-size: 25px;
+}
+
+.shadrop-case-rewards__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.shadrop-reward-card {
+  --reward-color: #398cff;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+  padding: 13px 8px 12px;
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--reward-color) 45%,
+      #30303a
+    );
+
+  border-radius: 18px;
+
+  background:
+    radial-gradient(
+      ellipse at bottom,
+      color-mix(
+        in srgb,
+        var(--reward-color) 22%,
+        transparent
+      ),
+      transparent 75%
+    ),
+    #191922;
+
+  overflow: hidden;
+}
+
+.shadrop-reward-card::after {
+  content: "";
+
+  position: absolute;
+  bottom: 0;
+
+  width: 50%;
+  height: 3px;
+
+  border-radius: 8px 8px 0 0;
+
+  background: var(--reward-color);
+
+  box-shadow: 0 0 12px var(--reward-color);
+}
+
+.shadrop-reward-card__image {
+  display: block;
+
+  width: 100%;
+  height: 115px;
+
+  object-fit: contain;
+}
+
+.shadrop-reward-card__name {
+  margin-top: 7px;
+
+  color: #fff;
+
+  font-family: "Russo One", sans-serif;
+  font-size: 12px;
+
+  text-align: center;
+}
+
+.shadrop-reward-card__rarity {
+  margin-top: 8px;
+  padding: 5px 10px;
+
+  border-radius: 10px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--reward-color) 25%,
+      transparent
+    );
+
+  color: var(--reward-color);
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.shadrop-reward-card__value {
+  margin-top: 7px;
+
+  color: #a7a7b4;
+  font-size: 12px;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 360px) {
+  .shadrop-case-hero__image {
+    width: 165px;
+    height: 150px;
+  }
+
+  .shadrop-case-hero h1 {
+    font-size: 21px;
+  }
+
+  .shadrop-roulette {
+    height: 155px;
+  }
+
+  .shadrop-roulette__item {
+    flex-basis: 100px;
+    width: 100px;
+    height: 125px;
+  }
+
+  .shadrop-roulette__item img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .shadrop-open-button {
+    height: 56px;
+    font-size: 14px;
+  }
+
+  .shadrop-case-rewards__heading h2 {
+    font-size: 17px;
+  }
+}
