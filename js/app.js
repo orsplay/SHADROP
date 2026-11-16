@@ -351,33 +351,55 @@ async function showSelectedPage(page) {
 
   /* ===== УНИВЕРСАЛЬНАЯ СТРАНИЦА КЕЙСА ===== */
 
-  if (page === 'case') {
-    if (!caseLoaded) {
-      const loaded = await loadPage(
-        caseContainer,
-        'pages/case.html?v=1',
-        'case'
-      );
+if (page === 'case') {
+  if (!caseLoaded) {
+    const loaded = await loadPage(
+      caseContainer,
+      `pages/case.html?v=${Date.now()}`,
+      'case'
+    );
 
-      if (!loaded) return;
+    if (!loaded) return;
 
-      caseLoaded = true;
-    }
+    caseLoaded = true;
+  }
 
-    if (currentPage !== 'case') return;
+  if (currentPage !== 'case') return;
 
-    // Передаём ID выбранного кейса:
-    // anime, comics, girls, ice и т.д.
-    if (typeof window.renderShadropCase === 'function') {
-      window.renderShadropCase(selectedCaseId);
-    } else {
-      console.warn(
-        'Функция renderShadropCase ещё не подключена.'
-      );
-    }
+  caseContainer.hidden = false;
+
+  const casePage = caseContainer.querySelector(
+    '.shadrop-case-page'
+  );
+
+  if (!casePage) {
+    console.error(
+      'SHADROP: содержимое case.html не найдено'
+    );
+
+    caseContainer.textContent =
+      'Ошибка: не удалось найти содержимое страницы кейса.';
 
     return;
   }
+
+  if (typeof window.renderShadropCase !== 'function') {
+    console.error(
+      'SHADROP: скрипт js/case.js не загружен'
+    );
+
+    return;
+  }
+
+  console.log(
+    'SHADROP: открываем кейс',
+    selectedCaseId
+  );
+
+  window.renderShadropCase(selectedCaseId);
+
+  return;
+}
 
   /* ===== ГЛАВНАЯ И ОСТАЛЬНЫЕ ВКЛАДКИ ===== */
 
