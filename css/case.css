@@ -1,8 +1,9 @@
-
 /* ==========================================
    SHADROP — CASE PAGE
-   MULTI ROULETTE DESIGN
+   DARK / ORANGE DESIGN
 ========================================== */
+
+/* ===== PAGE ===== */
 
 #casePageContainer {
   display: block;
@@ -21,22 +22,27 @@
   box-sizing: border-box;
 }
 
-#casePageContainer .shadrop-case-page {
-  --case-accent: #a46aff;
-  --case-button-color: #323239;
-  --roulette-background: #18181d;
+.shadrop-case-page {
+  --case-accent: #f5a000;
+  --case-orange: #f5a000;
+  --case-orange-light: #ffb300;
+  --case-bg: #151517;
+  --case-border: #303035;
 
   width: 100%;
   min-width: 0;
   padding: 8px 0 125px;
-  color: #fff;
+
+  color: #ffffff;
 }
 
-/* ===== HIDE OLD HEADER ===== */
+/* ==========================================
+   HIDE OLD HEADER
+========================================== */
 
-#casePageContainer .shadrop-case-header,
-#casePageContainer .shadrop-case-back,
-#casePageContainer .shadrop-case-hero {
+.shadrop-case-header,
+.shadrop-case-back,
+.shadrop-case-hero {
   display: none !important;
 }
 
@@ -46,26 +52,29 @@
 
 #casePageContainer .shadrop-roulettes {
   position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 12px;
 
   width: 100%;
-  margin-bottom: 16px;
-  padding: 14px 0;
+  margin: 0 0 16px;
+  padding: 15px 0;
 
-  border: 1px solid #34343b;
+  border: 1px solid #303035;
   border-radius: 20px;
 
-  background: var(--roulette-background);
+  background: #151517;
+
   overflow: hidden;
   isolation: isolate;
 }
 
-/* Soft side fade */
+/* Затемнение по бокам */
 
 #casePageContainer .shadrop-roulettes::after {
   content: "";
+
   position: absolute;
   inset: 0;
   z-index: 6;
@@ -74,16 +83,18 @@
 
   background: linear-gradient(
     90deg,
-    rgba(24, 24, 29, 0.88) 0%,
-    rgba(24, 24, 29, 0.3) 8%,
+    rgba(21, 21, 23, 0.92) 0%,
+    rgba(21, 21, 23, 0.45) 7%,
     transparent 17%,
     transparent 83%,
-    rgba(24, 24, 29, 0.3) 92%,
-    rgba(24, 24, 29, 0.88) 100%
+    rgba(21, 21, 23, 0.45) 93%,
+    rgba(21, 21, 23, 0.92) 100%
   );
 }
 
-/* ===== ROULETTE ROW ===== */
+/* ==========================================
+   ROULETTE ROW
+========================================== */
 
 #casePageContainer .shadrop-roulette {
   position: relative;
@@ -91,6 +102,7 @@
   width: 100%;
   height: auto;
   min-height: 0;
+
   margin: 0;
   padding: 8px 0;
 
@@ -98,6 +110,7 @@
   border-radius: 0;
 
   background: transparent;
+
   overflow: hidden;
 }
 
@@ -109,6 +122,7 @@
 
   width: 100%;
   height: auto;
+
   overflow: hidden;
 }
 
@@ -125,14 +139,18 @@
   will-change: transform;
 }
 
-/* ===== SQUARE ITEMS ===== */
+/* ==========================================
+   SQUARE ROULETTE CARDS
+========================================== */
 
 #casePageContainer .shadrop-roulette__item {
   --reward-color: #398cff;
 
   position: relative;
+
   display: flex;
   flex: 0 0 var(--roulette-item-size, 65px);
+
   align-items: center;
   justify-content: center;
 
@@ -143,13 +161,14 @@
   min-height: 0;
 
   aspect-ratio: 1 / 1;
+
   padding: 4px;
 
   border: 1px solid
     color-mix(
       in srgb,
       var(--reward-color) 45%,
-      #292935
+      #29292e
     );
 
   border-radius: 12px;
@@ -159,30 +178,36 @@
       ellipse at bottom,
       color-mix(
         in srgb,
-        var(--reward-color) 22%,
+        var(--reward-color) 20%,
         transparent
       ),
       transparent 75%
     ),
-    #1b1b21;
+    #19191d;
 
   overflow: hidden;
 }
 
-#casePageContainer .shadrop-roulette__item > img {
+/* Изображение подарка */
+
+#casePageContainer .shadrop-roulette__item img {
   display: block;
+
   width: 100%;
   height: 100%;
 
   object-fit: contain;
+
   user-select: none;
   pointer-events: none;
 }
 
+/* Цветная полоска снизу */
+
 #casePageContainer .shadrop-roulette__item::after {
   content: "";
-  position: absolute;
 
+  position: absolute;
   bottom: 0;
   left: 50%;
 
@@ -192,8 +217,15 @@
   transform: translateX(-50%);
 
   border-radius: 8px 8px 0 0;
+
   background: var(--reward-color);
-  box-shadow: 0 0 10px var(--reward-color);
+
+  box-shadow: 0 0 10px
+    color-mix(
+      in srgb,
+      var(--reward-color) 65%,
+      transparent
+    );
 }
 
 /* ==========================================
@@ -206,16 +238,20 @@
   z-index: 10;
 
   display: none;
+
   width: 0;
   height: 0;
 
   transform: translateX(-50%);
+
   pointer-events: none;
 
-  filter: drop-shadow(0 0 8px #a46aff);
+  filter: drop-shadow(
+    0 0 8px rgba(255, 255, 255, 0.25)
+  );
 }
 
-/* Top pointer — first row */
+/* Верхняя стрелка только у первого ряда */
 
 #casePageContainer
 .shadrop-roulette:first-child
@@ -225,10 +261,10 @@
 
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
-  border-top: 12px solid #fff;
+  border-top: 12px solid #ffffff;
 }
 
-/* Bottom pointer — last row */
+/* Нижняя стрелка только у последнего ряда */
 
 #casePageContainer
 .shadrop-roulette:last-child
@@ -238,8 +274,10 @@
 
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
-  border-bottom: 12px solid #fff;
+  border-bottom: 12px solid #ffffff;
 }
+
+/* Убираем вертикальную линию */
 
 #casePageContainer .shadrop-roulette__center {
   display: none;
@@ -249,7 +287,7 @@
    CONTROLS
 ========================================== */
 
-#casePageContainer .shadrop-case-controls {
+.shadrop-case-controls {
   display: flex;
   align-items: stretch;
   gap: 8px;
@@ -258,78 +296,111 @@
   margin-bottom: 12px;
 }
 
-/* ===== MULTIPLIERS ===== */
+/* ==========================================
+   MULTIPLIERS X1–X5
+========================================== */
 
 #casePageContainer .shadrop-case-multipliers {
   display: flex;
   flex: 1;
+
   min-width: 0;
   padding: 3px;
 
-  border: 1px solid #30303a;
+  border: 1px solid #303035;
   border-radius: 14px;
-  background: #17171d;
+
+  background: #171719;
 }
 
 #casePageContainer .shadrop-multiplier {
   flex: 1;
+
   min-width: 0;
-  height: 38px;
+  height: 40px;
+
   padding: 0;
 
   border: none;
-  border-radius: 10px;
+  border-radius: 11px;
 
   background: transparent;
-  color: #888895;
+  color: #88888f;
 
   font-family: "Russo One", sans-serif;
   font-size: 11px;
   font-weight: 400;
 
   cursor: pointer;
+
   transition:
     background 0.2s ease,
     color 0.2s ease,
-    transform 0.2s ease;
+    transform 0.15s ease;
 }
 
 #casePageContainer .shadrop-multiplier.is-active {
-  background: var(--case-button-color);
-  color: #fff;
-  box-shadow: none;
+  background: linear-gradient(
+    180deg,
+    #ffad00 0%,
+    #ed9700 100%
+  );
+
+  color: #ffffff;
+
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.15),
+    0 0 14px rgba(245, 160, 0, 0.12);
 }
 
 #casePageContainer .shadrop-multiplier:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
-/* ===== DEMO BUTTON ===== */
+/* ==========================================
+   DEMO BUTTON
+========================================== */
 
 #casePageContainer .shadrop-demo-button {
   flex: 0 0 auto;
-  min-width: 65px;
-  padding: 0 8px;
 
-  border: 1px solid #393944;
+  min-width: 65px;
+  padding: 0 10px;
+
+  border: 1px solid #303035;
   border-radius: 14px;
 
-  background: #1c1c24;
-  color: #fff;
+  background: #171719;
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
   font-size: 11px;
 
   cursor: pointer;
+
   transition:
     background 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    transform 0.15s ease;
 }
 
 #casePageContainer .shadrop-demo-button.is-active {
-  background: var(--case-button-color);
-  border-color: var(--case-button-color);
-  color: #fff;
+  background: linear-gradient(
+    180deg,
+    #ffad00 0%,
+    #ed9700 100%
+  );
+
+  border-color: #ffb300;
+  color: #ffffff;
+
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.15),
+    0 0 14px rgba(245, 160, 0, 0.12);
+}
+
+#casePageContainer .shadrop-demo-button:active {
+  transform: scale(0.96);
 }
 
 #casePageContainer .shadrop-multiplier:disabled,
@@ -351,25 +422,38 @@
   width: 100%;
   height: 56px;
 
-  border: 1px solid var(--case-button-color);
+  border: 2px solid #ffb300;
   border-radius: 17px;
 
-  background: var(--case-button-color);
-  color: #fff;
+  background: linear-gradient(
+    180deg,
+    #ffad00 0%,
+    #ed9700 100%
+  );
+
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
   font-size: 14px;
   font-weight: 400;
 
-  box-shadow: none;
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.18),
+    0 6px 20px rgba(255, 165, 0, 0.12);
+
   cursor: pointer;
 
-  transition: transform 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
 #casePageContainer .shadrop-open-button img {
+  display: block;
+
   width: 22px;
   height: 22px;
+
   object-fit: contain;
 }
 
@@ -378,7 +462,7 @@
 }
 
 #casePageContainer .shadrop-open-button:disabled {
-  opacity: 0.65;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
@@ -391,6 +475,8 @@
   margin-top: 34px;
 }
 
+/* ===== HEADING ===== */
+
 #casePageContainer .shadrop-case-rewards__heading {
   display: flex;
   align-items: center;
@@ -402,37 +488,47 @@
 #casePageContainer .shadrop-case-rewards__heading h2 {
   margin: 0;
 
+  color: #ffffff;
+
   font-family: "Russo One", sans-serif;
   font-size: 19px;
   font-weight: 400;
 }
 
+/* Убираем декоративную иконку */
+
 #casePageContainer .shadrop-case-rewards__sparkle {
   display: none !important;
 }
 
-/* ===== THREE CARDS PER ROW ===== */
+/* ==========================================
+   REWARD GRID
+========================================== */
 
 #casePageContainer .shadrop-case-rewards__grid {
   display: grid;
+
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 9px;
 }
 
-/* ===== REWARD CARD ===== */
+/* ==========================================
+   REWARD CARD
+========================================== */
 
 #casePageContainer .shadrop-reward-card {
   --reward-color: #398cff;
 
   position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
 
   width: 100%;
   min-width: 0;
   min-height: 155px;
+  height: auto;
 
   padding: 9px 6px 12px;
 
@@ -440,7 +536,7 @@
     color-mix(
       in srgb,
       var(--reward-color) 45%,
-      #30303a
+      #303035
     );
 
   border-radius: 16px;
@@ -450,20 +546,22 @@
       ellipse at bottom,
       color-mix(
         in srgb,
-        var(--reward-color) 22%,
+        var(--reward-color) 20%,
         transparent
       ),
       transparent 75%
     ),
-    #19191f;
+    #19191d;
 
   overflow: hidden;
 }
 
+/* Цветная полоска */
+
 #casePageContainer .shadrop-reward-card::after {
   content: "";
-  position: absolute;
 
+  position: absolute;
   bottom: 0;
   left: 50%;
 
@@ -471,33 +569,37 @@
   height: 3px;
 
   transform: translateX(-50%);
+
   border-radius: 8px 8px 0 0;
 
   background: var(--reward-color);
+
   box-shadow: 0 0 12px var(--reward-color);
 }
 
-/* ===== REWARD IMAGE ===== */
+/* ===== IMAGE ===== */
 
 #casePageContainer .shadrop-reward-card__image {
   display: block;
-  flex-shrink: 0;
 
   width: 100%;
   height: 90px;
+
   margin: 0;
 
   object-fit: contain;
+  flex-shrink: 0;
 }
 
-/* ===== REWARD NAME ===== */
+/* ===== NAME ===== */
 
 #casePageContainer .shadrop-reward-card__name {
   display: block;
+
   width: 100%;
   margin-top: 7px;
 
-  color: #fff;
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
   font-size: 10px;
@@ -508,7 +610,7 @@
   overflow-wrap: anywhere;
 }
 
-/* ===== REWARD VALUE ===== */
+/* ===== PRICE ===== */
 
 #casePageContainer .shadrop-reward-card__value {
   display: flex;
@@ -520,15 +622,18 @@
   margin-top: auto;
   padding-top: 8px;
 
-  color: #fff;
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
   font-size: 11px;
 }
 
 #casePageContainer .shadrop-reward-card__value img {
+  display: block;
+
   width: 15px;
   height: 15px;
+
   object-fit: contain;
 }
 
@@ -551,7 +656,7 @@
 
   padding: 20px;
 
-  background: rgba(0, 0, 0, 0.82);
+  background: rgba(0, 0, 0, 0.84);
 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -563,10 +668,12 @@
   display: none !important;
 }
 
-/* ===== MODAL ===== */
+/* ==========================================
+   WIN MODAL
+========================================== */
 
 #casePageContainer .shadrop-win-modal {
-  --win-color: #a46aff;
+  --win-color: #f5a000;
 
   position: relative;
 
@@ -579,8 +686,8 @@
   border: 1px solid
     color-mix(
       in srgb,
-      var(--win-color) 55%,
-      #30303a
+      var(--win-color) 45%,
+      #303035
     );
 
   border-radius: 26px;
@@ -590,12 +697,12 @@
       ellipse at 50% 35%,
       color-mix(
         in srgb,
-        var(--win-color) 18%,
+        var(--win-color) 13%,
         transparent
       ),
       transparent 65%
     ),
-    #17171d;
+    #171719;
 
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.65);
 
@@ -625,31 +732,34 @@
   cursor: pointer;
 }
 
-/* ===== TITLE ===== */
+/* Убираем иконку над заголовком */
 
 #casePageContainer .shadrop-win-sparkle {
   display: none !important;
 }
 
-#casePageContainer .shadrop-win-modal h2 {
-  margin: 8px 0 12px;
+/* ===== TITLE ===== */
 
-  color: #fff;
+#casePageContainer .shadrop-win-modal h2 {
+  margin: 8px 0 10px;
+
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
   font-size: 22px;
   font-weight: 400;
 }
 
+/* ===== DESCRIPTION ===== */
+
 #casePageContainer .shadrop-win-modal p {
   margin: 0;
 
-  color: #a1a1b0;
+  color: #a1a1a8;
   font-size: 12px;
-  line-height: 1.5;
 }
 
-/* ===== SINGLE WIN IMAGE ===== */
+/* ===== WIN IMAGE ===== */
 
 #casePageContainer .shadrop-win-image-wrap {
   display: flex;
@@ -668,7 +778,7 @@
     circle,
     color-mix(
       in srgb,
-      var(--win-color) 24%,
+      var(--win-color) 20%,
       transparent
     ),
     transparent 70%
@@ -676,6 +786,8 @@
 }
 
 #casePageContainer .shadrop-win-image-wrap img {
+  display: block;
+
   width: 88%;
   height: 88%;
 
@@ -691,12 +803,16 @@
   );
 }
 
+/* ===== WIN NAME ===== */
+
 #casePageContainer .shadrop-win-name {
-  color: #fff;
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
   font-size: 19px;
 }
+
+/* ===== RARITY ===== */
 
 #casePageContainer .shadrop-win-rarity {
   margin: 10px auto 20px;
@@ -708,125 +824,91 @@
 }
 
 /* ==========================================
-   MULTIPLE WIN RESULTS
+   MULTIPLE WINNINGS
 ========================================== */
-
-/* Hide large single gift in x2–x5 */
-
-#casePageContainer .shadrop-win-modal.is-multiple
-.shadrop-win-image-wrap,
-#casePageContainer .shadrop-win-modal.is-multiple
-.shadrop-win-name,
-#casePageContainer .shadrop-win-modal.is-multiple
-.shadrop-win-rarity {
-  display: none !important;
-}
-
-/* ===== MULTIPLE GRID ===== */
 
 #casePageContainer .shadrop-win-multiple {
   display: grid;
+
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 
-  margin: 20px 0;
+  margin: 14px 0 20px;
 }
 
 #casePageContainer .shadrop-win-multiple[hidden] {
   display: none !important;
 }
 
-/* ===== MULTIPLE CARD ===== */
-
 #casePageContainer .shadrop-win-multiple__item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
+  gap: 5px;
 
   min-width: 0;
-  padding: 10px 5px;
+  padding: 7px 4px;
 
-  border: 1px solid
-    color-mix(
-      in srgb,
-      var(--reward-color) 45%,
-      #30303a
-    );
+  border: 1px solid #39393f;
+  border-radius: 12px;
 
-  border-radius: 13px;
-  background: #222229;
+  background: #202024;
 }
 
-#casePageContainer .shadrop-win-multiple__item > img {
-  width: 100%;
-  height: 75px;
+#casePageContainer .shadrop-win-multiple__item img {
+  width: 54px;
+  height: 54px;
+
   object-fit: contain;
 }
 
-#casePageContainer .shadrop-win-multiple__name {
-  color: #fff;
-  font-size: 10px;
-  line-height: 1.3;
+#casePageContainer .shadrop-win-multiple__item span {
+  max-width: 100%;
+
+  color: #ffffff;
+  font-size: 9px;
+
   text-align: center;
   overflow-wrap: anywhere;
 }
 
-/* ===== STARS VALUE ===== */
+/* Уменьшаем главное изображение при x2–x5 */
 
-#casePageContainer .shadrop-win-multiple__value,
-#casePageContainer .shadrop-win-total__value {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
+#casePageContainer
+.shadrop-win-modal:has(
+  .shadrop-win-multiple:not([hidden])
+)
+.shadrop-win-image-wrap {
+  width: 125px;
+  height: 125px;
 }
 
-#casePageContainer .shadrop-win-multiple__value img,
-#casePageContainer .shadrop-win-total__value img {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-}
-
-/* ===== TOTAL VALUE ===== */
-
-#casePageContainer .shadrop-win-total {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-
-  margin: 8px 0 20px;
-
-  color: #bcbcc8;
-  font-size: 12px;
-}
-
-#casePageContainer .shadrop-win-total[hidden] {
-  display: none !important;
-}
-
-/* ===== CONTINUE ===== */
+/* ==========================================
+   CONTINUE BUTTON
+========================================== */
 
 #casePageContainer .shadrop-win-continue {
   width: 100%;
   height: 52px;
 
-  border: none;
+  border: 1px solid #ffb300;
   border-radius: 16px;
 
-  background: var(--case-button-color);
-  color: #fff;
+  background: linear-gradient(
+    180deg,
+    #ffad00 0%,
+    #ed9700 100%
+  );
+
+  color: #ffffff;
 
   font-family: "Russo One", sans-serif;
   font-size: 15px;
 
-  box-shadow: none;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.14),
+    0 6px 20px rgba(255, 165, 0, 0.1);
+
   cursor: pointer;
 }
 
@@ -865,6 +947,7 @@
 ========================================== */
 
 @media (max-width: 360px) {
+
   #casePageContainer .shadrop-roulettes {
     gap: 8px;
     padding: 10px 0;
@@ -890,6 +973,7 @@
 
   #casePageContainer .shadrop-demo-button {
     min-width: 58px;
+    padding: 0 6px;
     font-size: 10px;
   }
 
@@ -921,5 +1005,24 @@
 
   #casePageContainer .shadrop-case-rewards__heading h2 {
     font-size: 17px;
+  }
+
+  #casePageContainer .shadrop-win-modal {
+    padding: 24px 16px 18px;
+  }
+
+  #casePageContainer .shadrop-win-modal h2 {
+    font-size: 19px;
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  #casePageContainer .shadrop-win-overlay,
+  #casePageContainer .shadrop-win-modal {
+    animation: none;
   }
 }
