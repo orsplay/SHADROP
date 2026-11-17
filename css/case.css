@@ -1051,3 +1051,181 @@
 }
 
 
+
+/* =========================================================
+   SHADROP — NEON GOLD VISUAL REFRESH
+   Scoped exclusively to the case page. No shared nav changes.
+========================================================= */
+#casePageContainer .shadrop-case-page {
+  --case-gold: #ffc928;
+  --case-gold-bright: #ffe67b;
+  --case-gold-deep: #ed9b00;
+  --case-accent: #ffcb31;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Ambient highlights behind the content, not over the UI */
+#casePageContainer .shadrop-case-page::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset: -15px -14px 0;
+  background:
+    radial-gradient(ellipse 180px 115px at 2% 5%, rgba(255, 154, 0, .13), transparent 82%),
+    radial-gradient(ellipse 170px 150px at 100% 69%, rgba(255, 155, 0, .085), transparent 80%);
+}
+
+/* One common frame for all roulette rows */
+#casePageContainer .shadrop-roulettes {
+  gap: 10px;
+  padding: 17px 0;
+  border: 1px solid rgba(255, 196, 54, .72);
+  border-radius: 23px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 181, 42, .075), transparent 70%),
+    linear-gradient(180deg, #19181c 0%, #121215 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 232, 158, .12),
+    inset 0 -1px 0 rgba(255, 187, 39, .12),
+    0 0 0 1px rgba(255, 178, 23, .09),
+    0 0 17px rgba(255, 170, 13, .18),
+    0 10px 30px rgba(0, 0, 0, .42);
+}
+#casePageContainer .shadrop-roulettes::after {
+  background: linear-gradient(90deg,
+    rgba(19, 18, 21, .75) 0%,
+    rgba(19, 18, 21, .18) 9%,
+    transparent 20%, transparent 80%,
+    rgba(19, 18, 21, .18) 91%,
+    rgba(19, 18, 21, .75) 100%);
+}
+#casePageContainer .shadrop-roulette { padding: 10px 0; }
+#casePageContainer .shadrop-roulette__item {
+  border-width: 1px;
+  border-color: color-mix(in srgb, var(--reward-color) 78%, #303038);
+  background:
+    radial-gradient(ellipse at 50% 95%, color-mix(in srgb, var(--reward-color) 30%, transparent), transparent 78%),
+    linear-gradient(150deg, #24232b, #141419);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 0 14px color-mix(in srgb, var(--reward-color) 10%, transparent),
+    0 0 8px color-mix(in srgb, var(--reward-color) 16%, transparent);
+}
+#casePageContainer .shadrop-roulette__item::after {
+  height: 4px;
+  box-shadow: 0 0 8px var(--reward-color), 0 0 14px color-mix(in srgb, var(--reward-color) 55%, transparent);
+}
+#casePageContainer .shadrop-roulette__pointer {
+  filter: drop-shadow(0 0 5px #ffcb31) drop-shadow(0 0 10px rgba(255,190,36,.55));
+}
+#casePageContainer .shadrop-roulette:first-child .shadrop-roulette__pointer--top {
+  border-top-color: #ffda4f;
+}
+#casePageContainer .shadrop-roulette:last-child .shadrop-roulette__pointer--bottom {
+  border-bottom-color: #ffda4f;
+}
+
+/* Controls: luminous active selection, quiet secondary buttons */
+#casePageContainer .shadrop-case-multipliers {
+  border-color: #494650;
+  background: linear-gradient(180deg, #202027, #17171c);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 3px 12px rgba(0,0,0,.22);
+}
+#casePageContainer .shadrop-multiplier.is-active {
+  background: linear-gradient(160deg, #ffe67b 0%, #ffcf32 48%, #ffb800 100%);
+  color: #191300;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.55),
+    0 0 0 1px rgba(255,225,106,.65),
+    0 0 15px rgba(255,194,24,.40);
+}
+#casePageContainer .shadrop-demo-button {
+  border-color: #494650;
+  background: linear-gradient(155deg, #24232c, #19191f);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+#casePageContainer .shadrop-demo-button.is-active {
+  color: #ffe078;
+  border-color: #ffca37;
+  background: linear-gradient(160deg, #41321c, #241d18);
+  box-shadow: 0 0 12px rgba(255,196,36,.24), inset 0 1px 0 rgba(255,232,162,.15);
+}
+
+/* Hero CTA */
+#casePageContainer .shadrop-open-button {
+  overflow: hidden;
+  border: 1px solid #ffdf64;
+  background: linear-gradient(130deg, #ffdd4c 0%, #ffbb05 48%, #ffcf2e 100%);
+  color: #1a1400;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.45),
+    inset 0 -2px 0 rgba(197,113,0,.18),
+    0 0 0 1px rgba(255,180,0,.22),
+    0 0 22px rgba(255,183,12,.30),
+    0 9px 28px rgba(255,157,0,.13);
+}
+#casePageContainer .shadrop-open-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(145deg, rgba(255,255,255,.24) 0%, transparent 31%, transparent 75%, rgba(255,255,255,.14) 100%);
+}
+#casePageContainer .shadrop-open-button > * { position: relative; z-index: 1; }
+#casePageContainer .shadrop-open-button:active { filter: brightness(.96); }
+
+/* Prize gallery: neon follows rarity, not gold */
+#casePageContainer .shadrop-case-rewards__heading h2 {
+  color: #fff;
+  text-shadow: 0 2px 15px rgba(255,255,255,.10);
+}
+#casePageContainer .shadrop-reward-card {
+  border-color: color-mix(in srgb, var(--reward-color) 82%, #383843);
+  background:
+    radial-gradient(ellipse at 50% 110%, color-mix(in srgb, var(--reward-color) 31%, transparent), transparent 77%),
+    linear-gradient(150deg, #222129, #15151b);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 0 15px color-mix(in srgb, var(--reward-color) 7%, transparent),
+    0 0 12px color-mix(in srgb, var(--reward-color) 15%, transparent),
+    0 6px 16px rgba(0,0,0,.24);
+}
+#casePageContainer .shadrop-reward-card::after {
+  height: 5px;
+  box-shadow: 0 0 8px var(--reward-color), 0 0 16px color-mix(in srgb, var(--reward-color) 58%, transparent);
+}
+#casePageContainer .shadrop-reward-card__image {
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.24));
+}
+
+/* Result dialog, same visual language */
+#casePageContainer .shadrop-win-modal {
+  border-color: color-mix(in srgb, var(--win-color) 70%, #3a3540);
+  background:
+    radial-gradient(ellipse at 50% 30%, color-mix(in srgb, var(--win-color) 15%, transparent), transparent 67%),
+    linear-gradient(155deg, #222027, #121216);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--win-color) 13%, transparent), 0 20px 55px rgba(0,0,0,.7);
+}
+#casePageContainer .shadrop-win-continue {
+  border-color: #ffdf64;
+  background: linear-gradient(130deg, #ffe06b, #ffc41c 60%, #ffb500);
+  color: #1a1400;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 0 17px rgba(255,190,25,.22);
+}
+#casePageContainer .shadrop-win-multiple__item {
+  border-color: #49434a;
+  background: linear-gradient(160deg, #2b2930, #1c1b20);
+}
+
+@media (max-width: 360px) {
+  #casePageContainer .shadrop-roulettes { border-radius: 18px; padding: 12px 0; }
+  #casePageContainer .shadrop-roulette { padding: 7px 0; }
+  #casePageContainer .shadrop-open-button { border-radius: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #casePageContainer .shadrop-open-button,
+  #casePageContainer .shadrop-multiplier,
+  #casePageContainer .shadrop-demo-button { transition: none; }
+}
