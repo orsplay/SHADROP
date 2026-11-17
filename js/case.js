@@ -1,296 +1,350 @@
 
-/* ===== SHADROP CASE ROULETTE ===== */
+/* ===== SHADROP MULTI ROULETTE ===== */
 
 (function () {
   "use strict";
 
-  const ITEM_WIDTH = 112;
-  const ITEM_GAP = 10;
-
-  const ROULETTE_ITEMS = 65;
+  const ITEM_COUNT = 65;
   const WIN_INDEX = 55;
-
   const SPIN_DURATION = 5200;
+  const GAP = 6;
 
   let activeCase = null;
   let multiplier = 1;
+  let demoMode = false;
   let spinning = false;
   let spinToken = 0;
 
-  function getContainer() {
+  function container() {
     return document.getElementById("casePageContainer");
   }
 
-  function getRarities() {
-    return window.SHADROP_RARITIES || {};
+  function colorOf(reward) {
+    return window.SHADROP_RARITIES?.[reward.rarity]?.color
+      || "#398cff";
   }
 
-  function getRewardColor(reward) {
-    return getRarities()[reward.rarity]?.color || "#398cff";
+  function rarityOf(reward) {
+    return window.SHADROP_RARITIES?.[reward.rarity]?.name
+      || "Обычный";
   }
 
-  function getRewardRarity(reward) {
-    return getRarities()[reward.rarity]?.name || "Обычный";
-  }
-
-  function randomReward(rewards) {
+  function randomReward() {
+    const rewards = activeCase.rewards;
     return rewards[Math.floor(Math.random() * rewards.length)];
   }
 
-  /* ===== ЭЛЕМЕНТ РУЛЕТКИ ===== */
-
-  function createRouletteItem(reward) {
+  function createItem(reward) {
     const item = document.createElement("div");
-
     item.className = "shadrop-roulette__item";
-    item.style.setProperty(
-      "--reward-color",
-      getRewardColor(reward)
-    );
+    item.style.setProperty("--reward-color", colorOf(reward));
 
-    const image = document.createElement("img");
+    const img = document.createElement("img");
+    img.src = reward.image;
+    img.alt = reward.name;
+    img.draggable = false;
 
-    image.src = reward.image;
-    image.alt = reward.name;
-    image.draggable = false;
-
-    item.appendChild(image);
-
+    item.appendChild(img);
     return item;
   }
 
-  /* ===== КВАДРАТНАЯ КАРТОЧКА НАГРАДЫ ===== */
+  function createRewardCard(reward) {
+    const card = document.createElement("div");
+    card.className = "shadrop-reward-card";
+    card.style.setProperty("--reward-color", colorOf(reward));
 
+    const img = document.createElement("img");
+    img.className = "shadrop-reward-card__image";
+    img.src = reward.image;
+    img.alt = reward.name;
+    img.loading = "lazy";
 
-function createRewardCard(reward) {
-  const card = document.createElement("div");
+    const name = document.createElement("div");
+    name.className = "shadrop-reward-card__name";
+    name.textContent = reward.name;
 
-  card.className = "shadrop-reward-card";
-  card.style.setProperty(
-    "--reward-color",
-    getRewardColor(reward)
-  );
+    const price = document.createElement("div");
+    price.className = "shadrop-reward-card__value";
 
-  const image = document.createElement("img");
-  image.className = "shadrop-reward-card__image";
-  image.src = reward.image;
-  image.alt = reward.name;
-  image.loading = "lazy";
-  image.draggable = false;
+    const amount = document.createElement("span");
+    amount.textContent = Number(reward.value).toLocaleString("ru-RU");
 
-  const name = document.createElement("div");
-  name.className = "shadrop-reward-card__name";
-  name.textContent = reward.name;
+    const star = document.createElement("img");
+    star.src = "assets/icons/telegram-star.png";
+    star.alt = "Stars";
 
-  const price = document.createElement("div");
-  price.className = "shadrop-reward-card__value";
+    price.append(amount, star);
+    card.append(img, name, price);
 
-  const priceNumber = document.createElement("span");
-  priceNumber.textContent = reward.value.toLocaleString("ru-RU");
+    return card;
+  }
 
-  const star = document.createElement("img");
-  star.src = "assets/icons/telegram-star.png";
-  star.alt = "Stars";
+  /* ===== СОЗДАНИЕ РУЛЕТКИ ===== */
 
-  price.append(priceNumber, star);
-  card.append(image, name, price);
+  function createRoulette(index) {
+    const roulette = document.createElement("div");
+    roulette.className = "shadrop-roulette";
+    roulette.dataset.rouletteIndex = index;
 
-  return card;
-}
+    const viewport = document.createElement("div");
+    viewport.className = "shadrop-roulette__viewport";
 
+    const track = document.createElement("div");
+    track.className = "shadrop-roulette__track";
 
-  /* ===== ЦЕНА ===== */
+    viewport.appendChild(track);
 
-  function updatePrice() {
-    const container = getContainer();
+    const top = document.createElement("div");
+    top.className =
+      "shadrop-roulette__pointer shadrop-roulette__pointer--top";
 
-    if (!container || !activeCase) return;
+    const bottom = document.createElement("div");
+    bottom.className =
+      "shadrop-roulette__pointer shadrop-roulette__pointer--bottom";
 
-    const price = container.querySelector("#caseOpenPrice");
+    const center = document.createElement("div");
+    center.className = "shadrop-roulette__center";
 
-    if (price) {
-      price.textContent = String(activeCase.price * multiplier);
+    roulette.append(viewport, top, bottom, center);
+
+    fillTrack(track);
+
+    return roulette;
+  }
+
+  function fillTrack(track, winner = null) {
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < ITEM_COUNT; i++) {
+      const reward =
+        winner && i === WIN_INDEX ? winner : randomReward();
+
+      fragment.appendChild(createItem(reward));
+    }
+
+    track.style.transition = "none";
+    track.style.transform = "translate3d(0,0,0)";
+    track.replaceChildren(fragment);
+
+    // Показываем центральную часть списка ещё до запуска.
+    const roulette = track.closest(".shadrop-roulette");
+    const viewport = roulette?.querySelector(
+      ".shadrop-roulette__viewport"
+    );
+
+    if (viewport) {
+      const first = track.firstElementChild;
+      const width = first?.getBoundingClientRect().width || 65;
+      const step = width + GAP;
+      const previewIndex = 4;
+
+      const offset =
+        viewport.clientWidth / 2 -
+        (previewIndex * step + width / 2);
+
+      track.style.transform =
+        `translate3d(${offset}px,0,0)`;
+    }
+  }
+
+  function renderRoulettes() {
+    const root = container()?.querySelector("#caseRoulettes");
+    if (!root || !activeCase) return;
+
+    root.replaceChildren();
+
+    for (let i = 0; i < multiplier; i++) {
+      root.appendChild(createRoulette(i));
     }
   }
 
   /* ===== МНОЖИТЕЛИ ===== */
 
   function updateMultiplierButtons() {
-    const container = getContainer();
-
-    if (!container) return;
-
-    container
-      .querySelectorAll(".shadrop-multiplier")
-      .forEach((button) => {
-        const isActive =
-          Number(button.dataset.multiplier) === multiplier;
-
-        button.classList.toggle("is-active", isActive);
+    container()
+      ?.querySelectorAll(".shadrop-multiplier")
+      .forEach(button => {
+        button.classList.toggle(
+          "is-active",
+          Number(button.dataset.multiplier) === multiplier
+        );
       });
   }
 
-  /* ===== ЗАПОЛНЕНИЕ РУЛЕТКИ ===== */
+  /* ===== ДЕМО ===== */
 
-  function fillRoulette(winner = null) {
-    const container = getContainer();
-    const track = container?.querySelector("#rouletteTrack");
+  function updateDemoButton() {
+    const button = container()?.querySelector("#caseDemoButton");
 
-    if (!track || !activeCase) return;
+    if (!button) return;
 
-    const fragment = document.createDocumentFragment();
+    button.classList.toggle("is-active", demoMode);
+    button.setAttribute("aria-pressed", String(demoMode));
+  }
 
-    for (let i = 0; i < ROULETTE_ITEMS; i++) {
-      let reward = randomReward(activeCase.rewards);
+  /* ===== ЦЕНА ===== */
 
-      if (winner && i === WIN_INDEX) {
-        reward = winner;
+  function updatePrice() {
+    const root = container();
+    if (!root || !activeCase) return;
+
+    const label = root.querySelector("#caseOpenLabel");
+    const price = root.querySelector("#caseOpenPrice");
+    const star = root.querySelector("#caseOpenStar");
+
+    if (demoMode) {
+      if (label) label.textContent = "Демо-открытие";
+      if (price) price.hidden = true;
+      if (star) star.hidden = true;
+    } else {
+      if (label) label.textContent = "Открыть за";
+      if (price) {
+        price.hidden = false;
+        price.textContent = activeCase.price * multiplier;
       }
-
-      fragment.appendChild(createRouletteItem(reward));
+      if (star) star.hidden = false;
     }
-
-    track.style.transition = "none";
-    track.style.transform = "translate3d(0, 0, 0)";
-
-    track.replaceChildren(fragment);
   }
 
-  /* ===== РАСЧЁТ ПОЗИЦИИ ===== */
+  /* ===== БЛОКИРОВКА ===== */
 
-  function getStopPosition(track, viewport) {
-    const firstItem = track.firstElementChild;
+  function setSpinning(value) {
+    spinning = value;
 
-    if (!firstItem) return 0;
+    const root = container();
+    if (!root) return;
 
-    const itemWidth =
-      firstItem.getBoundingClientRect().width || ITEM_WIDTH;
+    const open = root.querySelector("#caseOpenButton");
+    const demo = root.querySelector("#caseDemoButton");
 
-    const styles = window.getComputedStyle(track);
+    if (open) open.disabled = value;
+    if (demo) demo.disabled = value;
 
-    const gap =
-      parseFloat(styles.columnGap) || ITEM_GAP;
-
-    const step = itemWidth + gap;
-
-    const itemCenter =
-      WIN_INDEX * step + itemWidth / 2;
-
-    const viewportCenter = viewport.clientWidth / 2;
-
-    return viewportCenter - itemCenter;
+    root.querySelectorAll(".shadrop-multiplier")
+      .forEach(button => {
+        button.disabled = value;
+      });
   }
 
-  /* ===== ОКНО ВЫИГРЫША ===== */
+  /* ===== РАСЧЁТ ОСТАНОВКИ ===== */
 
-  function showResult(reward) {
-    const container = getContainer();
+  function stopPosition(track, viewport) {
+    const first = track.firstElementChild;
+    const width = first.getBoundingClientRect().width;
 
-    const overlay = container?.querySelector("#caseWinOverlay");
+    const styles = getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap) || GAP;
 
-    if (!overlay) {
-      console.error("SHADROP: окно выигрыша не найдено");
-      return;
-    }
+    const centerOfWinner =
+      WIN_INDEX * (width + gap) + width / 2;
 
+    return viewport.clientWidth / 2 - centerOfWinner;
+  }
+
+  /* ===== ОКНО РЕЗУЛЬТАТА ===== */
+
+  function closeModal() {
+    const overlay = container()?.querySelector("#caseWinOverlay");
+    if (overlay) overlay.hidden = true;
+  }
+
+  function showResults(winners) {
+    const root = container();
+    const overlay = root?.querySelector("#caseWinOverlay");
+
+    if (!overlay || !winners.length) return;
+
+    const first = winners[0];
     const modal = overlay.querySelector(".shadrop-win-modal");
+
+    const title = overlay.querySelector("#caseWinTitle");
+    const description = overlay.querySelector("#caseWinDescription");
     const image = overlay.querySelector("#caseWinImage");
     const name = overlay.querySelector("#caseWinName");
     const rarity = overlay.querySelector("#caseWinRarity");
-
-    if (image) {
-      image.src = reward.image;
-      image.alt = reward.name;
-    }
-
-    if (name) {
-      name.textContent = reward.name;
-    }
-
-    if (rarity) {
-      rarity.textContent = getRewardRarity(reward);
-    }
+    const multiple = overlay.querySelector("#caseWinMultiple");
 
     if (modal) {
-      modal.style.setProperty(
-        "--win-color",
-        getRewardColor(reward)
-      );
+      modal.style.setProperty("--win-color", colorOf(first));
+    }
+
+    if (title) {
+      title.textContent = demoMode
+        ? "ДЕМО-РЕЗУЛЬТАТ"
+        : "РЕЗУЛЬТАТ ОТКРЫТИЯ";
+    }
+
+    if (description) {
+      description.textContent =
+        "Демонстрация: подарки не добавляются в инвентарь";
+    }
+
+    if (image) {
+      image.src = first.image;
+      image.alt = first.name;
+    }
+
+    if (name) name.textContent = first.name;
+    if (rarity) rarity.textContent = rarityOf(first);
+
+    if (multiple) {
+      multiple.replaceChildren();
+      multiple.hidden = winners.length === 1;
+
+      if (winners.length > 1) {
+        winners.forEach(reward => {
+          const card = document.createElement("div");
+          card.className = "shadrop-win-multiple__item";
+
+          const img = document.createElement("img");
+          img.src = reward.image;
+          img.alt = reward.name;
+
+          const text = document.createElement("span");
+          text.textContent = reward.name;
+
+          card.append(img, text);
+          multiple.appendChild(card);
+        });
+      }
     }
 
     overlay.hidden = false;
   }
 
-  /* ===== ЗАКРЫТИЕ ОКНА ===== */
+  /* ===== ЗАПУСК ВСЕХ РУЛЕТОК ===== */
 
-  function closeWinModal() {
-    const container = getContainer();
-    const overlay = container?.querySelector("#caseWinOverlay");
+  async function spinRoulettes() {
+    if (spinning || !activeCase) return;
 
-    if (overlay) {
-      overlay.hidden = true;
-    }
-  }
+    const root = container();
+    const roulettes = [
+      ...root.querySelectorAll(".shadrop-roulette")
+    ];
 
-  /* ===== БЛОКИРОВКА КНОПОК ===== */
+    if (!roulettes.length) return;
 
-  function setSpinningState(value) {
-    spinning = value;
-
-    const container = getContainer();
-
-    if (!container) return;
-
-    const openButton = container.querySelector("#caseOpenButton");
-    const demoButton = container.querySelector("#caseDemoButton");
-
-    if (openButton) {
-      openButton.disabled = value;
-    }
-
-    if (demoButton) {
-      demoButton.disabled = value;
-    }
-
-    container
-      .querySelectorAll(".shadrop-multiplier")
-      .forEach((button) => {
-        button.disabled = value;
-      });
-  }
-
-  /* ===== АНИМАЦИЯ РУЛЕТКИ ===== */
-
-  async function spinRoulette() {
-    if (!activeCase || spinning) return;
-
-    const container = getContainer();
-
-    const track = container?.querySelector("#rouletteTrack");
-    const viewport = container?.querySelector("#rouletteViewport");
-
-    if (!track || !viewport) return;
-
-    closeWinModal();
-    setSpinningState(true);
-
-    // Демонстрационное открытие.
-    // Настоящие Stars не списываются.
-    const winner = randomReward(activeCase.rewards);
-
-    fillRoulette(winner);
-
-    // Принудительно применяем стартовую позицию.
-    void track.offsetWidth;
-
-    const stopPosition = getStopPosition(track, viewport);
-
-    // Небольшое смещение внутри выигрышной карточки.
-    const randomOffset = (Math.random() - 0.5) * 16;
+    closeModal();
+    setSpinning(true);
 
     const token = ++spinToken;
+    const winners = [];
 
-    await new Promise((resolve) => {
+    roulettes.forEach(roulette => {
+      const winner = randomReward();
+      winners.push(winner);
+
+      const track = roulette.querySelector(
+        ".shadrop-roulette__track"
+      );
+
+      fillTrack(track, winner);
+    });
+
+    // Применяем начальные позиции.
+    void root.offsetWidth;
+
+    await new Promise(resolve => {
       requestAnimationFrame(() => {
         requestAnimationFrame(resolve);
       });
@@ -298,34 +352,48 @@ function createRewardCard(reward) {
 
     if (token !== spinToken) return;
 
-    track.style.transition =
-      `transform ${SPIN_DURATION}ms cubic-bezier(0.12, 0.7, 0.12, 1)`;
+    roulettes.forEach((roulette, index) => {
+      const track = roulette.querySelector(
+        ".shadrop-roulette__track"
+      );
 
-    track.style.transform =
-      `translate3d(${stopPosition + randomOffset}px, 0, 0)`;
+      const viewport = roulette.querySelector(
+        ".shadrop-roulette__viewport"
+      );
 
-    window.setTimeout(() => {
+      const position = stopPosition(track, viewport);
+
+      const randomOffset = (Math.random() - 0.5) * 8;
+
+      const duration = SPIN_DURATION + index * 180;
+
+      track.style.transition =
+        `transform ${duration}ms cubic-bezier(0.12,0.7,0.12,1)`;
+
+      track.style.transform =
+        `translate3d(${position + randomOffset}px,0,0)`;
+    });
+
+    const totalDuration =
+      SPIN_DURATION + (roulettes.length - 1) * 180 + 150;
+
+    setTimeout(() => {
       if (token !== spinToken) return;
 
-      setSpinningState(false);
-
-      showResult(winner);
+      setSpinning(false);
+      showResults(winners);
 
       window.Telegram?.WebApp?.HapticFeedback
         ?.notificationOccurred?.("success");
 
-    }, SPIN_DURATION + 100);
+    }, totalDuration);
   }
 
   /* ===== ВОЗМОЖНЫЕ НАГРАДЫ ===== */
 
   function renderRewards() {
-    const container = getContainer();
-    const grid = container?.querySelector("#caseRewardsGrid");
-
+    const grid = container()?.querySelector("#caseRewardsGrid");
     if (!grid || !activeCase) return;
-
-    grid.replaceChildren();
 
     const order = {
       legendary: 0,
@@ -335,49 +403,32 @@ function createRewardCard(reward) {
       common: 4
     };
 
-    const sortedRewards = [...activeCase.rewards].sort(
+    const rewards = [...activeCase.rewards].sort(
       (a, b) =>
         (order[a.rarity] ?? 99) -
         (order[b.rarity] ?? 99)
     );
 
-    const fragment = document.createDocumentFragment();
+    grid.replaceChildren();
 
-    sortedRewards.forEach((reward) => {
-      fragment.appendChild(createRewardCard(reward));
+    rewards.forEach(reward => {
+      grid.appendChild(createRewardCard(reward));
     });
-
-    grid.appendChild(fragment);
   }
 
-  /* ===== ОБРАБОТЧИКИ КНОПОК ===== */
+  /* ===== СОБЫТИЯ ===== */
 
   function bindEvents() {
-    const container = getContainer();
+    const root = container();
 
-    if (!container) return;
-
-    if (container.dataset.caseEventsBound === "true") {
+    if (!root || root.dataset.caseEventsBound === "true") {
       return;
     }
 
-    container.dataset.caseEventsBound = "true";
+    root.dataset.caseEventsBound = "true";
 
-    // Назад
-    container
-      .querySelector("#caseBackButton")
-      ?.addEventListener("click", () => {
-        spinToken++;
-        setSpinningState(false);
-        closeWinModal();
-
-        window.closeShadropCase?.();
-      });
-
-    // Множители
-    container
-      .querySelectorAll(".shadrop-multiplier")
-      .forEach((button) => {
+    root.querySelectorAll(".shadrop-multiplier")
+      .forEach(button => {
         button.addEventListener("click", () => {
           if (spinning) return;
 
@@ -385,89 +436,73 @@ function createRewardCard(reward) {
 
           updateMultiplierButtons();
           updatePrice();
+          renderRoulettes();
         });
       });
 
-    // Демо
-    container
-      .querySelector("#caseDemoButton")
+    root.querySelector("#caseDemoButton")
       ?.addEventListener("click", () => {
-        spinRoulette();
+        if (spinning) return;
+
+        demoMode = !demoMode;
+
+        updateDemoButton();
+        updatePrice();
       });
 
-    // Открыть
-    container
-      .querySelector("#caseOpenButton")
-      ?.addEventListener("click", () => {
-        spinRoulette();
-      });
+    root.querySelector("#caseOpenButton")
+      ?.addEventListener("click", spinRoulettes);
 
-    // Крестик окна выигрыша
-    container
-      .querySelector("#caseWinClose")
-      ?.addEventListener("click", closeWinModal);
+    root.querySelector("#caseWinClose")
+      ?.addEventListener("click", closeModal);
 
-    // Продолжить
-    container
-      .querySelector("#caseWinContinue")
-      ?.addEventListener("click", closeWinModal);
+    root.querySelector("#caseWinContinue")
+      ?.addEventListener("click", closeModal);
 
-    // Закрытие нажатием на затемнённый фон
-    container
-      .querySelector("#caseWinOverlay")
-      ?.addEventListener("click", (event) => {
+    root.querySelector("#caseWinOverlay")
+      ?.addEventListener("click", event => {
         if (event.target.id === "caseWinOverlay") {
-          closeWinModal();
+          closeModal();
         }
       });
   }
 
-  /* ===== ОТРИСОВКА СТРАНИЦЫ КЕЙСА ===== */
+  /* ===== ОТКРЫТИЕ СТРАНИЦЫ ===== */
 
   window.renderShadropCase = function (caseId) {
     const config = window.SHADROP_CASES?.[caseId];
 
-    if (!config) {
+    if (!config || !config.rewards?.length) {
       console.error("SHADROP: кейс не найден:", caseId);
       return;
     }
 
-    if (!Array.isArray(config.rewards) || !config.rewards.length) {
-      console.error("SHADROP: у кейса нет наград:", caseId);
-      return;
-    }
-
-    // Сбрасываем предыдущую анимацию.
     spinToken++;
     spinning = false;
 
     activeCase = config;
     multiplier = 1;
+    demoMode = false;
 
-    const container = getContainer();
+    const root = container();
+    if (!root) return;
 
-    if (!container) return;
+    const page = root.querySelector(".shadrop-case-page");
+    if (!page) return;
 
-    const page = container.querySelector(".shadrop-case-page");
-
-    if (!page) {
-      console.error("SHADROP: HTML страницы кейса не найден");
-      return;
-    }
-
-    // Цвет оформления для каждого кейса.
     page.style.setProperty(
       "--case-accent",
       config.color || "#a46aff"
     );
 
-    closeWinModal();
-    setSpinningState(false);
+    closeModal();
+    setSpinning(false);
 
     updateMultiplierButtons();
+    updateDemoButton();
     updatePrice();
 
-    fillRoulette();
+    renderRoulettes();
     renderRewards();
     bindEvents();
   };
