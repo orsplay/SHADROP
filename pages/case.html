@@ -1,20 +1,33 @@
 
 <section class="shadrop-case-page">
 
-  <!-- Рулетки создаются через JavaScript -->
-  <div class="shadrop-roulettes" id="caseRoulettes"></div>
+  <!-- ===== РУЛЕТКИ ===== -->
+  <div
+    class="shadrop-roulettes"
+    id="caseRoulettes"
+  ></div>
 
-  <!-- Управление -->
+  <!-- ===== УПРАВЛЕНИЕ ===== -->
   <div class="shadrop-case-controls">
 
     <div class="shadrop-case-multipliers">
-      <button class="shadrop-multiplier is-active" data-multiplier="1" type="button">x1</button>
-      <button class="shadrop-multiplier" data-multiplier="2" type="button">x2</button>
-      <button class="shadrop-multiplier" data-multiplier="3" type="button">x3</button>
-      <button class="shadrop-multiplier" data-multiplier="4" type="button">x4</button>
-      <button class="shadrop-multiplier" data-multiplier="5" type="button">x5</button>
+      <button class="shadrop-multiplier is-active"
+        data-multiplier="1" type="button">x1</button>
+
+      <button class="shadrop-multiplier"
+        data-multiplier="2" type="button">x2</button>
+
+      <button class="shadrop-multiplier"
+        data-multiplier="3" type="button">x3</button>
+
+      <button class="shadrop-multiplier"
+        data-multiplier="4" type="button">x4</button>
+
+      <button class="shadrop-multiplier"
+        data-multiplier="5" type="button">x5</button>
     </div>
 
+    <!-- Переключатель деморежима -->
     <button
       class="shadrop-demo-button"
       id="caseDemoButton"
@@ -24,31 +37,51 @@
 
   </div>
 
-  <!-- Кнопка открытия -->
-  <button class="shadrop-open-button" id="caseOpenButton" type="button">
+  <!-- ===== КНОПКА ОТКРЫТИЯ ===== -->
+  <button
+    class="shadrop-open-button"
+    id="caseOpenButton"
+    type="button"
+  >
     <span id="caseOpenLabel">Открыть за</span>
     <span id="caseOpenPrice">99</span>
-    <img id="caseOpenStar" src="assets/icons/telegram-star.png" alt="Stars">
+
+    <img
+      id="caseOpenStar"
+      src="assets/icons/telegram-star.png"
+      alt="Stars"
+    >
   </button>
 
-  <!-- Возможные награды -->
+  <!-- ===== ВОЗМОЖНЫЕ НАГРАДЫ ===== -->
   <div class="shadrop-case-rewards">
+
     <div class="shadrop-case-rewards__heading">
-      <span class="shadrop-case-rewards__sparkle">✦</span>
       <h2>Возможные награды</h2>
     </div>
 
-    <div class="shadrop-case-rewards__grid" id="caseRewardsGrid"></div>
+    <div
+      class="shadrop-case-rewards__grid"
+      id="caseRewardsGrid"
+    ></div>
+
   </div>
 
-  <!-- Окно выигрыша -->
-  <div class="shadrop-win-overlay" id="caseWinOverlay" hidden>
+  <!-- ===== ОКНО ВЫИГРЫША ===== -->
+  <div
+    class="shadrop-win-overlay"
+    id="caseWinOverlay"
+    hidden
+  >
+
     <div
       class="shadrop-win-modal"
       role="dialog"
       aria-modal="true"
       aria-labelledby="caseWinTitle"
     >
+
+      <!-- Закрыть -->
       <button
         class="shadrop-win-close"
         id="caseWinClose"
@@ -56,25 +89,49 @@
         aria-label="Закрыть"
       >×</button>
 
-      <div class="shadrop-win-sparkle">✦</div>
+      <!-- Заголовок меняется через JS -->
+      <h2 id="caseWinTitle">Ваш подарок</h2>
 
-      <h2 id="caseWinTitle">РЕЗУЛЬТАТ ОТКРЫТИЯ</h2>
-      <p id="caseWinDescription">Демонстрационный результат</p>
+      <p id="caseWinDescription">
+        Демонстрация: подарки не добавляются в инвентарь
+      </p>
 
+      <!-- Один подарок (x1) -->
       <div class="shadrop-win-image-wrap">
-        <img id="caseWinImage" src="" alt="">
+        <img id="caseWinImage" src="" alt="Подарок">
       </div>
 
-      <div class="shadrop-win-name" id="caseWinName"></div>
-      <div class="shadrop-win-rarity" id="caseWinRarity"></div>
+      <div
+        class="shadrop-win-name"
+        id="caseWinName"
+      ></div>
 
-      <div class="shadrop-win-multiple" id="caseWinMultiple" hidden></div>
+      <div
+        class="shadrop-win-rarity"
+        id="caseWinRarity"
+      ></div>
 
+      <!-- Несколько подарков (x2–x5) -->
+      <div
+        class="shadrop-win-multiple"
+        id="caseWinMultiple"
+        hidden
+      ></div>
+
+      <!-- Общая стоимость -->
+      <div
+        class="shadrop-win-total"
+        id="caseWinTotal"
+        hidden
+      ></div>
+
+      <!-- Продолжить -->
       <button
         class="shadrop-win-continue"
         id="caseWinContinue"
         type="button"
       >Продолжить</button>
+
     </div>
   </div>
 

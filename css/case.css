@@ -1188,3 +1188,180 @@
 .shadrop-roulette__pointer--bottom {
   display: block;
 }
+
+/* ==========================================
+   SHADROP — DESIGN UPDATE
+========================================== */
+
+.shadrop-case-page {
+  /* Заменим на точный цвет из profile.css */
+  --case-button-color: #323239;
+}
+
+/* Убираем иконку возле заголовка наград */
+
+#casePageContainer .shadrop-case-rewards__sparkle {
+
+/* Множители x1–x5 */
+
+#casePageContainer .shadrop-multiplier.is-active {
+  background: var(--case-button-color);
+  border-color: var(--case-button-color);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Демо */
+
+#casePageContainer .shadrop-demo-button.is-active {
+  background: var(--case-button-color);
+  border-color: var(--case-button-color);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Открытие кейса */
+
+#casePageContainer .shadrop-open-button {
+  background: var(--case-button-color);
+  border: 1px solid var(--case-button-color);
+  box-shadow: none;
+}
+
+/* Убираем синеватый оттенок общего блока */
+
+#casePageContainer .shadrop-roulettes {
+  background: #18181d;
+  border-color: #34343b;
+}
+
+/* Затемнение по бокам */
+
+#casePageContainer .shadrop-roulettes::after {
+  background: linear-gradient(
+    90deg,
+    rgba(24, 24, 29, 0.9) 0%,
+    rgba(24, 24, 29, 0.35) 8%,
+    transparent 18%,
+    transparent 82%,
+    rgba(24, 24, 29, 0.35) 92%,
+    rgba(24, 24, 29, 0.9) 100%
+  );
+}
+
+/* Убираем синий оттенок отдельных рулеток */
+
+#casePageContainer .shadrop-roulette {
+  background: transparent;
+}
+
+/* Окно результата — убираем декоративную звезду */
+
+#casePageContainer .shadrop-win-sparkle {
+  display: none !important;
+}
+
+/* Заголовок результата */
+
+#casePageContainer .shadrop-win-modal h2 {
+  margin-top: 8px;
+  font-size: 22px;
+}
+
+/* Кнопка продолжения */
+
+#casePageContainer .shadrop-win-continue {
+  background: var(--case-button-color);
+  box-shadow: none;
+}
+
+
+/* ===== SHADROP WIN RESULTS UPDATE ===== */
+
+#casePageContainer .shadrop-case-rewards__sparkle,
+#casePageContainer .shadrop-win-sparkle {
+  display: none !important;
+}
+
+#casePageContainer .shadrop-win-modal.is-multiple
+.shadrop-win-image-wrap,
+#casePageContainer .shadrop-win-modal.is-multiple
+.shadrop-win-name,
+#casePageContainer .shadrop-win-modal.is-multiple
+.shadrop-win-rarity {
+  display: none !important;
+}
+
+#casePageContainer .shadrop-win-multiple {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 20px 0;
+}
+
+#casePageContainer .shadrop-win-multiple[hidden] {
+  display: none !important;
+}
+
+#casePageContainer .shadrop-win-multiple__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+
+  min-width: 0;
+  padding: 10px 5px;
+
+  border: 1px solid
+    color-mix(in srgb, var(--reward-color) 45%, #30303a);
+  border-radius: 13px;
+
+  background: #22222d;
+}
+
+#casePageContainer .shadrop-win-multiple__item > img {
+  width: 100%;
+  height: 75px;
+  object-fit: contain;
+}
+
+#casePageContainer .shadrop-win-multiple__name {
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+#casePageContainer .shadrop-win-multiple__value,
+#casePageContainer .shadrop-win-total__value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#casePageContainer .shadrop-win-multiple__value img,
+#casePageContainer .shadrop-win-total__value img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+#casePageContainer .shadrop-win-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  margin: 8px 0 20px;
+  color: #bcbcc8;
+  font-size: 12px;
+}
+
+#casePageContainer .shadrop-win-total[hidden] {
+  display: none !important;
+}

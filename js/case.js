@@ -8,6 +8,7 @@
   const WIN_INDEX = 55;
   const SPIN_DURATION = 5200;
   const GAP = 6;
+  const STAR_ICON = "assets/icons/telegram-star.png";
 
   let activeCase = null;
   let multiplier = 1;
@@ -29,10 +30,31 @@
       || "Обычный";
   }
 
+  function formatStars(value) {
+    return Number(value || 0).toLocaleString("ru-RU");
+  }
+
   function randomReward() {
     const rewards = activeCase.rewards;
     return rewards[Math.floor(Math.random() * rewards.length)];
   }
+
+  function createStarValue(value, className) {
+    const element = document.createElement("div");
+    element.className = className;
+
+    const amount = document.createElement("span");
+    amount.textContent = formatStars(value);
+
+    const star = document.createElement("img");
+    star.src = STAR_ICON;
+    star.alt = "Stars";
+
+    element.append(amount, star);
+    return element;
+  }
+
+  /* ===== ROULETTE ITEM ===== */
 
   function createItem(reward) {
     const item = document.createElement("div");
@@ -46,11 +68,10 @@
     img.draggable = false;
 
     item.appendChild(img);
-
     return item;
   }
 
-  /* ===== КАРТОЧКА ВОЗМОЖНОЙ НАГРАДЫ ===== */
+  /* ===== POSSIBLE REWARD CARD ===== */
 
   function createRewardCard(reward) {
     const card = document.createElement("div");
@@ -68,58 +89,44 @@
     name.className = "shadrop-reward-card__name";
     name.textContent = reward.name;
 
-    const price = document.createElement("div");
-    price.className = "shadrop-reward-card__value";
+    const price = createStarValue(
+      reward.value,
+      "shadrop-reward-card__value"
+    );
 
-    const amount = document.createElement("span");
-    amount.textContent = Number(reward.value).toLocaleString("ru-RU");
-
-    const star = document.createElement("img");
-    star.src = "assets/icons/telegram-star.png";
-    star.alt = "Stars";
-
-    price.append(amount, star);
     card.append(img, name, price);
-
     return card;
   }
 
-  /* ===== РАЗМЕР КВАДРАТНЫХ КАРТОЧЕК ===== */
+  /* ===== ROULETTE SIZES ===== */
 
   function updateRouletteSizes() {
     const root = container();
     if (!root) return;
 
-    const roulettes = root.querySelectorAll(".shadrop-roulette");
+    root.querySelectorAll(".shadrop-roulette")
+      .forEach(roulette => {
+        const viewport = roulette.querySelector(
+          ".shadrop-roulette__viewport"
+        );
 
-    roulettes.forEach(roulette => {
-      const viewport = roulette.querySelector(
-        ".shadrop-roulette__viewport"
-      );
+        if (!viewport || !viewport.clientWidth) return;
 
-      if (!viewport) return;
+        const itemSize = Math.floor(
+          (viewport.clientWidth - GAP * 4) / 5
+        );
 
-      const availableWidth = viewport.clientWidth;
-
-      if (!availableWidth) return;
-
-      // Пять квадратов и четыре промежутка.
-      const itemSize = Math.floor(
-        (availableWidth - GAP * 4) / 5
-      );
-
-      roulette.style.setProperty(
-        "--roulette-item-size",
-        `${itemSize}px`
-      );
-    });
+        roulette.style.setProperty(
+          "--roulette-item-size",
+          `${itemSize}px`
+        );
+      });
   }
 
-  /* ===== СОЗДАНИЕ РУЛЕТКИ ===== */
+  /* ===== CREATE ROULETTE ===== */
 
   function createRoulette(index) {
     const roulette = document.createElement("div");
-
     roulette.className = "shadrop-roulette";
     roulette.dataset.rouletteIndex = index;
 
@@ -147,7 +154,7 @@
     return roulette;
   }
 
-  /* ===== ЗАПОЛНЕНИЕ РУЛЕТКИ ===== */
+  /* ===== FILL TRACK ===== */
 
   function fillTrack(track, winner = null) {
     const fragment = document.createDocumentFragment();
@@ -166,11 +173,8 @@
     track.replaceChildren(fragment);
   }
 
-  /* ===== РАЗМЕРЫ И ПОЗИЦИИ ===== */
-
   function getTrackMetrics(track) {
     const first = track.firstElementChild;
-
     const width = first?.getBoundingClientRect().width || 65;
 
     const styles = getComputedStyle(track);
@@ -184,31 +188,25 @@
 
   function getPosition(track, viewport, index) {
     const { width, step } = getTrackMetrics(track);
-
     const itemCenter = index * step + width / 2;
 
     return viewport.clientWidth / 2 - itemCenter;
   }
 
-  /* ===== СТАРТОВАЯ ПОЗИЦИЯ ===== */
-
   function setPreviewPosition(track) {
     const roulette = track.closest(".shadrop-roulette");
-
     const viewport = roulette?.querySelector(
       ".shadrop-roulette__viewport"
     );
 
     if (!viewport) return;
 
-    const previewIndex = 4;
-
     track.style.transition = "none";
     track.style.transform =
-      `translate3d(${getPosition(track, viewport, previewIndex)}px,0,0)`;
+      `translate3d(${getPosition(track, viewport, 4)}px,0,0)`;
   }
 
-  /* ===== ОТРИСОВКА РУЛЕТОК ===== */
+  /* ===== RENDER ROULETTES ===== */
 
   function renderRoulettes() {
     const root = container()?.querySelector("#caseRoulettes");
@@ -222,10 +220,8 @@
       root.appendChild(createRoulette(i));
     }
 
-    // Сначала вставляем рулетки в DOM.
     updateRouletteSizes();
 
-    // Затем создаём подарки с правильной шириной.
     root.querySelectorAll(".shadrop-roulette__track")
       .forEach(track => {
         fillTrack(track);
@@ -233,7 +229,7 @@
       });
   }
 
-  /* ===== МНОЖИТЕЛИ ===== */
+  /* ===== MULTIPLIERS ===== */
 
   function updateMultiplierButtons() {
     container()
@@ -246,7 +242,7 @@
       });
   }
 
-  /* ===== ДЕМО ===== */
+  /* ===== DEMO MODE ===== */
 
   function updateDemoButton() {
     const button = container()?.querySelector("#caseDemoButton");
@@ -257,11 +253,8 @@
     button.setAttribute("aria-pressed", String(demoMode));
   }
 
-  /* ===== ЦЕНА ===== */
-
   function updatePrice() {
     const root = container();
-
     if (!root || !activeCase) return;
 
     const label = root.querySelector("#caseOpenLabel");
@@ -284,8 +277,6 @@
     }
   }
 
-  /* ===== БЛОКИРОВКА КНОПОК ===== */
-
   function setSpinning(value) {
     spinning = value;
 
@@ -304,14 +295,39 @@
       });
   }
 
-  /* ===== ОКНО РЕЗУЛЬТАТА ===== */
+  /* ===== WIN MODAL ===== */
 
   function closeModal() {
     const overlay = container()?.querySelector("#caseWinOverlay");
+    if (overlay) overlay.hidden = true;
+  }
 
-    if (overlay) {
-      overlay.hidden = true;
-    }
+  function giftWord(count) {
+    if (count === 1) return "подарок";
+    if (count >= 2 && count <= 4) return "подарка";
+    return "подарков";
+  }
+
+  function createWinCard(reward) {
+    const card = document.createElement("div");
+    card.className = "shadrop-win-multiple__item";
+    card.style.setProperty("--reward-color", colorOf(reward));
+
+    const img = document.createElement("img");
+    img.src = reward.image;
+    img.alt = reward.name;
+
+    const name = document.createElement("span");
+    name.className = "shadrop-win-multiple__name";
+    name.textContent = reward.name;
+
+    const value = createStarValue(
+      reward.value,
+      "shadrop-win-multiple__value"
+    );
+
+    card.append(img, name, value);
+    return card;
   }
 
   function showResults(winners) {
@@ -321,8 +337,9 @@
     if (!overlay || !winners.length) return;
 
     const first = winners[0];
-    const modal = overlay.querySelector(".shadrop-win-modal");
+    const count = winners.length;
 
+    const modal = overlay.querySelector(".shadrop-win-modal");
     const title = overlay.querySelector("#caseWinTitle");
     const description = overlay.querySelector("#caseWinDescription");
     const image = overlay.querySelector("#caseWinImage");
@@ -332,12 +349,19 @@
 
     if (modal) {
       modal.style.setProperty("--win-color", colorOf(first));
+      modal.classList.toggle("is-multiple", count > 1);
     }
 
+    // Заголовок без декоративной иконки.
+    overlay.querySelectorAll(".shadrop-win-sparkle")
+      .forEach(element => {
+        element.hidden = true;
+      });
+
     if (title) {
-      title.textContent = demoMode
-        ? "ДЕМО-РЕЗУЛЬТАТ"
-        : "РЕЗУЛЬТАТ ОТКРЫТИЯ";
+      title.textContent = count === 1
+        ? "Ваш подарок"
+        : `Выпало ${count} ${giftWord(count)}`;
     }
 
     if (description) {
@@ -355,35 +379,73 @@
 
     if (multiple) {
       multiple.replaceChildren();
-      multiple.hidden = winners.length === 1;
+      multiple.hidden = count === 1;
 
-      if (winners.length > 1) {
+      if (count > 1) {
         winners.forEach(reward => {
-          const card = document.createElement("div");
-          card.className = "shadrop-win-multiple__item";
-
-          const img = document.createElement("img");
-          img.src = reward.image;
-          img.alt = reward.name;
-
-          const text = document.createElement("span");
-          text.textContent = reward.name;
-
-          card.append(img, text);
-          multiple.appendChild(card);
+          multiple.appendChild(createWinCard(reward));
         });
       }
     }
 
+    // Общая стоимость нескольких подарков.
+    let total = overlay.querySelector("#caseWinTotal");
+
+    if (!total && modal) {
+      total = document.createElement("div");
+      total.id = "caseWinTotal";
+      total.className = "shadrop-win-total";
+
+      const continueButton = modal.querySelector(
+        "#caseWinContinue"
+      );
+
+      if (continueButton) {
+        continueButton.before(total);
+      } else {
+        modal.appendChild(total);
+      }
+    }
+
+    if (total) {
+      total.replaceChildren();
+      total.hidden = count === 1;
+
+      if (count > 1) {
+        const label = document.createElement("span");
+        label.textContent = "Общая стоимость: ";
+
+        const value = createStarValue(
+          winners.reduce(
+            (sum, reward) => sum + Number(reward.value || 0),
+            0
+          ),
+          "shadrop-win-total__value"
+        );
+
+        total.append(label, value);
+      }
+    }
+
+    // При нескольких подарках скрываем большой первый.
+    const imageWrap = overlay.querySelector(
+      ".shadrop-win-image-wrap"
+    );
+
+    if (imageWrap) imageWrap.hidden = count > 1;
+    if (name) name.hidden = count > 1;
+    if (rarity) rarity.hidden = count > 1;
+
     overlay.hidden = false;
   }
 
-  /* ===== ЗАПУСК РУЛЕТОК ===== */
+  /* ===== SPIN ===== */
 
   async function spinRoulettes() {
     if (spinning || !activeCase) return;
 
     const root = container();
+    if (!root) return;
 
     const roulettes = [
       ...root.querySelectorAll(".shadrop-roulette")
@@ -397,7 +459,6 @@
     const token = ++spinToken;
     const winners = [];
 
-    // Создаём независимый результат для каждой рулетки.
     roulettes.forEach(roulette => {
       const winner = randomReward();
       winners.push(winner);
@@ -410,7 +471,6 @@
       setPreviewPosition(track);
     });
 
-    // Применяем стартовые позиции.
     void root.offsetWidth;
 
     await new Promise(resolve => {
@@ -421,7 +481,6 @@
 
     if (token !== spinToken) return;
 
-    // Запускаем все рулетки.
     roulettes.forEach((roulette, index) => {
       const track = roulette.querySelector(
         ".shadrop-roulette__track"
@@ -462,7 +521,7 @@
     }, totalDuration);
   }
 
-  /* ===== ВОЗМОЖНЫЕ НАГРАДЫ ===== */
+  /* ===== POSSIBLE REWARDS ===== */
 
   function renderRewards() {
     const grid = container()?.querySelector("#caseRewardsGrid");
@@ -490,7 +549,7 @@
     });
   }
 
-  /* ===== СОБЫТИЯ ===== */
+  /* ===== EVENTS ===== */
 
   function bindEvents() {
     const root = container();
@@ -501,7 +560,6 @@
 
     root.dataset.caseEventsBound = "true";
 
-    // Множители x1–x5
     root.querySelectorAll(".shadrop-multiplier")
       .forEach(button => {
         button.addEventListener("click", () => {
@@ -515,22 +573,18 @@
         });
       });
 
-    // Переключатель деморежима
     root.querySelector("#caseDemoButton")
       ?.addEventListener("click", () => {
         if (spinning) return;
 
         demoMode = !demoMode;
-
         updateDemoButton();
         updatePrice();
       });
 
-    // Открытие
     root.querySelector("#caseOpenButton")
       ?.addEventListener("click", spinRoulettes);
 
-    // Закрытие результата
     root.querySelector("#caseWinClose")
       ?.addEventListener("click", closeModal);
 
@@ -545,7 +599,7 @@
       });
   }
 
-  /* ===== ОТКРЫТИЕ СТРАНИЦЫ КЕЙСА ===== */
+  /* ===== CASE PAGE ===== */
 
   window.renderShadropCase = function (caseId) {
     const config = window.SHADROP_CASES?.[caseId];
@@ -566,7 +620,6 @@
     if (!root) return;
 
     const page = root.querySelector(".shadrop-case-page");
-
     if (!page) return;
 
     page.style.setProperty(
@@ -586,13 +639,12 @@
     bindEvents();
   };
 
-  /* ===== АДАПТАЦИЯ ПРИ ИЗМЕНЕНИИ ШИРИНЫ ===== */
+  /* ===== RESPONSIVE ===== */
 
   window.addEventListener("resize", () => {
     if (!activeCase || spinning) return;
 
     const root = container();
-
     if (!root || root.hidden) return;
 
     updateRouletteSizes();
