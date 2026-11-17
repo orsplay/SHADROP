@@ -1026,3 +1026,83 @@
     animation: none;
   }
 }
+
+/* =====================================
+   SHADROP — BALANCED DARK THEME
+===================================== */
+
+/* Общий блок рулетки */
+#casePageContainer .shadrop-roulettes {
+  background: #1b1b20;
+  border: 1px solid #323239;
+}
+
+/* Затемнение по бокам */
+#casePageContainer .shadrop-roulettes::after {
+  background: linear-gradient(
+    90deg,
+    rgba(27, 27, 32, 0.85) 0%,
+    rgba(27, 27, 32, 0.25) 8%,
+    transparent 18%,
+    transparent 82%,
+    rgba(27, 27, 32, 0.25) 92%,
+    rgba(27, 27, 32, 0.85) 100%
+  );
+}
+
+/* Фон переключателей */
+#casePageContainer .shadrop-case-multipliers {
+  background: #171719;
+  border-color: #323239;
+}
+
+/* Активный множитель */
+#casePageContainer .shadrop-multiplier.is-active {
+  background: #38383f;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+/* Демо — обычное состояние */
+#casePageContainer .shadrop-demo-button {
+  background: #1b1b20;
+  border-color: #323239;
+}
+
+/* Демо — включено */
+#casePageContainer .shadrop-demo-button.is-active {
+  background: #27231b;
+  border-color: #e99a00;
+  color: #ffb52e;
+
+  box-shadow: 0 0 12px rgba(255, 170, 0, 0.08);
+}
+
+/* Основная кнопка открытия */
+#casePageContainer .shadrop-open-button {
+  background: linear-gradient(
+    180deg,
+    #29292f,
+    #202025
+  );
+
+  border: 1px solid #a66d15;
+  color: #ffffff;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* При нажатии */
+#casePageContainer .shadrop-open-button:active {
+  background: #35353b;
+  transform: scale(0.98);
+}
+
+/* Кнопка продолжения в окне выигрыша */
+#casePageContainer .shadrop-win-continue {
+  background: #323239;
+  border: 1px solid #484850;
+  box-shadow: none;
+}
