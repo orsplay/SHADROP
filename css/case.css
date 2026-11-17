@@ -1229,3 +1229,82 @@
   #casePageContainer .shadrop-multiplier,
   #casePageContainer .shadrop-demo-button { transition: none; }
 }
+
+/* ==========================================
+   SHADROP — DARK GOLD BUTTONS
+========================================== */
+
+/* ===== КНОПКА ОТКРЫТЬ ===== */
+
+#casePageContainer .shadrop-open-button {
+  background: linear-gradient(
+    180deg,
+    #24201a 0%,
+    #171719 100%
+  );
+
+  border: 1px solid #d5a52e;
+  color: #ffffff;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.08),
+    0 0 8px rgba(255, 190, 40, 0.18),
+    0 0 20px rgba(255, 170, 20, 0.08);
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* При нажатии */
+
+#casePageContainer .shadrop-open-button:active {
+  background: #30271b;
+  transform: scale(0.985);
+}
+
+/* ===== ПАНЕЛЬ X1–X5 ===== */
+
+#casePageContainer .shadrop-case-multipliers {
+  background: #19191d;
+  border: 1px solid #3b3630;
+  box-shadow: none;
+}
+
+/* ===== АКТИВНЫЙ МНОЖИТЕЛЬ ===== */
+
+#casePageContainer .shadrop-multiplier.is-active {
+  background: linear-gradient(
+    180deg,
+    #3a2d17 0%,
+    #251f18 100%
+  );
+
+  border: 1px solid #d5a52e;
+  color: #ffce55;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.1),
+    0 0 8px rgba(255, 190, 40, 0.2),
+    0 0 17px rgba(255, 170, 20, 0.08);
+}
+
+/* ===== НЕАКТИВНЫЕ МНОЖИТЕЛИ ===== */
+
+#casePageContainer .shadrop-multiplier:not(.is-active) {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #99969e;
+}
+
+/* ===== ДЕМО ===== */
+
+#casePageContainer .shadrop-demo-button.is-active {
+  background: #292217;
+  border: 1px solid #d5a52e;
+  color: #ffce55;
+
+  box-shadow:
+    0 0 10px rgba(255, 190, 40, 0.12);
+}
