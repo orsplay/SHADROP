@@ -216,6 +216,7 @@
     if (!root || !activeCase) return;
 
     root.replaceChildren();
+    root.dataset.count = multiplier;
 
     for (let i = 0; i < multiplier; i++) {
       root.appendChild(createRoulette(i));

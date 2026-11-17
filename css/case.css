@@ -984,3 +984,207 @@
   object-fit: contain;
 }
 
+/* ==========================================
+   SHADROP — ONE ROULETTE BLOCK
+========================================== */
+
+/* Один общий контейнер для всех рулеток */
+
+#casePageContainer .shadrop-roulettes {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  position: relative;
+
+  width: 100%;
+  padding: 14px 0;
+
+  margin-bottom: 16px;
+
+  border: 1px solid #343448;
+  border-radius: 20px;
+
+  background: #1a1c30;
+
+  overflow: hidden;
+}
+
+/* Убираем отдельные блоки и рамки рулеток */
+
+#casePageContainer .shadrop-roulette {
+  position: relative;
+
+  width: 100%;
+  height: auto;
+
+  padding: 8px 0;
+  margin: 0;
+
+  border: none;
+  border-radius: 0;
+
+  background: transparent;
+
+  overflow: hidden;
+}
+
+/* Область прокрутки */
+
+#casePageContainer .shadrop-roulette__viewport {
+  position: relative;
+
+  inset: auto;
+
+  width: 100%;
+  height: auto;
+
+  overflow: hidden;
+}
+
+/* Дорожка с подарками */
+
+#casePageContainer .shadrop-roulette__track {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  width: max-content;
+  height: auto;
+}
+
+/* Квадратные карточки */
+
+#casePageContainer .shadrop-roulette__item {
+  flex: 0 0 var(--roulette-item-size, 65px);
+
+  width: var(--roulette-item-size, 65px);
+  height: var(--roulette-item-size, 65px);
+
+  aspect-ratio: 1 / 1;
+
+  padding: 4px;
+
+  border-radius: 12px;
+}
+
+/* Подарки */
+
+#casePageContainer .shadrop-roulette__item img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+/* ==========================================
+   SIDE FADE
+========================================== */
+
+/* Затемнение по бокам общего блока */
+
+#casePageContainer .shadrop-roulettes::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 6;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    rgba(26, 28, 48, 0.88) 0%,
+    rgba(26, 28, 48, 0.35) 7%,
+    transparent 16%,
+    transparent 84%,
+    rgba(26, 28, 48, 0.35) 93%,
+    rgba(26, 28, 48, 0.88) 100%
+  );
+}
+
+/* ==========================================
+   POINTERS
+========================================== */
+
+/* Указатели остаются поверх затемнения */
+
+#casePageContainer .shadrop-roulette__pointer {
+  z-index: 10;
+}
+
+/* Убираем вертикальную линию */
+
+#casePageContainer .shadrop-roulette__center {
+  display: none;
+}
+
+/* Верхний указатель */
+
+#casePageContainer .shadrop-roulette__pointer--top {
+  top: 0;
+
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 12px solid #ffffff;
+
+  filter: drop-shadow(0 0 10px #a46aff);
+}
+
+/* Нижний указатель */
+
+#casePageContainer .shadrop-roulette__pointer--bottom {
+  bottom: 0;
+
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-bottom: 12px solid #ffffff;
+
+  filter: drop-shadow(0 0 10px #a46aff);
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 360px) {
+  #casePageContainer .shadrop-roulettes {
+    gap: 8px;
+    padding: 10px 0;
+
+    border-radius: 16px;
+  }
+
+  #casePageContainer .shadrop-roulette {
+    padding: 6px 0;
+  }
+
+  #casePageContainer .shadrop-roulette__item {
+    border-radius: 10px;
+  }
+}
+
+/* Скрываем все стрелки */
+
+#casePageContainer .shadrop-roulette__pointer {
+  display: none;
+}
+
+/* Показываем верхнюю стрелку только у первой рулетки */
+
+#casePageContainer
+.shadrop-roulette:first-child
+.shadrop-roulette__pointer--top {
+  display: block;
+}
+
+/* Показываем нижнюю стрелку только у последней рулетки */
+
+#casePageContainer
+.shadrop-roulette:last-child
+.shadrop-roulette__pointer--bottom {
+  display: block;
+}
