@@ -36,6 +36,7 @@
 
   function createItem(reward) {
     const item = document.createElement("div");
+
     item.className = "shadrop-roulette__item";
     item.style.setProperty("--reward-color", colorOf(reward));
 
@@ -45,11 +46,15 @@
     img.draggable = false;
 
     item.appendChild(img);
+
     return item;
   }
 
+  /* ===== КАРТОЧКА ВОЗМОЖНОЙ НАГРАДЫ ===== */
+
   function createRewardCard(reward) {
     const card = document.createElement("div");
+
     card.className = "shadrop-reward-card";
     card.style.setProperty("--reward-color", colorOf(reward));
 
@@ -79,10 +84,42 @@
     return card;
   }
 
+  /* ===== РАЗМЕР КВАДРАТНЫХ КАРТОЧЕК ===== */
+
+  function updateRouletteSizes() {
+    const root = container();
+    if (!root) return;
+
+    const roulettes = root.querySelectorAll(".shadrop-roulette");
+
+    roulettes.forEach(roulette => {
+      const viewport = roulette.querySelector(
+        ".shadrop-roulette__viewport"
+      );
+
+      if (!viewport) return;
+
+      const availableWidth = viewport.clientWidth;
+
+      if (!availableWidth) return;
+
+      // Пять квадратов и четыре промежутка.
+      const itemSize = Math.floor(
+        (availableWidth - GAP * 4) / 5
+      );
+
+      roulette.style.setProperty(
+        "--roulette-item-size",
+        `${itemSize}px`
+      );
+    });
+  }
+
   /* ===== СОЗДАНИЕ РУЛЕТКИ ===== */
 
   function createRoulette(index) {
     const roulette = document.createElement("div");
+
     roulette.className = "shadrop-roulette";
     roulette.dataset.rouletteIndex = index;
 
@@ -107,17 +144,19 @@
 
     roulette.append(viewport, top, bottom, center);
 
-    fillTrack(track);
-
     return roulette;
   }
+
+  /* ===== ЗАПОЛНЕНИЕ РУЛЕТКИ ===== */
 
   function fillTrack(track, winner = null) {
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < ITEM_COUNT; i++) {
       const reward =
-        winner && i === WIN_INDEX ? winner : randomReward();
+        winner && i === WIN_INDEX
+          ? winner
+          : randomReward();
 
       fragment.appendChild(createItem(reward));
     }
@@ -125,30 +164,55 @@
     track.style.transition = "none";
     track.style.transform = "translate3d(0,0,0)";
     track.replaceChildren(fragment);
+  }
 
-    // Показываем центральную часть списка ещё до запуска.
+  /* ===== РАЗМЕРЫ И ПОЗИЦИИ ===== */
+
+  function getTrackMetrics(track) {
+    const first = track.firstElementChild;
+
+    const width = first?.getBoundingClientRect().width || 65;
+
+    const styles = getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap) || GAP;
+
+    return {
+      width,
+      step: width + gap
+    };
+  }
+
+  function getPosition(track, viewport, index) {
+    const { width, step } = getTrackMetrics(track);
+
+    const itemCenter = index * step + width / 2;
+
+    return viewport.clientWidth / 2 - itemCenter;
+  }
+
+  /* ===== СТАРТОВАЯ ПОЗИЦИЯ ===== */
+
+  function setPreviewPosition(track) {
     const roulette = track.closest(".shadrop-roulette");
+
     const viewport = roulette?.querySelector(
       ".shadrop-roulette__viewport"
     );
 
-    if (viewport) {
-      const first = track.firstElementChild;
-      const width = first?.getBoundingClientRect().width || 65;
-      const step = width + GAP;
-      const previewIndex = 4;
+    if (!viewport) return;
 
-      const offset =
-        viewport.clientWidth / 2 -
-        (previewIndex * step + width / 2);
+    const previewIndex = 4;
 
-      track.style.transform =
-        `translate3d(${offset}px,0,0)`;
-    }
+    track.style.transition = "none";
+    track.style.transform =
+      `translate3d(${getPosition(track, viewport, previewIndex)}px,0,0)`;
   }
+
+  /* ===== ОТРИСОВКА РУЛЕТОК ===== */
 
   function renderRoulettes() {
     const root = container()?.querySelector("#caseRoulettes");
+
     if (!root || !activeCase) return;
 
     root.replaceChildren();
@@ -156,6 +220,16 @@
     for (let i = 0; i < multiplier; i++) {
       root.appendChild(createRoulette(i));
     }
+
+    // Сначала вставляем рулетки в DOM.
+    updateRouletteSizes();
+
+    // Затем создаём подарки с правильной шириной.
+    root.querySelectorAll(".shadrop-roulette__track")
+      .forEach(track => {
+        fillTrack(track);
+        setPreviewPosition(track);
+      });
   }
 
   /* ===== МНОЖИТЕЛИ ===== */
@@ -186,6 +260,7 @@
 
   function updatePrice() {
     const root = container();
+
     if (!root || !activeCase) return;
 
     const label = root.querySelector("#caseOpenLabel");
@@ -198,15 +273,17 @@
       if (star) star.hidden = true;
     } else {
       if (label) label.textContent = "Открыть за";
+
       if (price) {
         price.hidden = false;
         price.textContent = activeCase.price * multiplier;
       }
+
       if (star) star.hidden = false;
     }
   }
 
-  /* ===== БЛОКИРОВКА ===== */
+  /* ===== БЛОКИРОВКА КНОПОК ===== */
 
   function setSpinning(value) {
     spinning = value;
@@ -226,26 +303,14 @@
       });
   }
 
-  /* ===== РАСЧЁТ ОСТАНОВКИ ===== */
-
-  function stopPosition(track, viewport) {
-    const first = track.firstElementChild;
-    const width = first.getBoundingClientRect().width;
-
-    const styles = getComputedStyle(track);
-    const gap = parseFloat(styles.columnGap) || GAP;
-
-    const centerOfWinner =
-      WIN_INDEX * (width + gap) + width / 2;
-
-    return viewport.clientWidth / 2 - centerOfWinner;
-  }
-
   /* ===== ОКНО РЕЗУЛЬТАТА ===== */
 
   function closeModal() {
     const overlay = container()?.querySelector("#caseWinOverlay");
-    if (overlay) overlay.hidden = true;
+
+    if (overlay) {
+      overlay.hidden = true;
+    }
   }
 
   function showResults(winners) {
@@ -312,12 +377,13 @@
     overlay.hidden = false;
   }
 
-  /* ===== ЗАПУСК ВСЕХ РУЛЕТОК ===== */
+  /* ===== ЗАПУСК РУЛЕТОК ===== */
 
   async function spinRoulettes() {
     if (spinning || !activeCase) return;
 
     const root = container();
+
     const roulettes = [
       ...root.querySelectorAll(".shadrop-roulette")
     ];
@@ -330,6 +396,7 @@
     const token = ++spinToken;
     const winners = [];
 
+    // Создаём независимый результат для каждой рулетки.
     roulettes.forEach(roulette => {
       const winner = randomReward();
       winners.push(winner);
@@ -339,9 +406,10 @@
       );
 
       fillTrack(track, winner);
+      setPreviewPosition(track);
     });
 
-    // Применяем начальные позиции.
+    // Применяем стартовые позиции.
     void root.offsetWidth;
 
     await new Promise(resolve => {
@@ -352,6 +420,7 @@
 
     if (token !== spinToken) return;
 
+    // Запускаем все рулетки.
     roulettes.forEach((roulette, index) => {
       const track = roulette.querySelector(
         ".shadrop-roulette__track"
@@ -361,10 +430,13 @@
         ".shadrop-roulette__viewport"
       );
 
-      const position = stopPosition(track, viewport);
+      const position = getPosition(
+        track,
+        viewport,
+        WIN_INDEX
+      );
 
       const randomOffset = (Math.random() - 0.5) * 8;
-
       const duration = SPIN_DURATION + index * 180;
 
       track.style.transition =
@@ -393,6 +465,7 @@
 
   function renderRewards() {
     const grid = container()?.querySelector("#caseRewardsGrid");
+
     if (!grid || !activeCase) return;
 
     const order = {
@@ -427,6 +500,7 @@
 
     root.dataset.caseEventsBound = "true";
 
+    // Множители x1–x5
     root.querySelectorAll(".shadrop-multiplier")
       .forEach(button => {
         button.addEventListener("click", () => {
@@ -440,6 +514,7 @@
         });
       });
 
+    // Переключатель деморежима
     root.querySelector("#caseDemoButton")
       ?.addEventListener("click", () => {
         if (spinning) return;
@@ -450,9 +525,11 @@
         updatePrice();
       });
 
+    // Открытие
     root.querySelector("#caseOpenButton")
       ?.addEventListener("click", spinRoulettes);
 
+    // Закрытие результата
     root.querySelector("#caseWinClose")
       ?.addEventListener("click", closeModal);
 
@@ -467,7 +544,7 @@
       });
   }
 
-  /* ===== ОТКРЫТИЕ СТРАНИЦЫ ===== */
+  /* ===== ОТКРЫТИЕ СТРАНИЦЫ КЕЙСА ===== */
 
   window.renderShadropCase = function (caseId) {
     const config = window.SHADROP_CASES?.[caseId];
@@ -488,6 +565,7 @@
     if (!root) return;
 
     const page = root.querySelector(".shadrop-case-page");
+
     if (!page) return;
 
     page.style.setProperty(
@@ -506,5 +584,22 @@
     renderRewards();
     bindEvents();
   };
+
+  /* ===== АДАПТАЦИЯ ПРИ ИЗМЕНЕНИИ ШИРИНЫ ===== */
+
+  window.addEventListener("resize", () => {
+    if (!activeCase || spinning) return;
+
+    const root = container();
+
+    if (!root || root.hidden) return;
+
+    updateRouletteSizes();
+
+    root.querySelectorAll(".shadrop-roulette__track")
+      .forEach(track => {
+        setPreviewPosition(track);
+      });
+  });
 
 })();
